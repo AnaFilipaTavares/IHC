@@ -10,31 +10,23 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace IHCProject
 {
     /// <summary>
-    /// Interaction logic for Prof_Home.xaml
+    /// Interaction logic for DisciplinaPopUp.xaml
     /// </summary>
-    public partial class Prof_Home : Page
+    public partial class DisciplinaPopUp : Window
     {
-        public Prof_Home()
+        public DisciplinaPopUp()
         {
             InitializeComponent();
         }
 
-        private void horarioClick(object sender, RoutedEventArgs e)
+        private void aceder_Click(object sender, RoutedEventArgs e)
         {
-           MessageBox.Show("horaior");
+            this.Close();
         }
-
-        private void disciplinaClick(object sender, RoutedEventArgs e)
-        {
-            DisciplinaPopUp d = new DisciplinaPopUp();
-            d.ShowDialog();
-        }
-
     }
 }

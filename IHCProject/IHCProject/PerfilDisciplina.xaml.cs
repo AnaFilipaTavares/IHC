@@ -16,25 +16,13 @@ using System.Windows.Shapes;
 namespace IHCProject
 {
     /// <summary>
-    /// Interaction logic for Prof_Home.xaml
+    /// Interaction logic for PerfilDisciplina.xaml
     /// </summary>
-    public partial class Prof_Home : Page
+    public partial class PerfilDisciplina : Page
     {
-        public Prof_Home()
+        public PerfilDisciplina()
         {
             InitializeComponent();
         }
-
-        private void horarioClick(object sender, RoutedEventArgs e)
-        {
-           MessageBox.Show("horaior");
-        }
-
-        private void disciplinaClick(object sender, RoutedEventArgs e)
-        {
-            DisciplinaPopUp d = new DisciplinaPopUp();
-            d.ShowDialog();
-        }
-
     }
 }

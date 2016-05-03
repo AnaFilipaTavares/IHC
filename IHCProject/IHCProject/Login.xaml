@@ -16,6 +16,7 @@
         <Label x:Name="label1_Copy" Content="Password: " HorizontalAlignment="Left" Margin="30,204,0,0" VerticalAlignment="Top" Width="235" FontSize="20"/>
         <PasswordBox x:Name="password" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="215" Margin="234,211,0,0"/>
         <Button x:Name="button" Content="Entrar" HorizontalAlignment="Left" VerticalAlignment="Top" Width="99" Margin="234,290,0,0" Height="38" Background="#FF0072B4" Click="button_Click"/>
-
+         
     </Grid>
+    
 </Page>
