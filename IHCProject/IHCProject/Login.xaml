@@ -8,7 +8,7 @@
       Title="Login" >
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="foto.jpg"/>
+            <ImageBrush ImageSource="Images/foto.jpg"/>
         </Grid.Background>
         <Label x:Name="label" Content="Escola Secundária XXX" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="24"/>
         <Label x:Name="label1" Content="Nome de utilizador : " HorizontalAlignment="Left" Margin="30,123,0,0" VerticalAlignment="Top" Width="235" FontSize="20"/>

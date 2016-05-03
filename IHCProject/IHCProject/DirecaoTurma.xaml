@@ -30,7 +30,7 @@
             <MenuItem Header="Encerrar Sessão" Height="30" FontSize="16" HorizontalAlignment="Center"  Width="145" Click="Exit_Click"/>
         </Menu>
         <Label x:Name="label" Content="Direção Turma" HorizontalAlignment="Center" Margin="147,10,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <ListBox x:Name="TurmaDoDT" HorizontalAlignment="Left" Height="179" Margin="264,52,0,0" VerticalAlignment="Top" Width="408"/>
+        <ListBox x:Name="TurmaDoDT" HorizontalAlignment="Left" Height="179" Margin="264,52,0,0" VerticalAlignment="Top" Width="408" MouseDoubleClick="TurmaDoDT_MouseDoubleClick"/>
 
 
 

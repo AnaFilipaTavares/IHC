@@ -1,4 +1,5 @@
 ﻿using System;
+
 using System.Data.SqlClient;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data;
+using IHCProject.infoClass;
 
 namespace IHCProject
 {
@@ -77,7 +79,7 @@ namespace IHCProject
                 SqlDataReader RDR = CMD.ExecuteReader();
                 while (RDR.Read())
                 {   
-                    TurmaDoDT.Items.Add("Nome: " + RDR["nome"].ToString() + "Número: " + RDR["idAluno"].ToString());
+                    TurmaDoDT.Items.Add(new Aluno(int.Parse(RDR["idAluno"].ToString()), RDR["nome"].ToString()));
                 }
                 RDR.Close();
             }
@@ -87,6 +89,12 @@ namespace IHCProject
                 MessageBox.Show(ex.Message);
             }
 
+        }
+
+        private void TurmaDoDT_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            InfoALuno popupWind = new InfoALuno(((Aluno)TurmaDoDT.SelectedValue),CN);
+            popupWind.ShowDialog();
         }
     }
     
