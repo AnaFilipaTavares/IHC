@@ -40,8 +40,8 @@ namespace IHCProject
             try
             {
 
-                if (CN.State==ConnectionState.Open) CN.Close();
-                CN.Open();
+                if (CN.State==ConnectionState.Closed) CN.Open();
+
                 CMD = new SqlCommand();
                 CMD.Connection = CN;
                 CMD.CommandText = "SELECT * FROM ESCOLA_SECUNDARIA.PROFESSORCONTAS WHERE idProf=@idProf;";
@@ -80,7 +80,7 @@ namespace IHCProject
                     if (password.Password.Equals(pass))
                     {
                         //entrar na conta do prof
-                        Prof_Home Menu = new Prof_Home(userBox.Text);
+                        Prof_Home Menu = new Prof_Home(userBox.Text,CN);
                         this.NavigationService.Navigate(Menu);
                     }
                     else {

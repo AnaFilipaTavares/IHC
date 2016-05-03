@@ -1,4 +1,6 @@
-﻿using System;
+﻿using System.Data.SqlClient;
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,16 +23,18 @@ namespace IHCProject
     public partial class Prof_Home : Page
     {
         private string idProf;
+        private SqlConnection CN;
         public Prof_Home()
         {
             InitializeComponent();
         }
 
-        // Construtor para a classe Deti-Cursos
-        public Prof_Home(string idProf) : this()
+        // Construtor para a classe Prof_Home
+        public Prof_Home(string idProf, SqlConnection cn) : this()
         {
             // Associa os dados ao contexto da nova página.
             this.idProf = idProf;
+            this.CN = cn;
         }
 
         private void horarioClick(object sender, RoutedEventArgs e)
