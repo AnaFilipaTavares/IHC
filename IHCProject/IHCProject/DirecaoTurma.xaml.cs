@@ -94,6 +94,8 @@ namespace IHCProject
         private void TurmaDoDT_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             InfoALuno popupWind = new InfoALuno(((Aluno)TurmaDoDT.SelectedValue),CN);
+            popupWind.Top= (SystemParameters.FullPrimaryScreenHeight - popupWind.Height) / 2;
+            popupWind.Left = (SystemParameters.FullPrimaryScreenWidth - popupWind.Width) / 2;
             popupWind.ShowDialog();
         }
     }

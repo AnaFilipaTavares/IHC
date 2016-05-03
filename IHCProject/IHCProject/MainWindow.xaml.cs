@@ -23,6 +23,9 @@ namespace IHCProject
         public MainWindow()
         {
             InitializeComponent();
+            //tamanho relativo centrado em 8/10 da tela
+            this.Top= (SystemParameters.FullPrimaryScreenHeight - ((SystemParameters.FullPrimaryScreenHeight)*8/10)) / 2;
+            this.Left= (SystemParameters.FullPrimaryScreenWidth - ((SystemParameters.FullPrimaryScreenWidth)*8/10)) / 2;
             ShowsNavigationUI = false;
         }
     }

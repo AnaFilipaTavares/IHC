@@ -5,8 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IHCProject"
         mc:Ignorable="d"
+       
         Title="InfoALuno" Height="250" Width="400">
     <Grid>
+        
         <Image x:Name="image" HorizontalAlignment="Left" Height="74" Margin="10,10,0,0" VerticalAlignment="Top" Width="70" Source="Images/contacts-256.png"/>
         <Label x:Name="nomeAluno" Content="Nome: " HorizontalAlignment="Left" Margin="121,10,0,0" VerticalAlignment="Top"/>
         <Label x:Name="numeroAluno" Content="Número: " HorizontalAlignment="Left" Margin="121,41,0,0" VerticalAlignment="Top"/>

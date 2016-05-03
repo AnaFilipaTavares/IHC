@@ -5,5 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IHCProject"
         mc:Ignorable="d"
+
         Title="MainWindow" Source="Login.xaml">
     </NavigationWindow>
