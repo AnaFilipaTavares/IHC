@@ -20,9 +20,17 @@ namespace IHCProject
     /// </summary>
     public partial class Prof_Home : Page
     {
+        private string idProf;
         public Prof_Home()
         {
             InitializeComponent();
+        }
+
+        // Construtor para a classe Deti-Cursos
+        public Prof_Home(string idProf) : this()
+        {
+            // Associa os dados ao contexto da nova página.
+            this.idProf = idProf;
         }
 
         private void horarioClick(object sender, RoutedEventArgs e)
