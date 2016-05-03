@@ -52,6 +52,11 @@ namespace IHCProject
             
         }
 
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new Login());
+        }
+
         private void loadData() {
            
 

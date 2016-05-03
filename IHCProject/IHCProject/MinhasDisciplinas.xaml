@@ -27,7 +27,7 @@
                       "Center" Width="145" Click="horarioClick"/>
             <MenuItem Header="Minhas Disciplinas" Height="30" FontSize="16" HorizontalAlignment="Center" Width="145" Click="disciplinaClick"/>
             <MenuItem Header="Direção de Turma" Height="30" FontSize="16" HorizontalAlignment="Center"  Width="145"/>
-            <MenuItem Header="Encerrar Sessão" Height="30" FontSize="16" HorizontalAlignment="Center"  Width="145"/>
+            <MenuItem Header="Encerrar Sessão" Height="30" FontSize="16" HorizontalAlignment="Center"  Width="145" Click="Exit_Click"/>
         </Menu>
         <Label x:Name="label" Content="Minhas Disciplinas" HorizontalAlignment="Center" Margin="147,10,0,0" VerticalAlignment="Top" FontSize="20"/>
 

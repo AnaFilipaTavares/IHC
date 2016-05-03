@@ -56,5 +56,10 @@ namespace IHCProject
             Prof_Home p = new Prof_Home(idProf, CN);
             this.NavigationService.Navigate(p);
         }
+
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new Login());
+        }
     }
 }
