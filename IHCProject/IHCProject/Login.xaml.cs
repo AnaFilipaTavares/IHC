@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace ProjetoIHC2
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for Login.xaml
     /// </summary>
-    public partial class MainWindow : NavigationWindow
+    public partial class Login : Page
     {
-        public MainWindow()
+        public Login()
         {
             InitializeComponent();
         }
