@@ -36,6 +36,9 @@
         <Label x:Name="label3" Content="Área de Ensino: " HorizontalAlignment="Left" Margin="267,140,0,0" VerticalAlignment="Top" FontSize="14"/>
         <Image x:Name="image" Source="foto.jpg" HorizontalAlignment="Left"
 Margin="672,69,0,0" VerticalAlignment="Top" Width="100"/>
+        <Label x:Name="nomeProf" Content="" HorizontalAlignment="Left" Margin="327,82,0,0" VerticalAlignment="Top" Width="327"/>
+        <Label x:Name="dataProf" Content="" HorizontalAlignment="Left" Margin="410,113,0,0" VerticalAlignment="Top" Width="244"/>
+        <Label x:Name="areaProf" Content="" HorizontalAlignment="Left" Margin="376,143,0,0" VerticalAlignment="Top" Width="278"/>
 
 
 

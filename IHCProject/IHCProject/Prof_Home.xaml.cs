@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Data;
 
 namespace IHCProject
 {
@@ -24,6 +25,7 @@ namespace IHCProject
     {
         private string idProf;
         private SqlConnection CN;
+        private SqlCommand CMD;
         public Prof_Home()
         {
             InitializeComponent();
@@ -35,6 +37,7 @@ namespace IHCProject
             // Associa os dados ao contexto da nova página.
             this.idProf = idProf;
             this.CN = cn;
+            loadData();
         }
 
         private void horarioClick(object sender, RoutedEventArgs e)
@@ -45,8 +48,35 @@ namespace IHCProject
         private void disciplinaClick(object sender, RoutedEventArgs e)
         {
             MinhasDisciplinas d = new MinhasDisciplinas(idProf,CN);
+            this.NavigationService.Navigate(d);
             
         }
+
+        private void loadData() {
+           
+
+            try
+            {
+                if (CN.State == ConnectionState.Closed) CN.Open();
+
+                CMD = new SqlCommand();
+                CMD.Connection = CN;
+                CMD.CommandText = "SELECT * FROM (SELECT * FROM ESCOLA_SECUNDARIA.PROFESSOR  WHERE idProf="+idProf+") as T JOIN ESCOLA_SECUNDARIA.PESSOA ON T.ncc=PESSOA.ncc";
+                SqlDataReader RDR = CMD.ExecuteReader();
+                if (RDR.Read())
+                {
+                    nomeProf.Content = RDR["nome"].ToString();
+                    dataProf.Content = RDR["dataNascimento"].ToString().Split()[0];
+                }
+                RDR.Close();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+               
+            }
 
     }
 }

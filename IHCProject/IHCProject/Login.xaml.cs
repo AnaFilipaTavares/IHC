@@ -64,6 +64,7 @@ namespace IHCProject
                     {
                         pass = RDR["pass"].ToString();
                     }
+                    RDR.Close();
                     
                 }
 
