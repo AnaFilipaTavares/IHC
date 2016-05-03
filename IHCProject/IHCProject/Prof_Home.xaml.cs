@@ -47,9 +47,13 @@ namespace IHCProject
 
         private void disciplinaClick(object sender, RoutedEventArgs e)
         {
-            MinhasDisciplinas d = new MinhasDisciplinas(idProf,CN);
-            this.NavigationService.Navigate(d);
+            this.NavigationService.Navigate(new MinhasDisciplinas(idProf, CN));
             
+        }
+
+        private void DirecaoTurma_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new DirecaoTurma(idProf,CN));
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)

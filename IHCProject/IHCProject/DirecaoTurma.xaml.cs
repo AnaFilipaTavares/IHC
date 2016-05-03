@@ -19,17 +19,17 @@ namespace IHCProject
     /// <summary>
     /// Interaction logic for MinhasDisciplinas.xaml
     /// </summary>
-    public partial class MinhasDisciplinas : Page
+    public partial class DirecaoTurma : Page
     {
         private string idProf;
         private SqlConnection CN;
-        public MinhasDisciplinas()
+        public DirecaoTurma()
         {
             InitializeComponent();
         }
 
         // Construtor para a classe Prof_Home
-        public MinhasDisciplinas(string idProf, SqlConnection cn) : this()
+        public DirecaoTurma(string idProf, SqlConnection cn) : this()
         {
             // Associa os dados ao contexto da nova página.
             this.idProf = idProf;
@@ -41,31 +41,27 @@ namespace IHCProject
             MessageBox.Show("horaior");
         }
 
-        private void disciplinaClick(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void aceder_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void Perfil_Click(object sender, RoutedEventArgs e)
         {
-            Prof_Home p = new Prof_Home(idProf, CN);
-            this.NavigationService.Navigate(p);
+            this.NavigationService.Navigate(new Prof_Home(idProf, CN));
+        }
+
+        private void disciplinaClick(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new MinhasDisciplinas(idProf, CN));
+
         }
 
         private void DirecaoTurma_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new DirecaoTurma(idProf, CN));
+            
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
             this.NavigationService.Navigate(new Login());
         }
-        
+
+
     }
 }
