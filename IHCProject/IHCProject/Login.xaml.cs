@@ -80,7 +80,7 @@ namespace IHCProject
                     if (password.Password.Equals(pass))
                     {
                         //entrar na conta do prof
-                        Prof_Home Menu = new Prof_Home(userBox.Text,CN);
+                        MinhasDisciplinas Menu = new MinhasDisciplinas(userBox.Text,CN);
                         this.NavigationService.Navigate(Menu);
                     }
                     else {

@@ -1,6 +1,5 @@
-﻿using System.Data.SqlClient;
-
-using System;
+﻿using System;
+using System.Data.SqlClient;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,19 +17,19 @@ using System.Windows.Shapes;
 namespace IHCProject
 {
     /// <summary>
-    /// Interaction logic for Prof_Home.xaml
+    /// Interaction logic for MinhasDisciplinas.xaml
     /// </summary>
-    public partial class Prof_Home : Page
+    public partial class MinhasDisciplinas : Page
     {
         private string idProf;
         private SqlConnection CN;
-        public Prof_Home()
+        public MinhasDisciplinas()
         {
             InitializeComponent();
         }
 
         // Construtor para a classe Prof_Home
-        public Prof_Home(string idProf, SqlConnection cn) : this()
+        public MinhasDisciplinas(string idProf, SqlConnection cn) : this()
         {
             // Associa os dados ao contexto da nova página.
             this.idProf = idProf;
@@ -39,14 +38,23 @@ namespace IHCProject
 
         private void horarioClick(object sender, RoutedEventArgs e)
         {
-           MessageBox.Show("horaior");
+
         }
 
         private void disciplinaClick(object sender, RoutedEventArgs e)
         {
-            MinhasDisciplinas d = new MinhasDisciplinas(idProf,CN);
-            
+
         }
 
+        private void aceder_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Perfil_Click(object sender, RoutedEventArgs e)
+        {
+            Prof_Home p = new Prof_Home(idProf, CN);
+            this.NavigationService.Navigate(p);
+        }
     }
 }
