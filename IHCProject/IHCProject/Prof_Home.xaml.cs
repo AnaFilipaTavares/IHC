@@ -16,14 +16,13 @@ using System.Windows.Shapes;
 namespace IHCProject
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for Prof_Home.xaml
     /// </summary>
-    public partial class MainWindow : NavigationWindow
+    public partial class Prof_Home : Page
     {
-        public MainWindow()
+        public Prof_Home()
         {
             InitializeComponent();
-            ShowsNavigationUI = false;
         }
     }
 }

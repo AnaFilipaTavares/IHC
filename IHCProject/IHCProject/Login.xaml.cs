@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ProjetoIHC2
+namespace IHCProject
 {
     /// <summary>
     /// Interaction logic for Login.xaml
@@ -23,6 +23,12 @@ namespace ProjetoIHC2
         public Login()
         {
             InitializeComponent();
+        }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+           Prof_Home Menu = new Prof_Home();
+            this.NavigationService.Navigate(Menu);
         }
     }
 }
