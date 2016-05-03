@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Data;
 
 namespace IHCProject
 {
@@ -23,6 +24,8 @@ namespace IHCProject
     {
         private string idProf;
         private SqlConnection CN;
+        private SqlCommand CMD;
+
         public DirecaoTurma()
         {
             InitializeComponent();
@@ -34,6 +37,7 @@ namespace IHCProject
             // Associa os dados ao contexto da nova página.
             this.idProf = idProf;
             this.CN = cn;
+            loadData();
         }
 
         private void horarioClick(object sender, RoutedEventArgs e)
@@ -54,7 +58,7 @@ namespace IHCProject
 
         private void DirecaoTurma_Click(object sender, RoutedEventArgs e)
         {
-            
+          
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)
@@ -62,6 +66,28 @@ namespace IHCProject
             this.NavigationService.Navigate(new Login());
         }
 
+        private void loadData() {
+            try
+            {
+                if (CN.State == ConnectionState.Closed) CN.Open();
 
+                CMD = new SqlCommand();
+                CMD.Connection = CN;
+                CMD.CommandText = "SELECT nome,idAluno FROM ((SELECT codigo FROM ESCOLA_SECUNDARIA.TURMA WHERE professor="+idProf+") AS t JOIN ESCOLA_SECUNDARIA.ALUNO ON t.codigo=ALUNO.turma) JOIN ESCOLA_SECUNDARIA.PESSOA ON ALUNO.ncc=PESSOA.ncc";
+                SqlDataReader RDR = CMD.ExecuteReader();
+                while (RDR.Read())
+                {   
+                    TurmaDoDT.Items.Add("Nome: " + RDR["nome"].ToString() + "Número: " + RDR["idAluno"].ToString());
+                }
+                RDR.Close();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+
+        }
     }
+    
 }
