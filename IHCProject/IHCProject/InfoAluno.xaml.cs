@@ -44,6 +44,9 @@ namespace IHCProject
         private void loadData() {
             nomeAluno.Content = "Nome: "+aluno.Nome;
             numeroAluno.Content = "Número: "+aluno.IdAluno;
+           
+            //query para ler as faltas injustificadas
+            
             /* try
             {
                 if (CN.State == ConnectionState.Closed) CN.Open();
@@ -65,6 +68,7 @@ namespace IHCProject
                 MessageBox.Show(ex.Message);
             }*/
         }
+
 
     }
 }

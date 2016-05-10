@@ -24,7 +24,7 @@ namespace IHCProject
     /// </summary>
     public partial class DirecaoTurma : Page
     {
-        private string idProf;
+        private Professor professor;
         private SqlConnection CN;
         private SqlCommand CMD;
 
@@ -34,10 +34,10 @@ namespace IHCProject
         }
 
         // Construtor para a classe Prof_Home
-        public DirecaoTurma(string idProf, SqlConnection cn) : this()
+        public DirecaoTurma(Professor prof, SqlConnection cn) : this()
         {
             // Associa os dados ao contexto da nova página.
-            this.idProf = idProf;
+            this.professor = prof;
             this.CN = cn;
             loadData();
         }
@@ -49,12 +49,12 @@ namespace IHCProject
 
         private void Perfil_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new Prof_Home(idProf, CN));
+            this.NavigationService.Navigate(new Prof_Home(professor, CN));
         }
 
         private void disciplinaClick(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new MinhasDisciplinas(idProf, CN));
+            this.NavigationService.Navigate(new MinhasDisciplinas(professor, CN));
 
         }
 
@@ -75,7 +75,7 @@ namespace IHCProject
 
                 CMD = new SqlCommand();
                 CMD.Connection = CN;
-                CMD.CommandText = "SELECT nome,idAluno FROM ((SELECT codigo FROM ESCOLA_SECUNDARIA.TURMA WHERE professor="+idProf+") AS t JOIN ESCOLA_SECUNDARIA.ALUNO ON t.codigo=ALUNO.turma) JOIN ESCOLA_SECUNDARIA.PESSOA ON ALUNO.ncc=PESSOA.ncc";
+                CMD.CommandText = "SELECT nome,idAluno FROM ((SELECT codigo FROM ESCOLA_SECUNDARIA.TURMA WHERE professor="+ professor.IdProf+ ") AS t JOIN ESCOLA_SECUNDARIA.ALUNO ON t.codigo=ALUNO.turma) JOIN ESCOLA_SECUNDARIA.PESSOA ON ALUNO.ncc=PESSOA.ncc";
                 SqlDataReader RDR = CMD.ExecuteReader();
                 while (RDR.Read())
                 {   
