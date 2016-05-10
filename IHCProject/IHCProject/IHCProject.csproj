@@ -55,10 +55,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AlunoInterface\AlunoHome.xaml.cs">
+      <DependentUpon>AlunoHome.xaml</DependentUpon>
+    </Compile>
     <Compile Include="infoClass\Aluno.cs" />
     <Compile Include="InfoAluno.xaml.cs">
       <DependentUpon>InfoAluno.xaml</DependentUpon>
     </Compile>
+    <Page Include="AlunoInterface\AlunoHome.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Login.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
