@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data;
+using IHCProject.infoClass;
 
 namespace IHCProject
 {
@@ -36,6 +37,11 @@ namespace IHCProject
         private void button_Click(object sender, RoutedEventArgs e)
         {
             string pass = null;
+            int id = -1;
+            string dataNascimento = null;
+            string nome = null;
+            int idade = -1;
+
             bool isProf = true;
             try
             {
@@ -44,11 +50,15 @@ namespace IHCProject
 
                 CMD = new SqlCommand();
                 CMD.Connection = CN;
-                CMD.CommandText = "SELECT * FROM ESCOLA_SECUNDARIA.PROFESSORCONTAS WHERE idProf=@idProf;";
+                CMD.CommandText = "SELECT T.idProf,nome,idade,dataNascimento,pass FROM ESCOLA_SECUNDARIA.PESSOA JOIN ESCOLA_SECUNDARIA.PROFESSOR JOIN (SELECT * FROM ESCOLA_SECUNDARIA.PROFESSORCONTAS WHERE idProf=@idProf) AS T ON T.idProf=PROFESSOR.idProf ON PESSOA.ncc=PROFESSOR.ncc;";
                 CMD.Parameters.AddWithValue("@idProf",userBox.Text);
                 SqlDataReader RDR = CMD.ExecuteReader();
                 if (RDR.Read()) {
                     pass=RDR["pass"].ToString();
+                    id = int.Parse(RDR["idProf"].ToString());
+                    nome = RDR["nome"].ToString();
+                    dataNascimento = RDR["dataNascimento"].ToString().Split()[0];
+                    idade = int.Parse(RDR["idade"].ToString());
                 }
                 Console.WriteLine("IdProf: "+pass);
                 RDR.Close();
@@ -57,12 +67,16 @@ namespace IHCProject
                 // é um aluno
                 if (pass==null) {
                     isProf = false;
-                    CMD.CommandText = "SELECT * FROM ESCOLA_SECUNDARIA.ALUNOCONTAS WHERE idAluno=@idAluno;";
+                    CMD.CommandText = "SELECT T.idAluno,nome,idade,dataNascimento,pass FROM ESCOLA_SECUNDARIA.PESSOA JOIN ESCOLA_SECUNDARIA.ALUNO JOIN  (SELECT * FROM ESCOLA_SECUNDARIA.ALUNOCONTAS WHERE idAluno=@idAluno) AS T ON T.idAluno=ALUNO.idAluno ON PESSOA.ncc=Aluno.ncc;";
                     CMD.Parameters.AddWithValue("@idAluno", userBox.Text);
                     RDR = CMD.ExecuteReader();
                     if (RDR.Read())
                     {
                         pass = RDR["pass"].ToString();
+                        id = int.Parse(RDR["idAluno"].ToString());
+                        nome = RDR["nome"].ToString();
+                        dataNascimento = RDR["dataNascimento"].ToString().Split()[0];
+                        idade = int.Parse(RDR["idade"].ToString());
                     }
                     RDR.Close();
                     
@@ -81,7 +95,8 @@ namespace IHCProject
                     if (password.Password.Equals(pass))
                     {
                         //entrar na conta do prof
-                        MinhasDisciplinas Menu = new MinhasDisciplinas(userBox.Text,CN);
+                        Professor prof = new Professor(id,nome,idade,dataNascimento);
+                        MinhasDisciplinas Menu = new MinhasDisciplinas(prof,CN);
                         this.NavigationService.Navigate(Menu);
                     }
                     else {
@@ -94,6 +109,7 @@ namespace IHCProject
                     if (password.Password.Equals(pass))
                     {
                         //entrar na conta do aluno
+                        Aluno aluno = new Aluno(id, nome, idade, dataNascimento);
                         Console.WriteLine("entrar conta aluno");
                     }
                     else {

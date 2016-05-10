@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using IHCProject.infoClass;
 
 namespace IHCProject
 {
@@ -21,7 +22,7 @@ namespace IHCProject
     /// </summary>
     public partial class MinhasDisciplinas : Page
     {
-        private string idProf;
+        private Professor prof;
         private SqlConnection CN;
         public MinhasDisciplinas()
         {
@@ -29,10 +30,10 @@ namespace IHCProject
         }
 
         // Construtor para a classe Prof_Home
-        public MinhasDisciplinas(string idProf, SqlConnection cn) : this()
+        public MinhasDisciplinas(Professor prof, SqlConnection cn) : this()
         {
             // Associa os dados ao contexto da nova página.
-            this.idProf = idProf;
+            this.prof = prof;
             this.CN = cn;
         }
 
@@ -53,13 +54,13 @@ namespace IHCProject
 
         private void Perfil_Click(object sender, RoutedEventArgs e)
         {
-            Prof_Home p = new Prof_Home(idProf, CN);
+            Prof_Home p = new Prof_Home(prof, CN);
             this.NavigationService.Navigate(p);
         }
 
         private void DirecaoTurma_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new DirecaoTurma(idProf, CN));
+            this.NavigationService.Navigate(new DirecaoTurma(prof, CN));
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)

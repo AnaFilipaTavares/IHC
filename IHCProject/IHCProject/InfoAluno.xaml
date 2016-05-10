@@ -6,15 +6,16 @@
         xmlns:local="clr-namespace:IHCProject"
         mc:Ignorable="d"
        
-        Title="InfoALuno" Height="250" Width="400">
+        Title="InfoALuno" Height="325
+        " Width="500">
     <Grid>
-        
+
         <Image x:Name="image" HorizontalAlignment="Left" Height="74" Margin="10,10,0,0" VerticalAlignment="Top" Width="70" Source="Images/contacts-256.png"/>
         <Label x:Name="nomeAluno" Content="Nome: " HorizontalAlignment="Left" Margin="121,10,0,0" VerticalAlignment="Top"/>
         <Label x:Name="numeroAluno" Content="Número: " HorizontalAlignment="Left" Margin="121,41,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="label" Content="Faltas Injustificadas" HorizontalAlignment="Left" Margin="140,84,0,0" VerticalAlignment="Top"/>
-        <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="56" Margin="90,110,0,0" VerticalAlignment="Top" Width="213"/>
-        <Button x:Name="button" Content="Justificar" HorizontalAlignment="Left" Margin="156,176,0,0" VerticalAlignment="Top" Width="75"/>
+        <Label x:Name="label" Content="Faltas Injustificadas" HorizontalAlignment="Left" Margin="196,91,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="button" Content="Justificar" HorizontalAlignment="Left" Margin="214,251,0,0" VerticalAlignment="Top" Width="75"/>
+        <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="100" Margin="80,135,0,0" VerticalAlignment="Top" Width="339"/>
 
     </Grid>
 </Window>

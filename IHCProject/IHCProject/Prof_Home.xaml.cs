@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data;
+using IHCProject.infoClass;
 
 namespace IHCProject
 {
@@ -23,7 +24,7 @@ namespace IHCProject
     /// </summary>
     public partial class Prof_Home : Page
     {
-        private string idProf;
+        private Professor professor;
         private SqlConnection CN;
         private SqlCommand CMD;
         public Prof_Home()
@@ -32,10 +33,10 @@ namespace IHCProject
         }
 
         // Construtor para a classe Prof_Home
-        public Prof_Home(string idProf, SqlConnection cn) : this()
+        public Prof_Home(Professor prof, SqlConnection cn) : this()
         {
             // Associa os dados ao contexto da nova página.
-            this.idProf = idProf;
+            this.professor = prof;
             this.CN = cn;
             loadData();
         }
@@ -47,13 +48,13 @@ namespace IHCProject
 
         private void disciplinaClick(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new MinhasDisciplinas(idProf, CN));
+            this.NavigationService.Navigate(new MinhasDisciplinas(professor, CN));
             
         }
 
         private void DirecaoTurma_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new DirecaoTurma(idProf,CN));
+            this.NavigationService.Navigate(new DirecaoTurma(professor, CN));
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)
@@ -63,30 +64,9 @@ namespace IHCProject
         }
 
         private void loadData() {
-           
-
-            try
-            {
-                if (CN.State == ConnectionState.Closed) CN.Open();
-
-                CMD = new SqlCommand();
-                CMD.Connection = CN;
-                CMD.CommandText = "SELECT * FROM (SELECT * FROM ESCOLA_SECUNDARIA.PROFESSOR  WHERE idProf="+idProf+") as T JOIN ESCOLA_SECUNDARIA.PESSOA ON T.ncc=PESSOA.ncc";
-                SqlDataReader RDR = CMD.ExecuteReader();
-                if (RDR.Read())
-                {
-                    nomeProf.Content = RDR["nome"].ToString();
-                    dataProf.Content = RDR["dataNascimento"].ToString().Split()[0];
-                }
-                RDR.Close();
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show(ex.Message);
-            }
-               
-            }
+            nomeProf.Content =professor.Nome;
+            dataProf.Content = professor.DataNascimento;
+        }
 
     }
 }
