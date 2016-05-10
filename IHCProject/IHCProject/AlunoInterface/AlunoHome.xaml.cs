@@ -81,15 +81,23 @@ namespace IHCProject.AlunoInterface
 
                 CMD = new SqlCommand();
                 CMD.Connection = CN;
-                CMD.CommandText = "SELECT * FROM (SELECT * FROM ESCOLA_SECUNDARIA.ALUNO  WHERE idAluno=" + aluno.IdAluno + ") as T JOIN ESCOLA_SECUNDARIA.PESSOA ON T.ncc=PESSOA.ncc";
+                CMD.CommandText = "SELECT ano,designação,professor,nome,encarregado,dataNascimento,nomeAluno FROM ESCOLA_SECUNDARIA.TURMA JOIN (SELECT * FROM ESCOLA_SECUNDARIA.PLANO_CURSO JOIN (SELECT idAluno, encarregado, curso, turma, nome AS nomeAluno, dataNascimento FROM (SELECT * FROM ESCOLA_SECUNDARIA.ALUNO  WHERE idAluno = "+ aluno.IdAluno +") as T JOIN ESCOLA_SECUNDARIA.PESSOA ON T.ncc = PESSOA.ncc) AS T1 ON curso = codigo) AS T2 ON ESCOLA_SECUNDARIA.TURMA.codigo = turma;";
                 SqlDataReader RDR = CMD.ExecuteReader();
                 if (RDR.Read())
                 {
-                    nomeProf.Content = RDR["nome"].ToString();
-                    dataProf.Content = RDR["dataNascimento"].ToString().Split()[0];
+                    nomeAluno.Content = RDR["nomeAluno"].ToString();
+                    dataAluno.Content = RDR["dataNascimento"].ToString().Split()[0];
+                    encarregadoAluno.Content = RDR["encarregado"].ToString();
+                    cursoAluno.Content = RDR["nome"].ToString();
+                    turmaAluno.Content = RDR["ano"].ToString() + "º" + RDR["designação"].ToString();
+                    diretorAluno.Content = RDR["professor"].ToString();
+
 
                 }
                 RDR.Close();
+
+
+
             }
             catch (Exception ex)
             {

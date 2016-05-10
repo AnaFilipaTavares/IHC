@@ -110,7 +110,8 @@ namespace IHCProject
                     {
                         //entrar na conta do aluno
                         Aluno aluno = new Aluno(id, nome, idade, dataNascimento);
-                        Console.WriteLine("entrar conta aluno");
+                        AlunoInterface.AlunoHome home = new AlunoInterface.AlunoHome(aluno,CN);
+                        this.NavigationService.Navigate(home);
                     }
                     else {
                         MessageBox.Show("Password de utilizador inválida");
