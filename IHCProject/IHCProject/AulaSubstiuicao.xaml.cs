@@ -24,7 +24,7 @@ namespace IHCProject
     /// </summary>
     public partial class AulaSubstituicao : Page
     {
-        private Professor professor;
+        private Professor prof;
         private SqlConnection CN;
         private SqlCommand CMD;
 
@@ -37,24 +37,24 @@ namespace IHCProject
         public AulaSubstituicao(Professor prof, SqlConnection cn) : this()
         {
             // Associa os dados ao contexto da nova página.
-            this.professor = prof;
+            this.prof = prof;
             this.CN = cn;
             loadData();
         }
 
         private void horarioClick(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new Horario(professor, CN));
+            this.NavigationService.Navigate(new Horario(prof, CN));
         }
 
         private void Perfil_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new Prof_Home(professor, CN));
+            this.NavigationService.Navigate(new Prof_Home(prof, CN));
         }
 
         private void disciplinaClick(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new MinhasDisciplinas(professor, CN));
+            this.NavigationService.Navigate(new MinhasDisciplinas(prof, CN));
 
         }
         private void AulaSubstituicao_Click(object sender, RoutedEventArgs e)
@@ -63,7 +63,7 @@ namespace IHCProject
         }
         private void DirecaoTurma_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new DirecaoTurma(professor, CN));
+            this.NavigationService.Navigate(new DirecaoTurma(prof, CN));
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)
@@ -80,10 +80,11 @@ namespace IHCProject
 
                 CMD = new SqlCommand();
                 CMD.Connection = CN;
-                CMD.CommandText = "SELECT PESSOA.nome,PROFESSOR.idProf, HORARIO_DISCIPLINA.id,DISCIPLINA.designação,HORARIO_DISCIPLINA.ano,TURMA.designação FROM ESCOLA_SECUNDARIA.HORARIO_DISCIPLINA JOIN ESCOLA_SECUNDARIA.PROFESSOR ON professor=idProf JOIN ESCOLA_SECUNDARIA.PESSOA ON PESSOA.ncc=PROFESSOR.ncc JOIN ESCOLA_SECUNDARIA.DISCIPLINA ON disciplina=codigo JOIN ESCOLA_SECUNDARIA.TURMA ON turma=TURMA.codigo;";
+                CMD.CommandText = "SELECT PESSOA.nome,PROFESSOR.idProf, HORARIO_DISCIPLINA.id,DISCIPLINA.designação AS nomeDisciplina,HORARIO_DISCIPLINA.ano,TURMA.designação FROM ESCOLA_SECUNDARIA.HORARIO_DISCIPLINA JOIN ESCOLA_SECUNDARIA.PROFESSOR ON professor=idProf JOIN ESCOLA_SECUNDARIA.PESSOA ON PESSOA.ncc=PROFESSOR.ncc JOIN ESCOLA_SECUNDARIA.DISCIPLINA ON disciplina=codigo JOIN ESCOLA_SECUNDARIA.TURMA ON turma=TURMA.codigo;";
                 SqlDataReader RDR = CMD.ExecuteReader();
                 while (RDR.Read())
-                {   
+                {
+                    listBoxDisciplinas.Items.Add(new HorarioDisciplina(RDR["nomeDisciplina"].ToString(), int.Parse(RDR["ano"].ToString()), RDR["designação"].ToString(),new Professor(int.Parse(RDR["idProf"].ToString()), RDR["nome"].ToString())));
                     //TurmaDoDT.Items.Add(new Aluno(int.Parse(RDR["idAluno"].ToString()), RDR["nome"].ToString()));
                 }
                 RDR.Close();
@@ -96,31 +97,86 @@ namespace IHCProject
 
         }
 
-        private void TurmaDoDT_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void listBoxDisciplinas_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-          //  openPopupWindow((Aluno)TurmaDoDT.SelectedValue);
+            if (MessageBox.Show("Tem a certeza que pretende criar uma aula de substituição\n" + ((HorarioDisciplina)listBoxDisciplinas.SelectedValue).ToString(), "criar aula", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                Console.WriteLine("cria aula substituicao");
+            }
+            else {
+                Console.WriteLine("Não cria aula substituicao");
+            }
+
         }
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-           /* Aluno temp = (Aluno)TurmaDoDT.SelectedItem;
+            HorarioDisciplina temp = (HorarioDisciplina)listBoxDisciplinas.SelectedItem;
             if (temp == null)
             {
                 MessageBox.Show("Selecione uma opção");
             }
             else {
-                openPopupWindow(temp);
-            }*/
+                if (MessageBox.Show("Tem a certeza que pretende criar uma aula de substituição\n" + ((HorarioDisciplina)listBoxDisciplinas.SelectedValue).ToString(), "criar aula", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+                    Console.WriteLine("cria aula substituicao");
+                }
+                else {
+                    Console.WriteLine("Não cria aula substituicao");
+                }
+            }
+            
         }
 
-        private void openPopupWindow(Aluno selected) {
-            InfoALuno popupWind = new InfoALuno((selected), CN);
+        private void openPopupWindow(HorarioDisciplina selected) {
+           /* InfoALuno popupWind = new InfoALuno((selected), CN);
             popupWind.Top = (SystemParameters.FullPrimaryScreenHeight - popupWind.Height) / 2;
             popupWind.Left = (SystemParameters.FullPrimaryScreenWidth - popupWind.Width) / 2;
-            popupWind.ShowDialog();
+            popupWind.ShowDialog();*/
         }
 
-       
+        private void search_Click(object sender, RoutedEventArgs e)
+        {
+            listBoxDisciplinas.Items.Clear();
+            string query = "SELECT PESSOA.nome,PROFESSOR.idProf, HORARIO_DISCIPLINA.id,DISCIPLINA.designação AS nomeDisciplina,HORARIO_DISCIPLINA.ano,TURMA.designação FROM ESCOLA_SECUNDARIA.HORARIO_DISCIPLINA JOIN ESCOLA_SECUNDARIA.PROFESSOR ON professor=idProf JOIN ESCOLA_SECUNDARIA.PESSOA ON PESSOA.ncc=PROFESSOR.ncc JOIN ESCOLA_SECUNDARIA.DISCIPLINA ON disciplina=codigo JOIN ESCOLA_SECUNDARIA.TURMA ON turma=TURMA.codigo";
+            bool existWhere = false;
+
+            if (!disciplina_search.Text.Equals(""))
+            {
+                query += " WHERE DISCIPLINA.designação LIKE '%" + disciplina_search.Text+"%'";
+                existWhere = true;
+            }
+
+            if (!professor_search.Text.Equals(""))
+            {
+                if (existWhere)
+                    query += " AND PESSOA.nome LIKE '%" + professor_search.Text+"%'";
+                else
+                    query += " WHERE PESSOA.nome LIKE '%" + professor_search.Text+"%'";
+            }
+
+                try
+            {
+                if (CN.State == ConnectionState.Closed) CN.Open();
+
+                CMD = new SqlCommand();
+                CMD.Connection = CN;
+                CMD.CommandText = query;
+                SqlDataReader RDR = CMD.ExecuteReader();
+                while (RDR.Read())
+                {
+                    listBoxDisciplinas.Items.Add(new HorarioDisciplina(RDR["nomeDisciplina"].ToString(), int.Parse(RDR["ano"].ToString()), RDR["designação"].ToString(), new Professor(int.Parse(RDR["idProf"].ToString()), RDR["nome"].ToString())));
+                    //TurmaDoDT.Items.Add(new Aluno(int.Parse(RDR["idAluno"].ToString()), RDR["nome"].ToString()));
+                }
+                RDR.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+
     }
     
 }

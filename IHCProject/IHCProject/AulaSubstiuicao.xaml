@@ -31,9 +31,13 @@
             <MenuItem Header="Encerrar Sessão" Height="30" FontSize="16" HorizontalAlignment="Center"  Width="145" Click="Exit_Click"/>
         </Menu>
         <Label x:Name="label" Content="Aula Substituição" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20"/>
-        <ListBox x:Name="TurmaDoDT" HorizontalAlignment="Left" Height="179" Margin="208,40,0,0" VerticalAlignment="Top" Width="408" MouseDoubleClick="TurmaDoDT_MouseDoubleClick"/>
-        <Button x:Name="button" Content="Aceder" HorizontalAlignment="Left" Margin="541,230,0,0" VerticalAlignment="Top" Width="75" Click="button_Click"/>
-
+        <ListBox x:Name="listBoxDisciplinas" HorizontalAlignment="Left" Height="179" Margin="208,80,0,0" VerticalAlignment="Top" Width="408" MouseDoubleClick="listBoxDisciplinas_MouseDoubleClick"/>
+        <Button x:Name="button" Content="Criar aula substituição" HorizontalAlignment="Left" Margin="490,270,0,0" VerticalAlignment="Top" Width="126" Click="button_Click"/>
+        <Label x:Name="disciplina" Content="Disciplina: " HorizontalAlignment="Left" Margin="208,43,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="professor" Content="Professor: " HorizontalAlignment="Left" Margin="368,43,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="disciplina_search" HorizontalAlignment="Left" Height="23" Margin="275,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80"/>
+        <TextBox x:Name="professor_search" HorizontalAlignment="Left" Height="23" Margin="436,46,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="80"/>
+        <Button x:Name="search" Content="Pesquisar" HorizontalAlignment="Left" Margin="541,46,0,0" VerticalAlignment="Top" Width="75" Height="23" Click="search_Click" />
 
 
 

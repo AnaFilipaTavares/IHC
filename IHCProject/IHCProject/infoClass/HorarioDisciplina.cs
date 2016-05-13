@@ -75,5 +75,10 @@ namespace IHCProject.infoClass
                 professorDisciplina = value;
             }
         }
+
+        public override string ToString()
+        {
+            return "Disciplina: "+nomeDisciplina+" "+ anoDisciplina+" "+ turmaDisciplina+" Professor: "+ professorDisciplina.Nome;
+        } 
     }
 }
