@@ -21,18 +21,18 @@ namespace IHCProject
     /// <summary>
     /// Interaction logic for MinhasDisciplinas.xaml
     /// </summary>
-    public partial class MinhasDisciplinas : Page
+    public partial class Horario : Page
     {
         private Professor prof;
         private SqlConnection CN;
         private SqlCommand CMD;
-        public MinhasDisciplinas()
+        public Horario()
         {
             InitializeComponent();
         }
 
         // Construtor para a classe Prof_Home
-        public MinhasDisciplinas(Professor prof, SqlConnection cn) : this()
+        public Horario(Professor prof, SqlConnection cn) : this()
         {
             // Associa os dados ao contexto da nova página.
             this.prof = prof;
@@ -42,38 +42,18 @@ namespace IHCProject
 
         private void loadData()
         {
-            try
-            {
-                if (CN.State == ConnectionState.Closed) CN.Open();
-
-                CMD = new SqlCommand();
-                CMD.Connection = CN;
-                CMD.CommandText = "SELECT designação,ano,disciplina FROM ESCOLA_SECUNDARIA.HORARIO_DISCIPLINA JOIN ESCOLA_SECUNDARIA.DISCIPLINA ON HORARIO_DISCIPLINA.disciplina=DISCIPLINA.codigo WHERE professor=@idProf;";
-                CMD.Parameters.AddWithValue("@idProf", prof.IdProf);
-                SqlDataReader RDR = CMD.ExecuteReader();
-                while (RDR.Read())
-                {
-                    listBox.Items.Add(new Disciplina(int.Parse(RDR["disciplina"].ToString()), int.Parse(RDR["ano"].ToString()), RDR["designação"].ToString()));
-                }
-                RDR.Close();
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show(ex.Message);
-            }
+            
         }
 
         private void horarioClick(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new Horario(prof, CN));
+
         }
 
         private void disciplinaClick(object sender, RoutedEventArgs e)
         {
-
+            this.NavigationService.Navigate(new MinhasDisciplinas(prof, CN));
         }
-
 
         private void Perfil_Click(object sender, RoutedEventArgs e)
         {
@@ -89,17 +69,6 @@ namespace IHCProject
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
             this.NavigationService.Navigate(new Login());
-        }
-
-        private void aceder_Click(object sender, RoutedEventArgs e)
-        {
-            if (listBox.SelectedItem == null)
-            {
-                MessageBox.Show("Selecione uma opção");
-            }
-            else {
-                Console.WriteLine("selecionada");
-            }
         }
 
         private void AulaSubstituicao_Click(object sender, RoutedEventArgs e)

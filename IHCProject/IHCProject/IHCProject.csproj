@@ -58,11 +58,12 @@
     <Compile Include="AlunoInterface\AlunoHome.xaml.cs">
       <DependentUpon>AlunoHome.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AlunoInterface\Notas.xaml.cs">
-      <DependentUpon>Notas.xaml</DependentUpon>
+    <Compile Include="AulaSubstiuicao.xaml.cs">
+      <DependentUpon>AulaSubstiuicao.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AlunoInterface\PlanoCurso.xaml.cs">
-      <DependentUpon>PlanoCurso.xaml</DependentUpon>
+    <Compile Include="infoClass\HorarioDisciplina.cs" />
+    <Compile Include="JustificarFalta.xaml.cs">
+      <DependentUpon>JustificarFalta.xaml</DependentUpon>
     </Compile>
     <Compile Include="infoClass\Aluno.cs" />
     <Compile Include="InfoAluno.xaml.cs">
@@ -72,13 +73,13 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AlunoInterface\Notas.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="AulaSubstiuicao.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
-    <Page Include="AlunoInterface\PlanoCurso.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="JustificarFalta.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Login.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -92,6 +93,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="infoClass\Aula.cs" />
+    <Compile Include="infoClass\Disciplina.cs" />
     <Compile Include="infoClass\Professor.cs" />
     <Compile Include="Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
@@ -101,6 +104,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="DirecaoTurma.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Horario.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -120,6 +127,9 @@
   <ItemGroup>
     <Compile Include="DirecaoTurma.xaml.cs">
       <DependentUpon>DirecaoTurma.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Horario.xaml.cs">
+      <DependentUpon>Horario.xaml</DependentUpon>
     </Compile>
     <Compile Include="MinhasDisciplinas.xaml.cs">
       <DependentUpon>MinhasDisciplinas.xaml</DependentUpon>

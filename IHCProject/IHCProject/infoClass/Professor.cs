@@ -14,12 +14,18 @@ namespace IHCProject.infoClass
         private int idade;
 
 
-        public Professor(int id, string nome, int idade, string dataNascimento)
+      
+
+        public Professor(int idProf, string nome)
         {
-            idProf = id;
+            this.idProf = idProf;
             this.nome = nome;
-            this.idade = idade;
+        }
+
+        public Professor(int idProf, string nome,  int idade,string dataNascimento) : this(idProf, nome)
+        {
             this.dataNascimento = dataNascimento;
+            this.idade = idade;
         }
 
         public int IdProf

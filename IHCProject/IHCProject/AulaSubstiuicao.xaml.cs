@@ -22,19 +22,19 @@ namespace IHCProject
     /// <summary>
     /// Interaction logic for MinhasDisciplinas.xaml
     /// </summary>
-    public partial class DirecaoTurma : Page
+    public partial class AulaSubstituicao : Page
     {
         private Professor professor;
         private SqlConnection CN;
         private SqlCommand CMD;
 
-        public DirecaoTurma()
+        public AulaSubstituicao()
         {
             InitializeComponent();
         }
 
         // Construtor para a classe Prof_Home
-        public DirecaoTurma(Professor prof, SqlConnection cn) : this()
+        public AulaSubstituicao(Professor prof, SqlConnection cn) : this()
         {
             // Associa os dados ao contexto da nova página.
             this.professor = prof;
@@ -57,10 +57,13 @@ namespace IHCProject
             this.NavigationService.Navigate(new MinhasDisciplinas(professor, CN));
 
         }
+        private void AulaSubstituicao_Click(object sender, RoutedEventArgs e)
+        {
 
+        }
         private void DirecaoTurma_Click(object sender, RoutedEventArgs e)
         {
-          
+            this.NavigationService.Navigate(new DirecaoTurma(professor, CN));
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)
@@ -69,39 +72,19 @@ namespace IHCProject
         }
 
         private void loadData() {
-            //query turma do DT
-            try
-            {
-                if (CN.State == ConnectionState.Closed) CN.Open();
-
-                CMD = new SqlCommand();
-                CMD.Connection = CN;
-                CMD.CommandText = "SELECT ano,designação FROM ESCOLA_SECUNDARIA.TURMA WHERE professor=" + professor.IdProf + ";";
-                SqlDataReader RDR = CMD.ExecuteReader();
-                if (RDR.Read())
-                {
-                    label.Content= "Direção Turma "+ RDR["ano"].ToString()+" "+ RDR["designação"].ToString();
-                }
-                RDR.Close();
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show(ex.Message);
-            }
-
+          
             // query para obter os alunos do DT
-            try
+           try
             {
                 if (CN.State == ConnectionState.Closed) CN.Open();
 
                 CMD = new SqlCommand();
                 CMD.Connection = CN;
-                CMD.CommandText = "SELECT nome,idAluno FROM ((SELECT codigo FROM ESCOLA_SECUNDARIA.TURMA WHERE professor="+ professor.IdProf+ ") AS t JOIN ESCOLA_SECUNDARIA.ALUNO ON t.codigo=ALUNO.turma) JOIN ESCOLA_SECUNDARIA.PESSOA ON ALUNO.ncc=PESSOA.ncc";
+                CMD.CommandText = "SELECT PESSOA.nome,PROFESSOR.idProf, HORARIO_DISCIPLINA.id,DISCIPLINA.designação,HORARIO_DISCIPLINA.ano,TURMA.designação FROM ESCOLA_SECUNDARIA.HORARIO_DISCIPLINA JOIN ESCOLA_SECUNDARIA.PROFESSOR ON professor=idProf JOIN ESCOLA_SECUNDARIA.PESSOA ON PESSOA.ncc=PROFESSOR.ncc JOIN ESCOLA_SECUNDARIA.DISCIPLINA ON disciplina=codigo JOIN ESCOLA_SECUNDARIA.TURMA ON turma=TURMA.codigo;";
                 SqlDataReader RDR = CMD.ExecuteReader();
                 while (RDR.Read())
                 {   
-                    TurmaDoDT.Items.Add(new Aluno(int.Parse(RDR["idAluno"].ToString()), RDR["nome"].ToString()));
+                    //TurmaDoDT.Items.Add(new Aluno(int.Parse(RDR["idAluno"].ToString()), RDR["nome"].ToString()));
                 }
                 RDR.Close();
             }
@@ -115,19 +98,19 @@ namespace IHCProject
 
         private void TurmaDoDT_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            openPopupWindow((Aluno)TurmaDoDT.SelectedValue);
+          //  openPopupWindow((Aluno)TurmaDoDT.SelectedValue);
         }
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            Aluno temp = (Aluno)TurmaDoDT.SelectedItem;
+           /* Aluno temp = (Aluno)TurmaDoDT.SelectedItem;
             if (temp == null)
             {
                 MessageBox.Show("Selecione uma opção");
             }
             else {
                 openPopupWindow(temp);
-            }
+            }*/
         }
 
         private void openPopupWindow(Aluno selected) {
@@ -137,10 +120,7 @@ namespace IHCProject
             popupWind.ShowDialog();
         }
 
-        private void AulaSubstituicao_Click(object sender, RoutedEventArgs e)
-        {
-            this.NavigationService.Navigate(new AulaSubstituicao(professor, CN));
-        }
+       
     }
     
 }

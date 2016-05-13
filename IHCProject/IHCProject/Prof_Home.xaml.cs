@@ -43,7 +43,7 @@ namespace IHCProject
 
         private void horarioClick(object sender, RoutedEventArgs e)
         {
-           MessageBox.Show("horaior");
+            this.NavigationService.Navigate(new Horario(professor, CN));
         }
 
         private void disciplinaClick(object sender, RoutedEventArgs e)
@@ -68,5 +68,9 @@ namespace IHCProject
             dataProf.Content = professor.DataNascimento;
         }
 
+        private void AulaSubstituicao_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new AulaSubstituicao(professor, CN));
+        }
     }
 }
