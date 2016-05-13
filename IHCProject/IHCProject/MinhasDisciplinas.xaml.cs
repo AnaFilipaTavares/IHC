@@ -101,5 +101,10 @@ namespace IHCProject
                 Console.WriteLine("selecionada");
             }
         }
+
+        private void AulaSubstituicao_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new AulaSubstituicao(prof, CN));
+        }
     }
 }

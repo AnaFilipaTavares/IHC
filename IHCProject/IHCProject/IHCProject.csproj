@@ -58,6 +58,10 @@
     <Compile Include="AlunoInterface\AlunoHome.xaml.cs">
       <DependentUpon>AlunoHome.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AulaSubstiuicao.xaml.cs">
+      <DependentUpon>AulaSubstiuicao.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="infoClass\HorarioDisciplina.cs" />
     <Compile Include="JustificarFalta.xaml.cs">
       <DependentUpon>JustificarFalta.xaml</DependentUpon>
     </Compile>
@@ -68,6 +72,10 @@
     <Page Include="AlunoInterface\AlunoHome.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AulaSubstiuicao.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="JustificarFalta.xaml">
       <Generator>MSBuild:Compile</Generator>

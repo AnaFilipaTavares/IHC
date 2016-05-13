@@ -49,40 +49,39 @@ namespace IHCProject
 
         private void loadData() {
             falta.Content = "Falta: "+aulaFalta.Disciplina+ " "+aulaFalta.Data;
-           
-           
-            
-    
         }
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            if (Justificacao.Text.Equals(""))
-                MessageBox.Show("Insira uma justificação");
-            else
+            if (Justificacao.Text.Equals("") || Justificacao.Text.Length>=199)
+                MessageBox.Show("Justificação inválida (tamanho maximo de carateres 200)");
+            else {
+                try
+                {
+                    if (CN.State == ConnectionState.Closed) CN.Open();
+
+                    CMD = new SqlCommand();
+                    CMD.Connection = CN;
+                    CMD.CommandText = "INSERT INTO ESCOLA_SECUNDARIA.FALTAS_JUSTIFICADAS_ALUNO VALUES (@idAluno,@idhorario,@nAula,@descricao);";
+                    CMD.Parameters.AddWithValue("@idAluno", aluno.IdAluno);
+                    CMD.Parameters.AddWithValue("@idhorario", aulaFalta.Horario);
+                    CMD.Parameters.AddWithValue("@nAula", aulaFalta.NumeroAula);
+                    CMD.Parameters.AddWithValue("@descricao", Justificacao.Text);
+                    int temp = CMD.ExecuteNonQuery();
+                    if (temp != 0)
+                        Console.WriteLine("Falta justificada com Sucesso!");
+                    else
+                        Console.WriteLine("Erro na justificação da falta");
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show(ex.Message);
+                }
+
                 this.Close();
-          //  janelaPai.loadData();
-           
-            /*   try
-       {
-           if (CN.State == ConnectionState.Closed) CN.Open();
-
-           CMD = new SqlCommand();
-           CMD.Connection = CN;
-           CMD.CommandText = "SELECT  AULA.horario,AULA.numero,designação,HORARIO_DISCIPLINA.ano,data FROM (ESCOLA_SECUNDARIA.HORARIO_DISCIPLINA JOIN ESCOLA_SECUNDARIA.DISCIPLINA ON HORARIO_DISCIPLINA.disciplina=DISCIPLINA.codigo) JOIN ESCOLA_SECUNDARIA.AULA ON HORARIO_DISCIPLINA.id=AULA.horario JOIN (SELECT FALTAS_ALUNO.aluno,FALTAS_ALUNO.horario,FALTAS_ALUNO.aula FROM ESCOLA_SECUNDARIA.FALTAS_ALUNO LEFT OUTER JOIN  ESCOLA_SECUNDARIA.FALTAS_JUSTIFICADAS_ALUNO ON FALTAS_ALUNO.aula=FALTAS_JUSTIFICADAS_ALUNO.aula AND FALTAS_ALUNO.horario= FALTAS_JUSTIFICADAS_ALUNO.horario WHERE FALTAS_ALUNO.aluno=@idAluno AND FALTAS_JUSTIFICADAS_ALUNO.aluno IS NULL) AS T ON T.horario=AULA.horario AND T.aula=AULA.numero;";
-           CMD.Parameters.AddWithValue("@idAluno", aluno.IdAluno);
-           SqlDataReader RDR = CMD.ExecuteReader();
-           while (RDR.Read())
-           {
-               listBox.Items.Add(new Aula(int.Parse(RDR["horario"].ToString()), int.Parse(RDR["numero"].ToString()), RDR["designação"].ToString(), int.Parse(RDR["ano"].ToString()), RDR["data"].ToString().Split()[0]));
-           }
-           RDR.Close();
-       }
-       catch (Exception ex)
-       {
-
-           MessageBox.Show(ex.Message);
-       }*/
+            }
+         
         }
     }
 }

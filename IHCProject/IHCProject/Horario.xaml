@@ -26,6 +26,7 @@
             <MenuItem Header="Horário" Height="30" FontSize="16" HorizontalAlignment=
                       "Center" Width="145" Click="horarioClick"/>
             <MenuItem Header="Minhas Disciplinas" Height="30" FontSize="16" HorizontalAlignment="Center" Width="145" Click="disciplinaClick"/>
+            <MenuItem Header="Aula Substituição" Height="30" FontSize="16" HorizontalAlignment="Center"  Width="145" Click="AulaSubstituicao_Click"/>
             <MenuItem Header="Direção de Turma" Height="30" FontSize="16" HorizontalAlignment="Center"  Width="145" Click="DirecaoTurma_Click"/>
             <MenuItem Header="Encerrar Sessão" Height="30" FontSize="16" HorizontalAlignment="Center"  Width="145" Click="Exit_Click"/>
         </Menu>

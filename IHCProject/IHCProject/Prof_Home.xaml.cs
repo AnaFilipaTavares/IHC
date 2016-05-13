@@ -68,5 +68,9 @@ namespace IHCProject
             dataProf.Content = professor.DataNascimento;
         }
 
+        private void AulaSubstituicao_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new AulaSubstituicao(professor, CN));
+        }
     }
 }

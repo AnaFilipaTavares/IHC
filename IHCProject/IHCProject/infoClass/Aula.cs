@@ -13,6 +13,7 @@ namespace IHCProject.infoClass
         private string disciplina;
         private int anoDisciplina;
         private string data;
+        
 
         public Aula(int horario, int nAula)
         {

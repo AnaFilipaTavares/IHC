@@ -71,5 +71,9 @@ namespace IHCProject
             this.NavigationService.Navigate(new Login());
         }
 
+        private void AulaSubstituicao_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new AulaSubstituicao(prof, CN));
+        }
     }
 }

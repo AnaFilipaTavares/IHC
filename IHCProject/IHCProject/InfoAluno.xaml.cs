@@ -81,5 +81,18 @@ namespace IHCProject
             popupWind.Left = (SystemParameters.FullPrimaryScreenWidth - popupWind.Width) / 2;
             popupWind.ShowDialog();
         }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            Aula temp = (Aula)listBox.SelectedItem;
+            if (temp == null)
+            {
+                MessageBox.Show("Selecione uma opção");
+            }
+            else {
+                openPopupWindow(temp);
+                this.loadData();
+            }
+        }
     }
 }
