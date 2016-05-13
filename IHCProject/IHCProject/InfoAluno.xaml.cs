@@ -44,21 +44,21 @@ namespace IHCProject
         private void loadData() {
             nomeAluno.Content = "Nome: "+aluno.Nome;
             numeroAluno.Content = "Número: "+aluno.IdAluno;
-           
+            Console.WriteLine("FIZ O LOAD");
             //query para ler as faltas injustificadas
-            
-            /* try
+            listBox.Items.Clear();
+            try
             {
                 if (CN.State == ConnectionState.Closed) CN.Open();
 
                 CMD = new SqlCommand();
                 CMD.Connection = CN;
-                CMD.CommandText = "SELECT * FROM (SELECT * FROM ESCOLA_SECUNDARIA.PROFESSOR  WHERE idProf=" + idProf + ") as T JOIN ESCOLA_SECUNDARIA.PESSOA ON T.ncc=PESSOA.ncc";
+                CMD.CommandText = "SELECT  AULA.horario,AULA.numero,designação,HORARIO_DISCIPLINA.ano,data FROM (ESCOLA_SECUNDARIA.HORARIO_DISCIPLINA JOIN ESCOLA_SECUNDARIA.DISCIPLINA ON HORARIO_DISCIPLINA.disciplina=DISCIPLINA.codigo) JOIN ESCOLA_SECUNDARIA.AULA ON HORARIO_DISCIPLINA.id=AULA.horario JOIN (SELECT FALTAS_ALUNO.aluno,FALTAS_ALUNO.horario,FALTAS_ALUNO.aula FROM ESCOLA_SECUNDARIA.FALTAS_ALUNO LEFT OUTER JOIN  ESCOLA_SECUNDARIA.FALTAS_JUSTIFICADAS_ALUNO ON FALTAS_ALUNO.aula=FALTAS_JUSTIFICADAS_ALUNO.aula AND FALTAS_ALUNO.horario= FALTAS_JUSTIFICADAS_ALUNO.horario WHERE FALTAS_ALUNO.aluno=@idAluno AND FALTAS_JUSTIFICADAS_ALUNO.aluno IS NULL) AS T ON T.horario=AULA.horario AND T.aula=AULA.numero;";
+                CMD.Parameters.AddWithValue("@idAluno", aluno.IdAluno);
                 SqlDataReader RDR = CMD.ExecuteReader();
-                if (RDR.Read())
+                while (RDR.Read())
                 {
-                    nomeProf.Content = RDR["nome"].ToString();
-                    dataProf.Content = RDR["dataNascimento"].ToString().Split()[0];
+                    listBox.Items.Add(new Aula(int.Parse(RDR["horario"].ToString()), int.Parse(RDR["numero"].ToString()), RDR["designação"].ToString(), int.Parse(RDR["ano"].ToString()), RDR["data"].ToString().Split()[0]));
                 }
                 RDR.Close();
             }
@@ -66,9 +66,20 @@ namespace IHCProject
             {
 
                 MessageBox.Show(ex.Message);
-            }*/
+            }
         }
 
+        private void Falta_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            openPopupWindow((Aula)listBox.SelectedValue);
+            this.loadData();
+        }
 
+        private void openPopupWindow(Aula selected) {
+            JustificarFalta popupWind = new JustificarFalta(aluno,selected, CN);
+            popupWind.Top = (SystemParameters.FullPrimaryScreenHeight - popupWind.Height) / 2;
+            popupWind.Left = (SystemParameters.FullPrimaryScreenWidth - popupWind.Width) / 2;
+            popupWind.ShowDialog();
+        }
     }
 }

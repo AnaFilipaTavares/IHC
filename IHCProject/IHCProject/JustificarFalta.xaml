@@ -1,0 +1,18 @@
+﻿<Window x:Class="IHCProject.JustificarFalta"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IHCProject"
+        mc:Ignorable="d"
+       
+        Title="InfoALuno" Height="200
+        " Width="500">
+    <Grid>
+        <Label x:Name="falta" Content="Falta: " HorizontalAlignment="Left" Margin="38,10,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label" Content="Justificação: " HorizontalAlignment="Left" Margin="38,41,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.712,-1.071"/>
+        <TextBox x:Name="Justificacao" HorizontalAlignment="Left" Height="66" Margin="119,45,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="260"/>
+        <Button x:Name="Confirmar" Content="Confirmar" HorizontalAlignment="Left" Margin="214,130,0,0" VerticalAlignment="Top" Width="75" Click="button_Click"/>
+
+    </Grid>
+</Window>

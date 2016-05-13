@@ -15,7 +15,7 @@
         <Label x:Name="numeroAluno" Content="Número: " HorizontalAlignment="Left" Margin="121,41,0,0" VerticalAlignment="Top"/>
         <Label x:Name="label" Content="Faltas Injustificadas" HorizontalAlignment="Left" Margin="196,91,0,0" VerticalAlignment="Top"/>
         <Button x:Name="button" Content="Justificar" HorizontalAlignment="Left" Margin="214,251,0,0" VerticalAlignment="Top" Width="75"/>
-        <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="100" Margin="80,135,0,0" VerticalAlignment="Top" Width="339"/>
+        <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="100" Margin="80,135,0,0" VerticalAlignment="Top" Width="339"  MouseDoubleClick="Falta_MouseDoubleClick"/>
 
     </Grid>
 </Window>

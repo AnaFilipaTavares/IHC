@@ -44,7 +44,7 @@ namespace IHCProject
 
         private void horarioClick(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("horaior");
+            this.NavigationService.Navigate(new Horario(professor, CN));
         }
 
         private void Perfil_Click(object sender, RoutedEventArgs e)
@@ -69,6 +69,28 @@ namespace IHCProject
         }
 
         private void loadData() {
+            //query turma do DT
+            try
+            {
+                if (CN.State == ConnectionState.Closed) CN.Open();
+
+                CMD = new SqlCommand();
+                CMD.Connection = CN;
+                CMD.CommandText = "SELECT ano,designação FROM ESCOLA_SECUNDARIA.TURMA WHERE professor=" + professor.IdProf + ";";
+                SqlDataReader RDR = CMD.ExecuteReader();
+                if (RDR.Read())
+                {
+                    label.Content= "Direção Turma "+ RDR["ano"].ToString()+" "+ RDR["designação"].ToString();
+                }
+                RDR.Close();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+
+            // query para obter os alunos do DT
             try
             {
                 if (CN.State == ConnectionState.Closed) CN.Open();
@@ -93,8 +115,24 @@ namespace IHCProject
 
         private void TurmaDoDT_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            InfoALuno popupWind = new InfoALuno(((Aluno)TurmaDoDT.SelectedValue),CN);
-            popupWind.Top= (SystemParameters.FullPrimaryScreenHeight - popupWind.Height) / 2;
+            openPopupWindow((Aluno)TurmaDoDT.SelectedValue);
+        }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            Aluno temp = (Aluno)TurmaDoDT.SelectedItem;
+            if (temp == null)
+            {
+                MessageBox.Show("Selecione uma opção");
+            }
+            else {
+                openPopupWindow(temp);
+            }
+        }
+
+        private void openPopupWindow(Aluno selected) {
+            InfoALuno popupWind = new InfoALuno((selected), CN);
+            popupWind.Top = (SystemParameters.FullPrimaryScreenHeight - popupWind.Height) / 2;
             popupWind.Left = (SystemParameters.FullPrimaryScreenWidth - popupWind.Width) / 2;
             popupWind.ShowDialog();
         }

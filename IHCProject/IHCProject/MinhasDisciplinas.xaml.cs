@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using IHCProject.infoClass;
+using System.Data;
 
 namespace IHCProject
 {
@@ -24,6 +25,7 @@ namespace IHCProject
     {
         private Professor prof;
         private SqlConnection CN;
+        private SqlCommand CMD;
         public MinhasDisciplinas()
         {
             InitializeComponent();
@@ -35,11 +37,36 @@ namespace IHCProject
             // Associa os dados ao contexto da nova página.
             this.prof = prof;
             this.CN = cn;
+            loadData();
+        }
+
+        private void loadData()
+        {
+            try
+            {
+                if (CN.State == ConnectionState.Closed) CN.Open();
+
+                CMD = new SqlCommand();
+                CMD.Connection = CN;
+                CMD.CommandText = "SELECT designação,ano,disciplina FROM ESCOLA_SECUNDARIA.HORARIO_DISCIPLINA JOIN ESCOLA_SECUNDARIA.DISCIPLINA ON HORARIO_DISCIPLINA.disciplina=DISCIPLINA.codigo WHERE professor=@idProf;";
+                CMD.Parameters.AddWithValue("@idProf", prof.IdProf);
+                SqlDataReader RDR = CMD.ExecuteReader();
+                while (RDR.Read())
+                {
+                    listBox.Items.Add(new Disciplina(int.Parse(RDR["disciplina"].ToString()), int.Parse(RDR["ano"].ToString()), RDR["designação"].ToString()));
+                }
+                RDR.Close();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void horarioClick(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("horaior");
+            this.NavigationService.Navigate(new Horario(prof, CN));
         }
 
         private void disciplinaClick(object sender, RoutedEventArgs e)
@@ -47,10 +74,6 @@ namespace IHCProject
 
         }
 
-        private void aceder_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
 
         private void Perfil_Click(object sender, RoutedEventArgs e)
         {
@@ -67,6 +90,16 @@ namespace IHCProject
         {
             this.NavigationService.Navigate(new Login());
         }
-        
+
+        private void aceder_Click(object sender, RoutedEventArgs e)
+        {
+            if (listBox.SelectedItem == null)
+            {
+                MessageBox.Show("Selecione uma opção");
+            }
+            else {
+                Console.WriteLine("selecionada");
+            }
+        }
     }
 }

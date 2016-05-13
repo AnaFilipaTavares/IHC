@@ -29,19 +29,10 @@
             <MenuItem Header="Direção de Turma" Height="30" FontSize="16" HorizontalAlignment="Center"  Width="145" Click="DirecaoTurma_Click"/>
             <MenuItem Header="Encerrar Sessão" Height="30" FontSize="16" HorizontalAlignment="Center"  Width="145" Click="Exit_Click"/>
         </Menu>
-        <Label x:Name="label" Content="Minhas Disciplinas" HorizontalAlignment="Center" Margin="147,10,0,0" VerticalAlignment="Top" FontSize="20"/>
-    
-        <ListBox x:Name="listBox" HorizontalAlignment="Center" VerticalAlignment="Center" Height="179" Width="200" Margin="374,52,226,69" BorderBrush="{x:Null}" Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
-            <ListBoxItem Content="Matematica" Padding="5"/>
-            <ListBoxItem Content="Ingles" Padding="5"/>
-            <ListBoxItem Content="Matematica" Padding="5"/>
-            <ListBoxItem Content="Ingles" Padding="5"/>
-            <ListBoxItem Content="Matematica" Padding="5"/>
-            <ListBoxItem Content="Ingles" Padding="5"/>
+        <Label x:Name="label" Content="Minhas Disciplinas" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20"/>
 
-
-        </ListBox>
-        <Button x:Name="aceder" Content="Aceder" Height="22" Width="68" Margin="506,236,226,42" Click="aceder_Click"/>
+        <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="179" Margin="208,40,0,0" VerticalAlignment="Top" Width="408" />
+        <Button x:Name="BotaoAceder" Content="Aceder" HorizontalAlignment="Left" Margin="541,230,0,0" VerticalAlignment="Top" Width="75" Click="aceder_Click"/>
 
 
 

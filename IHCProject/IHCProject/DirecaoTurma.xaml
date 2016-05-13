@@ -29,8 +29,9 @@
             <MenuItem Header="Direção de Turma" Height="30" FontSize="16" HorizontalAlignment="Center"  Width="145" Click="DirecaoTurma_Click"/>
             <MenuItem Header="Encerrar Sessão" Height="30" FontSize="16" HorizontalAlignment="Center"  Width="145" Click="Exit_Click"/>
         </Menu>
-        <Label x:Name="label" Content="Direção Turma" HorizontalAlignment="Center" Margin="147,10,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <ListBox x:Name="TurmaDoDT" HorizontalAlignment="Left" Height="179" Margin="264,52,0,0" VerticalAlignment="Top" Width="408" MouseDoubleClick="TurmaDoDT_MouseDoubleClick"/>
+        <Label x:Name="label" Content="Direção Turma" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20"/>
+        <ListBox x:Name="TurmaDoDT" HorizontalAlignment="Left" Height="179" Margin="208,40,0,0" VerticalAlignment="Top" Width="408" MouseDoubleClick="TurmaDoDT_MouseDoubleClick"/>
+        <Button x:Name="button" Content="Aceder" HorizontalAlignment="Left" Margin="541,230,0,0" VerticalAlignment="Top" Width="75" Click="button_Click"/>
 
 
 
