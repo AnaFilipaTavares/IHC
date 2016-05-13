@@ -22,7 +22,7 @@ namespace IHCProject.infoClass
             this.nome = nome;
         }
 
-        public Professor(int idProf, string nome, string dataNascimento, int idade) : this(idProf, nome)
+        public Professor(int idProf, string nome,  int idade,string dataNascimento) : this(idProf, nome)
         {
             this.dataNascimento = dataNascimento;
             this.idade = idade;

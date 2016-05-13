@@ -57,10 +57,13 @@ namespace IHCProject
             this.NavigationService.Navigate(new MinhasDisciplinas(professor, CN));
 
         }
+        private void AulaSubstituicao_Click(object sender, RoutedEventArgs e)
+        {
 
+        }
         private void DirecaoTurma_Click(object sender, RoutedEventArgs e)
         {
-          
+            this.NavigationService.Navigate(new DirecaoTurma(professor, CN));
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)
@@ -117,10 +120,7 @@ namespace IHCProject
             popupWind.ShowDialog();
         }
 
-        private void AulaSubstituicao_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+       
     }
     
 }
