@@ -28,8 +28,8 @@
                       "Center" Width="145" Click="horarioClick"/>
             <MenuItem Header="Calendário de&#xD;&#xA;Avaliações" Height="48" FontSize="16" HorizontalAlignment="Center" Width="145" Click="Avaliacao_Click" />
             <MenuItem Header="Faltas" Height="30" FontSize="16" HorizontalAlignment="Center"  Width="145" Click="Falta_Click" />
-            <MenuItem Header="Notas" Height="30" FontSize="16" HorizontalAlignment="Center"  Width="145" />
-            <MenuItem Header="Plano de Curso" Height="30" FontSize="16" HorizontalAlignment="Center"  Width="145" />
+            <MenuItem Header="Notas" Height="30" FontSize="16" HorizontalAlignment="Center"  Width="145" Click="notas_Click" />
+            <MenuItem Header="Plano de Curso" Height="30" FontSize="16" HorizontalAlignment="Center"  Width="145" Click="MenuItem_Click" />
             <MenuItem Header="Encerrar Sessão" Height="30" FontSize="16" HorizontalAlignment="Center"  Width="145" Click="Exit_Click" />
         </Menu>
         <Label x:Name="label" Content="Perfil do Docente" HorizontalAlignment="Center" Margin="147,10,0,0" VerticalAlignment="Top" FontSize="20"/>

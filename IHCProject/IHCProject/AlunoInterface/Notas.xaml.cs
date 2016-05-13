@@ -1,10 +1,11 @@
-﻿using System;
+﻿using IHCProject.infoClass;
+using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Data.SqlClient;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -13,26 +14,26 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using IHCProject.infoClass;
 
 namespace IHCProject.AlunoInterface
 {
     /// <summary>
-    /// Interaction logic for AlunoHome.xaml
+    /// Interaction logic for Notas.xaml
     /// </summary>
-    public partial class AlunoHome : Page
+    public partial class Notas : Page
     {
+
         private Aluno aluno;
         private SqlConnection CN;
         private SqlCommand CMD;
 
-        public AlunoHome()
+
+        public Notas()
         {
             InitializeComponent();
         }
 
-        // Construtor para a classe 
-        public AlunoHome(Aluno aluno, SqlConnection cn) : this()
+        public Notas(Aluno aluno, SqlConnection cn) : this()
         {
             // Associa os dados ao contexto da nova página.
             this.aluno = aluno;
@@ -42,7 +43,7 @@ namespace IHCProject.AlunoInterface
 
         private void Perfil_Click(object sender, RoutedEventArgs e)
         {
-            AlunoHome p = new AlunoHome(aluno, CN);
+            Notas p = new Notas(aluno, CN);
             this.NavigationService.Navigate(p);
         }
 
@@ -68,23 +69,28 @@ namespace IHCProject.AlunoInterface
 
         private void loadData()
         {
+            List<Nota> items = new List<Nota>();
             try
             {
                 if (CN.State == System.Data.ConnectionState.Closed) CN.Open();
 
                 CMD = new SqlCommand();
                 CMD.Connection = CN;
-                CMD.CommandText = "SELECT ano,designação,professor,nome,encarregado,dataNascimento,nomeAluno FROM ESCOLA_SECUNDARIA.TURMA JOIN (SELECT * FROM ESCOLA_SECUNDARIA.PLANO_CURSO JOIN (SELECT idAluno, encarregado, curso, turma, nome AS nomeAluno, dataNascimento FROM (SELECT * FROM ESCOLA_SECUNDARIA.ALUNO  WHERE idAluno = "+ aluno.IdAluno +") as T JOIN ESCOLA_SECUNDARIA.PESSOA ON T.ncc = PESSOA.ncc) AS T1 ON curso = codigo) AS T2 ON ESCOLA_SECUNDARIA.TURMA.codigo = turma;";
+                CMD.CommandText = "SELECT designação,ano,nota FROM ESCOLA_SECUNDARIA.NOTAS JOIN ESCOLA_SECUNDARIA.DISCIPLINA ON codigo = disciplina WHERE aluno = " + aluno.IdAluno + ";";
                 SqlDataReader RDR = CMD.ExecuteReader();
-                if (RDR.Read())
+                while (RDR.Read())
                 {
-                    nomeAluno.Content = RDR["nomeAluno"].ToString();
-                    dataAluno.Content = RDR["dataNascimento"].ToString().Split()[0];
-                    encarregadoAluno.Content = RDR["encarregado"].ToString();
-                    cursoAluno.Content = RDR["nome"].ToString();
-                    turmaAluno.Content = RDR["ano"].ToString() + "º" + RDR["designação"].ToString();
-                    diretorAluno.Content = RDR["professor"].ToString();
+
+                   
+                    items.Add(new Nota() { disciplina = RDR["designação"].ToString() + " " + RDR["ano"].ToString(), nota = (int)RDR["nota"]});
+                    
+                 
+               
+
+
+
                 }
+                listView.ItemsSource = items;
                 RDR.Close();
             }
             catch (Exception ex)
@@ -95,16 +101,16 @@ namespace IHCProject.AlunoInterface
 
         }
 
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
-        {
-            PlanoCurso p = new PlanoCurso(aluno, CN);
-            this.NavigationService.Navigate(p);
-        }
 
-        private void notas_Click(object sender, RoutedEventArgs e)
-        {
-            Notas n = new Notas(aluno, CN);
-            this.NavigationService.Navigate(n);
-        }
     }
+
+
+
+}
+
+public class Nota
+{
+    public string disciplina { get; set; }
+
+    public int nota { get; set; }
 }
