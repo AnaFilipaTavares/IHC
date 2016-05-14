@@ -8,45 +8,34 @@ namespace IHCProject.infoClass
 {
     public class HorarioDisciplina
     {
-        private string nomeDisciplina;
-        private int anoDisciplina;
+        private int idHorario;
+        private Disciplina disciplina;
         private string turmaDisciplina;
         private Professor professorDisciplina;
 
-        public HorarioDisciplina(string nomeDisciplina, int anoDisciplina, string turmaDisciplina, Professor professorDisciplina)
-        {
-            this.nomeDisciplina = nomeDisciplina;
-            this.anoDisciplina = anoDisciplina;
-            this.turmaDisciplina = turmaDisciplina;
-            this.professorDisciplina = professorDisciplina;
-        }
-
-        // private string horaInicio;
-        // private string horaFim;
-
-        public string NomeDisciplina
+        public int IdHorario
         {
             get
             {
-                return nomeDisciplina;
+                return idHorario;
             }
 
             set
             {
-                nomeDisciplina = value;
+                idHorario = value;
             }
         }
 
-        public int AnoDisciplina
+        public Disciplina Disciplina
         {
             get
             {
-                return anoDisciplina;
+                return disciplina;
             }
 
             set
             {
-                anoDisciplina = value;
+                disciplina = value;
             }
         }
 
@@ -75,5 +64,23 @@ namespace IHCProject.infoClass
                 professorDisciplina = value;
             }
         }
+
+        public HorarioDisciplina(int idHorario, Disciplina disciplina, string turmaDisciplina, Professor professorDisciplina)
+        {
+            this.IdHorario = idHorario;
+            this.Disciplina = disciplina;
+            this.TurmaDisciplina = turmaDisciplina;
+            this.ProfessorDisciplina = professorDisciplina;
+        }
+
+
+        // private string horaInicio;
+        // private string horaFim;
+
+
+        public override string ToString()
+        {
+            return "Disciplina: "+ disciplina +" "+ TurmaDisciplina+" Professor: "+ ProfessorDisciplina.Nome;
+        } 
     }
 }
