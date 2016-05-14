@@ -58,6 +58,12 @@
     <Compile Include="AlunoInterface\AlunoHome.xaml.cs">
       <DependentUpon>AlunoHome.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AlunoInterface\Faltas.xaml.cs">
+      <DependentUpon>Faltas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AlunoInterface\FaltasAluno.xaml.cs">
+      <DependentUpon>FaltasAluno.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AlunoInterface\Notas.xaml.cs">
       <DependentUpon>Notas.xaml</DependentUpon>
     </Compile>
@@ -79,8 +85,16 @@
       <DependentUpon>InfoAluno.xaml</DependentUpon>
     </Compile>
     <Page Include="AlunoInterface\AlunoHome.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="AlunoInterface\Faltas.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="AlunoInterface\FaltasAluno.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="AlunoInterface\Notas.xaml">
       <Generator>MSBuild:Compile</Generator>
