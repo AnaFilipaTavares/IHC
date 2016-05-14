@@ -43,18 +43,13 @@ namespace IHCProject.AlunoInterface
 
         private void Perfil_Click(object sender, RoutedEventArgs e)
         {
-            Notas p = new Notas(aluno, CN);
+            AlunoHome p = new AlunoHome(aluno, CN);
             this.NavigationService.Navigate(p);
         }
 
-        private void horarioClick(object sender, RoutedEventArgs e)
+        private void Horario_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("horario");
-        }
-
-        private void Exit_Click(object sender, RoutedEventArgs e)
-        {
-            this.NavigationService.Navigate(new Login());
         }
 
         private void Avaliacao_Click(object sender, RoutedEventArgs e)
@@ -62,9 +57,27 @@ namespace IHCProject.AlunoInterface
             MessageBox.Show("Avaliaçoes");
         }
 
+        private void Notas_Click(object sender, RoutedEventArgs e)
+        {
+            Notas p = new Notas(aluno, CN);
+            this.NavigationService.Navigate(p);
+        }
+
         private void Falta_Click(object sender, RoutedEventArgs e)
         {
+            Faltas p = new Faltas(aluno, CN);
+            this.NavigationService.Navigate(p);
+        }
 
+        private void Plano_Click(object sender, RoutedEventArgs e)
+        {
+            PlanoCurso p = new PlanoCurso(aluno, CN);
+            this.NavigationService.Navigate(p);
+        }
+
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new Login());
         }
 
         private void loadData()
@@ -73,39 +86,26 @@ namespace IHCProject.AlunoInterface
             try
             {
                 if (CN.State == System.Data.ConnectionState.Closed) CN.Open();
-
                 CMD = new SqlCommand();
                 CMD.Connection = CN;
                 CMD.CommandText = "SELECT designação,ano,nota FROM ESCOLA_SECUNDARIA.NOTAS JOIN ESCOLA_SECUNDARIA.DISCIPLINA ON codigo = disciplina WHERE aluno = " + aluno.IdAluno + ";";
                 SqlDataReader RDR = CMD.ExecuteReader();
                 while (RDR.Read())
                 {
-
-                   
                     items.Add(new Nota() { disciplina = RDR["designação"].ToString() + " " + RDR["ano"].ToString(), nota = (int)RDR["nota"]});
-                    
-                 
-               
-
-
-
                 }
+
                 listView.ItemsSource = items;
                 RDR.Close();
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.Message);
             }
 
         }
 
-
     }
-
-
-
 }
 
 public class Nota

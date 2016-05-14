@@ -5,47 +5,75 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:IHCProject.AlunoInterface"
       mc:Ignorable="d" 
-      d:DesignHeight="300"
-      Title="AlunoHome" Width="696">
+      d:DesignHeight="373.5"
+      Title="AlunoHome" d:DesignWidth="786.5">
+
+    <Page.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FF9FD6E6" Offset="0.003"/>
+            <GradientStop Color="White" Offset="1"/>
+        </LinearGradientBrush>
+    </Page.Background>
 
     <Grid>
-        <Menu HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,40,30,30" Width="145" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.25*"/>
+            <ColumnDefinition Width="0.75*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="0.8*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Column="1" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Label x:Name="label1" Grid.Row="0"  Content="Nome: " HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="16"/>
+            <Label x:Name="label2" Grid.Row="1"  Content="Data de Nascimento: " HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16"/>
+            <Label x:Name="label3" Grid.Row="2" Content="Encarregado de Educação: " HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16"/>
+            <Label x:Name="label4" Grid.Row="3" Content="Curso: " HorizontalAlignment="Left"  VerticalAlignment="Center" FontSize="16"/>
+            <Label x:Name="label5" Grid.Row="4"  Content="Turma: " HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16"/>
+            <Label x:Name="label6" Grid.Row="5"  Content="Diretor de Turma: " HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16"/>
+            <Image x:Name="image"  Grid.Row="0"  Source="../Images/foto.jpg" HorizontalAlignment="Center" VerticalAlignment="Center" Width="137" Margin="400,10,53,36" Height="82" Grid.RowSpan="2"/>
+
+            <Label x:Name="nomeAluno" Grid.Row="0"  Content="" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="241" Margin="66,0,0,0"  FontSize="16"/>
+            <Label x:Name="dataAluno" Grid.Row="1"  Content="" HorizontalAlignment="Left"  VerticalAlignment="Center" Width="158" Margin="166,22,0,22"  FontSize="16"/>
+            <Label x:Name="encarregadoAluno" Grid.Row="2" Content="" HorizontalAlignment="Left" VerticalAlignment="Center" Width="206" Margin="218,2,0,2" FontSize="16"/>
+            <Label x:Name="cursoAluno" Grid.Row="3" Content="" HorizontalAlignment="Left"  VerticalAlignment="Center" Width="213" Margin="57,10,0,9"  FontSize="16"/>
+            <Label x:Name="turmaAluno" Grid.Row="4" Content="" HorizontalAlignment="Left"  VerticalAlignment="Center" Width="162" Margin="61,11,335,8"  FontSize="16"/>
+            <Label x:Name="diretorAluno" Grid.Row="5" Content="" HorizontalAlignment="Left" VerticalAlignment="Center" Width="203" Margin="144,10,0,10"  FontSize="16"/>
+
+
+
+        </Grid>
+        <Label x:Name="label" Grid.Column="1" Grid.Row="0" Content="Perfil do Aluno" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="25"/>
+        <Menu Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top" Width="Auto" >
             <Menu.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <StackPanel />
+                    <StackPanel >
+                        <StackPanel.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FF9A99B9" Offset="1"/>
+                                <GradientStop Color="White"/>
+                            </LinearGradientBrush>
+                        </StackPanel.Background>
+                    </StackPanel>
                 </ItemsPanelTemplate>
             </Menu.ItemsPanel>
-            <MenuItem Header="Perfil" Height="30" FontSize="16" Width="145" HorizontalAlignment="Center" Click="Perfil_Click">
-                <MenuItem.Background>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="#FFCC00E0" Offset="0"/>
-                        <GradientStop Color="#FFFD7EEC" Offset="1"/>
-                        <GradientStop Color="#FF00DCFF"/>
-                    </LinearGradientBrush>
-                </MenuItem.Background>
-            </MenuItem>
-            <MenuItem Header="Horário" Height="30" FontSize="16" HorizontalAlignment=
-                      "Center" Width="145" Click="horarioClick"/>
-            <MenuItem Header="Calendário de&#xD;&#xA;Avaliações" Height="48" FontSize="16" HorizontalAlignment="Center" Width="145" Click="Avaliacao_Click" />
-            <MenuItem Header="Faltas" Height="30" FontSize="16" HorizontalAlignment="Center"  Width="145" Click="Falta_Click" />
-            <MenuItem Header="Notas" Height="30" FontSize="16" HorizontalAlignment="Center"  Width="145" Click="notas_Click" />
-            <MenuItem Header="Plano de Curso" Height="30" FontSize="16" HorizontalAlignment="Center"  Width="145" Click="MenuItem_Click" />
-            <MenuItem Header="Encerrar Sessão" Height="30" FontSize="16" HorizontalAlignment="Center"  Width="145" Click="Exit_Click" />
+            <MenuItem Header="Perfil" Height="30" FontSize="20" Width="145" HorizontalAlignment="Center" Click="Perfil_Click" BorderBrush="#FF7400FF" BorderThickness="0"/>
+            <MenuItem Header="Horário" Height="30" FontSize="20" HorizontalAlignment="Center" Width="145" Click="Horario_Click" BorderBrush="#FF7400FF" BorderThickness="0"/>
+            <MenuItem Header="Calendário de&#xD;&#xA;Avaliações" Height="63" FontSize="20" HorizontalAlignment="Center" Width="145" Click="Avaliacao_Click" BorderBrush="#FF7400FF" BorderThickness="0" />
+            <MenuItem Header="Faltas" Height="30" FontSize="20" HorizontalAlignment="Center"  Width="145" Click="Falta_Click" BorderBrush="#FF7400FF" BorderThickness="0" />
+            <MenuItem Header="Notas" Height="30" FontSize="20" HorizontalAlignment="Center"  Width="145" BorderBrush="#FF7400FF" Click="Notas_Click" BorderThickness="0" />
+            <MenuItem Header="Plano de Curso" Height="30" FontSize="20" HorizontalAlignment="Center"  Width="145" BorderBrush="#FF7400FF" Click="Plano_Click" BorderThickness="0" />
+            <MenuItem Header="Encerrar Sessão" Height="30" FontSize="20" HorizontalAlignment="Center"  Width="145" Click="Exit_Click" BorderBrush="#FF7400FF" BorderThickness="0" />
         </Menu>
-        <Label x:Name="label" Content="Perfil do Docente" HorizontalAlignment="Center" Margin="147,10,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <Label x:Name="label1" Content="Nome: " HorizontalAlignment="Left" Margin="267,80,0,0" VerticalAlignment="Top" FontSize="14"/>
-        <Label x:Name="label2" Content="Data de Nascimento: " HorizontalAlignment="Left" Margin="267,110,0,0" VerticalAlignment="Top" FontSize="14"/>
-        <Label x:Name="label3" Content="Encarregado de Educação: " HorizontalAlignment="Left" Margin="267,144,0,0" VerticalAlignment="Top" FontSize="14"/>
-        <Label x:Name="label4" Content="Curso: " HorizontalAlignment="Left" Margin="267,173,0,0" VerticalAlignment="Top" FontSize="14"/>
-        <Label x:Name="label5" Content="Turma: " HorizontalAlignment="Left" Margin="267,202,0,0" VerticalAlignment="Top" FontSize="14"/>
-        <Label x:Name="label6" Content="Diretor de Turma: " HorizontalAlignment="Left" Margin="267,236,0,0" VerticalAlignment="Top" FontSize="14"/>
-        <Image x:Name="image" Source="../Images/foto.jpg" HorizontalAlignment="Left"
-Margin="586,65,0,0" VerticalAlignment="Top" Width="100"/>
-        <Label x:Name="nomeAluno" Content="" HorizontalAlignment="Left" Margin="327,82,0,0" VerticalAlignment="Top" Width="241"/>
-        <Label x:Name="dataAluno" Content="" HorizontalAlignment="Left" Margin="410,113,0,0" VerticalAlignment="Top" Width="158"/>
-        <Label x:Name="encarregadoAluno" Content="" HorizontalAlignment="Left" Margin="448,143,0,0" VerticalAlignment="Top" Width="206"/>
-        <Label x:Name="cursoAluno" Content="" HorizontalAlignment="Left" Margin="328,178,0,0" VerticalAlignment="Top" Width="162"/>
-        <Label x:Name="turmaAluno" Content="" HorizontalAlignment="Left" Margin="327,204,0,0" VerticalAlignment="Top" Width="162"/>
-        <Label x:Name="diretorAluno" Content="" HorizontalAlignment="Left" Margin="390,239,0,0" VerticalAlignment="Top" Width="203"/>
     </Grid>
 </Page>

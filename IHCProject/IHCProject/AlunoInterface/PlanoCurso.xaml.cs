@@ -42,18 +42,13 @@ namespace IHCProject.AlunoInterface
 
         private void Perfil_Click(object sender, RoutedEventArgs e)
         {
-            PlanoCurso p = new PlanoCurso(aluno, CN);
+            AlunoHome p = new AlunoHome(aluno, CN);
             this.NavigationService.Navigate(p);
         }
 
-        private void horarioClick(object sender, RoutedEventArgs e)
+        private void Horario_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("horario");
-        }
-
-        private void Exit_Click(object sender, RoutedEventArgs e)
-        {
-            this.NavigationService.Navigate(new Login());
         }
 
         private void Avaliacao_Click(object sender, RoutedEventArgs e)
@@ -61,9 +56,27 @@ namespace IHCProject.AlunoInterface
             MessageBox.Show("Avaliaçoes");
         }
 
+        private void Notas_Click(object sender, RoutedEventArgs e)
+        {
+            Notas p = new Notas(aluno, CN);
+            this.NavigationService.Navigate(p);
+        }
+
         private void Falta_Click(object sender, RoutedEventArgs e)
         {
+            Faltas p = new Faltas(aluno, CN);
+            this.NavigationService.Navigate(p);
+        }
 
+        private void Plano_Click(object sender, RoutedEventArgs e)
+        {
+            PlanoCurso p = new PlanoCurso(aluno, CN);
+            this.NavigationService.Navigate(p);
+        }
+
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new Login());
         }
 
         private void loadData()
