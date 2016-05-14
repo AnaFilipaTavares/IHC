@@ -73,19 +73,19 @@ namespace IHCProject
 
         private void loadData() {
           
-            // query para obter os alunos do DT
+            
            try
             {
                 if (CN.State == ConnectionState.Closed) CN.Open();
 
                 CMD = new SqlCommand();
                 CMD.Connection = CN;
-                CMD.CommandText = "SELECT PESSOA.nome,PROFESSOR.idProf, HORARIO_DISCIPLINA.id,DISCIPLINA.designação AS nomeDisciplina,HORARIO_DISCIPLINA.ano,TURMA.designação FROM ESCOLA_SECUNDARIA.HORARIO_DISCIPLINA JOIN ESCOLA_SECUNDARIA.PROFESSOR ON professor=idProf JOIN ESCOLA_SECUNDARIA.PESSOA ON PESSOA.ncc=PROFESSOR.ncc JOIN ESCOLA_SECUNDARIA.DISCIPLINA ON disciplina=codigo JOIN ESCOLA_SECUNDARIA.TURMA ON turma=TURMA.codigo;";
+                CMD.CommandText = "SELECT PESSOA.nome,PROFESSOR.idProf, HORARIO_DISCIPLINA.id,DISCIPLINA.codigo,DISCIPLINA.designação AS nomeDisciplina,HORARIO_DISCIPLINA.ano,TURMA.designação FROM ESCOLA_SECUNDARIA.HORARIO_DISCIPLINA JOIN ESCOLA_SECUNDARIA.PROFESSOR ON professor=idProf JOIN ESCOLA_SECUNDARIA.PESSOA ON PESSOA.ncc=PROFESSOR.ncc JOIN ESCOLA_SECUNDARIA.DISCIPLINA ON disciplina=codigo JOIN ESCOLA_SECUNDARIA.TURMA ON turma=TURMA.codigo;";
                 SqlDataReader RDR = CMD.ExecuteReader();
                 while (RDR.Read())
                 {
-                    listBoxDisciplinas.Items.Add(new HorarioDisciplina(RDR["nomeDisciplina"].ToString(), int.Parse(RDR["ano"].ToString()), RDR["designação"].ToString(),new Professor(int.Parse(RDR["idProf"].ToString()), RDR["nome"].ToString())));
-                    //TurmaDoDT.Items.Add(new Aluno(int.Parse(RDR["idAluno"].ToString()), RDR["nome"].ToString()));
+                    listBoxDisciplinas.Items.Add(new HorarioDisciplina(int.Parse(RDR["id"].ToString()),new Disciplina(int.Parse(RDR["codigo"].ToString()), int.Parse(RDR["ano"].ToString()), RDR["nomeDisciplina"].ToString()), RDR["designação"].ToString(),new Professor(int.Parse(RDR["idProf"].ToString()), RDR["nome"].ToString())));
+                    
                 }
                 RDR.Close();
             }
@@ -138,7 +138,7 @@ namespace IHCProject
         private void search_Click(object sender, RoutedEventArgs e)
         {
             listBoxDisciplinas.Items.Clear();
-            string query = "SELECT PESSOA.nome,PROFESSOR.idProf, HORARIO_DISCIPLINA.id,DISCIPLINA.designação AS nomeDisciplina,HORARIO_DISCIPLINA.ano,TURMA.designação FROM ESCOLA_SECUNDARIA.HORARIO_DISCIPLINA JOIN ESCOLA_SECUNDARIA.PROFESSOR ON professor=idProf JOIN ESCOLA_SECUNDARIA.PESSOA ON PESSOA.ncc=PROFESSOR.ncc JOIN ESCOLA_SECUNDARIA.DISCIPLINA ON disciplina=codigo JOIN ESCOLA_SECUNDARIA.TURMA ON turma=TURMA.codigo";
+            string query = "SELECT PESSOA.nome,PROFESSOR.idProf, HORARIO_DISCIPLINA.id,DISCIPLINA.codigo,DISCIPLINA.designação AS nomeDisciplina,HORARIO_DISCIPLINA.ano,TURMA.designação FROM ESCOLA_SECUNDARIA.HORARIO_DISCIPLINA JOIN ESCOLA_SECUNDARIA.PROFESSOR ON professor=idProf JOIN ESCOLA_SECUNDARIA.PESSOA ON PESSOA.ncc=PROFESSOR.ncc JOIN ESCOLA_SECUNDARIA.DISCIPLINA ON disciplina=codigo JOIN ESCOLA_SECUNDARIA.TURMA ON turma=TURMA.codigo";
             bool existWhere = false;
 
             if (!disciplina_search.Text.Equals(""))
@@ -165,7 +165,7 @@ namespace IHCProject
                 SqlDataReader RDR = CMD.ExecuteReader();
                 while (RDR.Read())
                 {
-                    listBoxDisciplinas.Items.Add(new HorarioDisciplina(RDR["nomeDisciplina"].ToString(), int.Parse(RDR["ano"].ToString()), RDR["designação"].ToString(), new Professor(int.Parse(RDR["idProf"].ToString()), RDR["nome"].ToString())));
+                    listBoxDisciplinas.Items.Add(new HorarioDisciplina(int.Parse(RDR["id"].ToString()), new Disciplina(int.Parse(RDR["codigo"].ToString()), int.Parse(RDR["ano"].ToString()), RDR["nomeDisciplina"].ToString()), RDR["designação"].ToString(), new Professor(int.Parse(RDR["idProf"].ToString()), RDR["nome"].ToString())));
                     //TurmaDoDT.Items.Add(new Aluno(int.Parse(RDR["idAluno"].ToString()), RDR["nome"].ToString()));
                 }
                 RDR.Close();

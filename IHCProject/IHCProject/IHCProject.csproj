@@ -67,6 +67,9 @@
     <Compile Include="AulaSubstiuicao.xaml.cs">
       <DependentUpon>AulaSubstiuicao.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ContextoDisciplina\PerfilDisciplina.xaml.cs">
+      <DependentUpon>PerfilDisciplina.xaml</DependentUpon>
+    </Compile>
     <Compile Include="infoClass\HorarioDisciplina.cs" />
     <Compile Include="JustificarFalta.xaml.cs">
       <DependentUpon>JustificarFalta.xaml</DependentUpon>
@@ -88,6 +91,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="AulaSubstiuicao.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ContextoDisciplina\PerfilDisciplina.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

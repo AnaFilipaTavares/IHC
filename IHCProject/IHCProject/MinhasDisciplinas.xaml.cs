@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using IHCProject.infoClass;
+using IHCProject.ContextoDisciplina;
 using System.Data;
 
 namespace IHCProject
@@ -48,12 +49,12 @@ namespace IHCProject
 
                 CMD = new SqlCommand();
                 CMD.Connection = CN;
-                CMD.CommandText = "SELECT designação,ano,disciplina FROM ESCOLA_SECUNDARIA.HORARIO_DISCIPLINA JOIN ESCOLA_SECUNDARIA.DISCIPLINA ON HORARIO_DISCIPLINA.disciplina=DISCIPLINA.codigo WHERE professor=@idProf;";
+                CMD.CommandText = "SELECT id, T.designação,T.ano,disciplina,TURMA.designação AS letra FROM ESCOLA_SECUNDARIA.TURMA JOIN (SELECT id, designação, ano, disciplina, turma FROM ESCOLA_SECUNDARIA.HORARIO_DISCIPLINA JOIN ESCOLA_SECUNDARIA.DISCIPLINA ON HORARIO_DISCIPLINA.disciplina= DISCIPLINA.codigo WHERE professor = @idProf) AS T ON T.turma = TURMA.codigo;";
                 CMD.Parameters.AddWithValue("@idProf", prof.IdProf);
                 SqlDataReader RDR = CMD.ExecuteReader();
                 while (RDR.Read())
                 {
-                    listBox.Items.Add(new Disciplina(int.Parse(RDR["disciplina"].ToString()), int.Parse(RDR["ano"].ToString()), RDR["designação"].ToString()));
+                    listBox.Items.Add(new HorarioDisciplina(int.Parse(RDR["id"].ToString()),new Disciplina(int.Parse(RDR["disciplina"].ToString()), int.Parse(RDR["ano"].ToString()), RDR["designação"].ToString()), RDR["letra"].ToString(), prof));
                 }
                 RDR.Close();
             }
@@ -93,18 +94,24 @@ namespace IHCProject
 
         private void aceder_Click(object sender, RoutedEventArgs e)
         {
-            if (listBox.SelectedItem == null)
+            HorarioDisciplina temp = (HorarioDisciplina)listBox.SelectedItem;
+            if (temp == null)
             {
                 MessageBox.Show("Selecione uma opção");
             }
             else {
-                Console.WriteLine("selecionada");
+                this.NavigationService.Navigate(new PerfilDisciplina(prof, temp, CN));
             }
         }
 
         private void AulaSubstituicao_Click(object sender, RoutedEventArgs e)
         {
             this.NavigationService.Navigate(new AulaSubstituicao(prof, CN));
+        }
+
+        private void listbox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            this.NavigationService.Navigate(new PerfilDisciplina(prof, (HorarioDisciplina)listBox.SelectedItem, CN));
         }
     }
 }
