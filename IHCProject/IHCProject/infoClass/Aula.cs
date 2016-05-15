@@ -13,7 +13,8 @@ namespace IHCProject.infoClass
         private string disciplina;
         private int anoDisciplina;
         private string data;
-        
+        private string sumário;
+
 
         public Aula(int horario, int nAula)
         {
@@ -26,6 +27,16 @@ namespace IHCProject.infoClass
             this.disciplina = disciplina;
             this.anoDisciplina = anoDisciplina;
             this.data = data;
+        }
+
+        public Aula(int horario, int nAula, string disciplina, int anoDisciplina, string data, string sumário)
+        {
+            this.horario = horario;
+            this.nAula = nAula;
+            this.disciplina = disciplina;
+            this.anoDisciplina = anoDisciplina;
+            this.data = data;
+            this.sumário = sumário;
         }
 
         public int NumeroAula
@@ -93,9 +104,37 @@ namespace IHCProject.infoClass
             }
         }
 
+        public string Sumário
+        {
+            get
+            {
+                return sumário;
+            }
+
+            set
+            {
+                sumário = value;
+            }
+        }
+
         public override string ToString()
         {
-            return "Disciplina: " + disciplina + " " + anoDisciplina+" data: "+data;
+            return "Disciplina: " + disciplina + " " + anoDisciplina + " data: " + data;
+        }
+
+        public string NAulaBinding {
+            get
+            { 
+            return "Aula nº " + nAula;
+            }
+        }
+
+        public string dataBinding
+        {
+            get
+            {
+                return "Data " + data.Split()[0];
+            }
         }
     }
 }

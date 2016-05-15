@@ -22,20 +22,20 @@ namespace IHCProject.ContextoDisciplina
     /// <summary>
     /// Interaction logic for MinhasDisciplinas.xaml
     /// </summary>
-    public partial class PerfilDisciplina : Page
+    public partial class HistoricoAulas : Page
     {
         private Professor professor;
         private HorarioDisciplina hDisciplina;
         private SqlConnection CN;
         private SqlCommand CMD;
 
-        public PerfilDisciplina()
+        public HistoricoAulas()
         {
             InitializeComponent();
         }
 
         // Construtor para a classe Prof_Home
-        public PerfilDisciplina(Professor prof, HorarioDisciplina hoDisciplina, SqlConnection cn) : this()
+        public HistoricoAulas(Professor prof,HorarioDisciplina hoDisciplina,SqlConnection cn) : this()
         {
             // Associa os dados ao contexto da nova página.
             this.professor = prof;
@@ -70,34 +70,33 @@ namespace IHCProject.ContextoDisciplina
             this.NavigationService.Navigate(new Login());
         }
 
-        private void loadData()
-        {
+        private void loadData() {
 
             // query para obter os alunos do inscritos
-            nomeDiciplina.Content = "Diciplina: " + hDisciplina.Disciplina.Nome + " " + hDisciplina.Disciplina.AnoDisciplina;
-            turma.Content = "Turma: " + hDisciplina.Disciplina.AnoDisciplina + " " + hDisciplina.TurmaDisciplina;
+           
             try
             {
                 if (CN.State == ConnectionState.Closed) CN.Open();
 
                 CMD = new SqlCommand();
                 CMD.Connection = CN;
-                CMD.CommandText = "SELECT nome,idAluno FROM (SELECT * FROM ESCOLA_SECUNDARIA.FREQUENTA WHERE horario=@idHorario) AS T JOIN  ESCOLA_SECUNDARIA.ALUNO ON T.aluno=idAluno JOIN ESCOLA_SECUNDARIA.PESSOA ON PESSOA.ncc=ALUNO.ncc";
+                CMD.CommandText = "SELECT horario,numero,data,sumario FROM ESCOLA_SECUNDARIA.AULA WHERE horario=@idHorario";
                 CMD.Parameters.AddWithValue("@idHorario", hDisciplina.IdHorario);
                 SqlDataReader RDR = CMD.ExecuteReader();
                 while (RDR.Read())
                 {
-                    ListaAluno.Items.Add(new Aluno(int.Parse(RDR["idAluno"].ToString()), RDR["nome"].ToString()));
+                    listaAula.Items.Add(new Aula(int.Parse(RDR["horario"].ToString()), int.Parse(RDR["numero"].ToString()),hDisciplina.Disciplina.Nome,hDisciplina.Disciplina.AnoDisciplina, RDR["data"].ToString().Split()[0], RDR["sumario"].ToString() ));
                 }
                 RDR.Close();
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.Message);
             }
 
         }
+
+       
 
         private void AulaSubstituicao_Click(object sender, RoutedEventArgs e)
         {
@@ -106,7 +105,7 @@ namespace IHCProject.ContextoDisciplina
 
         private void Inicio_Click(object sender, RoutedEventArgs e)
         {
-
+            this.NavigationService.Navigate(new PerfilDisciplina(professor,hDisciplina, CN));
         }
 
         private void CriarAula_Click(object sender, RoutedEventArgs e)
@@ -116,7 +115,7 @@ namespace IHCProject.ContextoDisciplina
 
         private void Historico_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new HistoricoAulas(professor, hDisciplina, CN));
+
         }
         private void MarcarTeste_Click(object sender, RoutedEventArgs e)
         {
@@ -125,6 +124,31 @@ namespace IHCProject.ContextoDisciplina
         private void Voltar_Click(object sender, RoutedEventArgs e)
         {
             this.NavigationService.Navigate(new MinhasDisciplinas(professor, CN));
+        }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            Aula temp = (Aula)listaAula.SelectedItem;
+            if (temp == null)
+            {
+                MessageBox.Show("Selecione uma opção");
+            }
+            else {
+                openPopupWindow(temp);
+            }
+        }
+
+        private void openPopupWindow(Aula selected)
+        {
+            EditarAula popupWind = new EditarAula(professor, selected, CN);
+            popupWind.Top = (SystemParameters.FullPrimaryScreenHeight - popupWind.Height) / 2;
+            popupWind.Left = (SystemParameters.FullPrimaryScreenWidth - popupWind.Width) / 2;
+            popupWind.ShowDialog();
+        }
+
+        private void listaAula_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            openPopupWindow((Aula)listaAula.SelectedItem);
         }
     }
 
