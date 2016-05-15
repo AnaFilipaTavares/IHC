@@ -5,8 +5,8 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:IHCProject.ContextoDisciplina"
       mc:Ignorable="d" 
-      d:DesignHeight="500" d:DesignWidth="800"
-      Title="Criar Aula">
+
+      Title="Editar Aula" Height="500" Width="800">
     <Grid Margin="10,0,0,0">
 
 

@@ -58,6 +58,7 @@ namespace IHCProject.ContextoDisciplina
             label.Content = aulaEdit.Disciplina + " "+aulaEdit.AnoDisciplina +" - Editar Aula";
             nAula1.Text = aulaEdit.NumeroAula+"";
             datalabel.Content = "Data: " + aulaEdit.Data;
+            sumarioBox.Text = aulaEdit.Sumário;
             List<int> listaAlunocomFalta = new List<int>();
             List<Aluno> listaAluno = new List<Aluno>();
             try
@@ -143,7 +144,7 @@ namespace IHCProject.ContextoDisciplina
             }
 
             //criar aula
-            int criarAula = 0;
+            int editarAula = 0;
 
             if (!nAula1.Text.Equals("") && sumarioBox.Text.Length <= 199)
             {
@@ -153,12 +154,11 @@ namespace IHCProject.ContextoDisciplina
 
                     CMD = new SqlCommand();
                     CMD.Connection = CN;
-                    CMD.CommandText = "INSERT INTO ESCOLA_SECUNDARIA.AULA VALUES (@idHorario,@numeroAula,@sumario,@data,null);";
+                    CMD.CommandText = "UPDATE ESCOLA_SECUNDARIA.AULA SET sumario=@sumario WHERE horario=@idHorario AND numero=@numeroAula;";
                     CMD.Parameters.AddWithValue("@idHorario", aulaEdit.Horario);
                     CMD.Parameters.AddWithValue("@numeroAula", nAula1.Text);
                     CMD.Parameters.AddWithValue("@sumario", sumarioBox.Text);
-                    CMD.Parameters.AddWithValue("@data", datalabel.Content);
-                    criarAula = CMD.ExecuteNonQuery();
+                    editarAula = CMD.ExecuteNonQuery();
 
                 }
                 catch (Exception ex)
@@ -174,10 +174,10 @@ namespace IHCProject.ContextoDisciplina
             }
 
 
-            if (criarAula != 0)
+            if (editarAula != 0)
             {
                 //MARCAR FALTAS se não existirem erros
-                Console.WriteLine("Aula Criada");
+                Console.WriteLine("Aula Editada");
                 foreach (string elementos in listaFaltasMarcar)
                 {
                     int erros = 0;
@@ -211,8 +211,8 @@ namespace IHCProject.ContextoDisciplina
 
             }
             else {
-                MessageBox.Show("Erro na criação da aula, não foram marcadas as faltas");
-                Console.WriteLine("Erro na criação da aula");
+                MessageBox.Show("Erro na edição da aula, não foram marcadas as faltas");
+                Console.WriteLine("Erro na edição da aula");
                 resetFaltas_Click(sender, e);
             }
 

@@ -73,11 +73,20 @@
     <Compile Include="AulaSubstiuicao.xaml.cs">
       <DependentUpon>AulaSubstiuicao.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ContextoDisciplina\MarcarAValiacao.xaml.cs">
+      <DependentUpon>MarcarAValiacao.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ContextoDisciplina\CriarAulaSubstituicao.xaml.cs">
+      <DependentUpon>CriarAulaSubstituicao.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ContextoDisciplina\EditarAula.xaml.cs">
       <DependentUpon>EditarAula.xaml</DependentUpon>
     </Compile>
     <Compile Include="ContextoDisciplina\CriarAula.xaml.cs">
       <DependentUpon>CriarAula.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ContextoDisciplina\HistoricoAulasSubstituicao.xaml.cs">
+      <DependentUpon>HistoricoAulasSubstituicao.xaml</DependentUpon>
     </Compile>
     <Compile Include="ContextoDisciplina\HistoricoAulas.xaml.cs">
       <DependentUpon>HistoricoAulas.xaml</DependentUpon>
@@ -120,11 +129,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="ContextoDisciplina\MarcarAValiacao.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ContextoDisciplina\CriarAulaSubstituicao.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="ContextoDisciplina\EditarAula.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="ContextoDisciplina\CriarAula.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ContextoDisciplina\HistoricoAulasSubstituicao.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

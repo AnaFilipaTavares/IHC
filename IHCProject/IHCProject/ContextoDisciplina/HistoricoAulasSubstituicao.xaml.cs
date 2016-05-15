@@ -22,20 +22,21 @@ namespace IHCProject.ContextoDisciplina
     /// <summary>
     /// Interaction logic for MinhasDisciplinas.xaml
     /// </summary>
-    public partial class HistoricoAulas : Page
+    public partial class HistoricoAulasSubstituicao : Page
     {
         private Professor professor;
+
         private HorarioDisciplina hDisciplina;
         private SqlConnection CN;
         private SqlCommand CMD;
 
-        public HistoricoAulas()
+        public HistoricoAulasSubstituicao()
         {
             InitializeComponent();
         }
 
         // Construtor para a classe Prof_Home
-        public HistoricoAulas(Professor prof,HorarioDisciplina hoDisciplina,SqlConnection cn) : this()
+        public HistoricoAulasSubstituicao(Professor prof,HorarioDisciplina hoDisciplina,SqlConnection cn) : this()
         {
             // Associa os dados ao contexto da nova página.
             this.professor = prof;
@@ -71,7 +72,7 @@ namespace IHCProject.ContextoDisciplina
         }
 
         private void loadData() {
-            label.Content = hDisciplina.Disciplina.Nome + " " + hDisciplina.Disciplina.AnoDisciplina + " - Editar Aula";
+            label.Content = hDisciplina.Disciplina.Nome + " " + hDisciplina.Disciplina.AnoDisciplina + " - Histórico Aula de Substituição";
             // query para obter os alunos do inscritos
             listaAula.Items.Clear();
             try
@@ -80,8 +81,9 @@ namespace IHCProject.ContextoDisciplina
 
                 CMD = new SqlCommand();
                 CMD.Connection = CN;
-                CMD.CommandText = "SELECT horario,numero,data,sumario FROM ESCOLA_SECUNDARIA.AULA WHERE horario=@idHorario";
+                CMD.CommandText = "SELECT horario,numero,data,sumario FROM ESCOLA_SECUNDARIA.AULA WHERE horario=@idHorario AND profSubstituto=@idProf";
                 CMD.Parameters.AddWithValue("@idHorario", hDisciplina.IdHorario);
+                CMD.Parameters.AddWithValue("@idProf", professor.IdProf);
                 SqlDataReader RDR = CMD.ExecuteReader();
                 while (RDR.Read())
                 {
@@ -110,20 +112,17 @@ namespace IHCProject.ContextoDisciplina
 
         private void CriarAula_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new CriarAula(professor, hDisciplina, CN));
+            this.NavigationService.Navigate(new CriarAulaSubstituicao(professor,hDisciplina, CN));
         }
 
         private void Historico_Click(object sender, RoutedEventArgs e)
         {
-            
+
         }
-        private void MarcarTeste_Click(object sender, RoutedEventArgs e)
-        {
-            this.NavigationService.Navigate(new MarcarAValiacao(professor, hDisciplina, CN));
-        }
+
         private void Voltar_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new MinhasDisciplinas(professor, CN));
+            this.NavigationService.Navigate(new AulaSubstituicao(professor, CN));
         }
 
         private void button_Click(object sender, RoutedEventArgs e)

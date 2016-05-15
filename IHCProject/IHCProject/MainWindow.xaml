@@ -7,4 +7,10 @@
         mc:Ignorable="d"
 
         Title="MainWindow" Source="Login.xaml">
+    <NavigationWindow.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FF9FD6E6" Offset="0.003"/>
+            <GradientStop Color="White" Offset="1"/>
+        </LinearGradientBrush>
+    </NavigationWindow.Background>
     </NavigationWindow>

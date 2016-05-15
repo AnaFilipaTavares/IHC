@@ -8,6 +8,14 @@
        
         Title="InfoALuno" Height="200
         " Width="500">
+
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FF9FD6E6" Offset="0.003"/>
+            <GradientStop Color="White" Offset="1"/>
+        </LinearGradientBrush>
+    </Window.Background>
+
     <Grid>
         <Label x:Name="falta" Content="Falta: " HorizontalAlignment="Left" Margin="38,10,0,0" VerticalAlignment="Top"/>
         <Label x:Name="label" Content="Justificação: " HorizontalAlignment="Left" Margin="38,41,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.712,-1.071"/>

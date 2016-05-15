@@ -8,6 +8,12 @@
        
         Title="InfoALuno" Height="325
         " Width="500">
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FF9FD6E6" Offset="0.003"/>
+            <GradientStop Color="White" Offset="1"/>
+        </LinearGradientBrush>
+    </Window.Background>
     <Grid>
 
         <Image x:Name="image" HorizontalAlignment="Left" Height="74" Margin="10,10,0,0" VerticalAlignment="Top" Width="70" Source="Images/contacts-256.png"/>

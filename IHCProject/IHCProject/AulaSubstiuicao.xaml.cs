@@ -16,6 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data;
 using IHCProject.infoClass;
+using IHCProject.ContextoDisciplina;
 
 namespace IHCProject
 {
@@ -80,7 +81,8 @@ namespace IHCProject
 
                 CMD = new SqlCommand();
                 CMD.Connection = CN;
-                CMD.CommandText = "SELECT PESSOA.nome,PROFESSOR.idProf, HORARIO_DISCIPLINA.id,DISCIPLINA.codigo,DISCIPLINA.designação AS nomeDisciplina,HORARIO_DISCIPLINA.ano,TURMA.designação FROM ESCOLA_SECUNDARIA.HORARIO_DISCIPLINA JOIN ESCOLA_SECUNDARIA.PROFESSOR ON professor=idProf JOIN ESCOLA_SECUNDARIA.PESSOA ON PESSOA.ncc=PROFESSOR.ncc JOIN ESCOLA_SECUNDARIA.DISCIPLINA ON disciplina=codigo JOIN ESCOLA_SECUNDARIA.TURMA ON turma=TURMA.codigo;";
+                CMD.CommandText = "SELECT PESSOA.nome,PROFESSOR.idProf, HORARIO_DISCIPLINA.id,DISCIPLINA.codigo,DISCIPLINA.designação AS nomeDisciplina,HORARIO_DISCIPLINA.ano,TURMA.designação FROM ESCOLA_SECUNDARIA.HORARIO_DISCIPLINA JOIN ESCOLA_SECUNDARIA.PROFESSOR ON professor=idProf JOIN ESCOLA_SECUNDARIA.PESSOA ON PESSOA.ncc=PROFESSOR.ncc JOIN ESCOLA_SECUNDARIA.DISCIPLINA ON disciplina=codigo JOIN ESCOLA_SECUNDARIA.TURMA ON turma=TURMA.codigo WHERE idProf!=@idProf;";
+                CMD.Parameters.AddWithValue("@idProf", prof.IdProf);
                 SqlDataReader RDR = CMD.ExecuteReader();
                 while (RDR.Read())
                 {
@@ -102,6 +104,7 @@ namespace IHCProject
             if (MessageBox.Show("Tem a certeza que pretende criar uma aula de substituição\n" + ((HorarioDisciplina)listBoxDisciplinas.SelectedValue).ToString(), "criar aula", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 Console.WriteLine("cria aula substituicao");
+                this.NavigationService.Navigate(new CriarAulaSubstituicao(prof,(HorarioDisciplina)listBoxDisciplinas.SelectedItem, CN));
             }
             else {
                 Console.WriteLine("Não cria aula substituicao");
@@ -120,6 +123,7 @@ namespace IHCProject
                 if (MessageBox.Show("Tem a certeza que pretende criar uma aula de substituição\n" + ((HorarioDisciplina)listBoxDisciplinas.SelectedValue).ToString(), "criar aula", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
                     Console.WriteLine("cria aula substituicao");
+                    this.NavigationService.Navigate(new CriarAulaSubstituicao(prof, (HorarioDisciplina)listBoxDisciplinas.SelectedItem, CN));
                 }
                 else {
                     Console.WriteLine("Não cria aula substituicao");

@@ -42,7 +42,7 @@ namespace IHCProject
 
         private void loadData()
         {
-            
+           // Label[][] labelsHorario = new Label[5][];
         }
 
         private void horarioClick(object sender, RoutedEventArgs e)

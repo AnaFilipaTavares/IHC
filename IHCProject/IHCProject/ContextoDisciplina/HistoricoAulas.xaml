@@ -43,13 +43,21 @@
                 <DataTemplate>
                     <Grid>
                         <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="70"/>
+                            <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="250"/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
                         <StackPanel Grid.Column="0">
                             <TextBlock  x:Name="textName"  Text="{Binding NAulaBinding}" Height="30"/>
                         </StackPanel>
-                        <StackPanel  Grid.Column="1">
+                        <StackPanel Grid.Column="1">
+                            <TextBlock  x:Name="sumario"  Text="Sumário: " Height="30"/>
+                        </StackPanel>
+                        <StackPanel  Grid.Column="2">
+                            <TextBlock x:Name="textSumario" Text="{Binding Sumário}" Height="Auto"/>
+                        </StackPanel>
+                        <StackPanel  Grid.Column="3">
                             <TextBlock x:Name="textNúmero" Text="{Binding dataBinding}" Height="30"/>
                         </StackPanel>
                     </Grid>

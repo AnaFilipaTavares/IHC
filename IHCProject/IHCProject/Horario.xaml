@@ -7,6 +7,9 @@
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="800"
       Title="Horario">
+
+    
+
     <Grid>
         <Menu HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,40,30,30" Width="145" >
             <Menu.ItemsPanel>
@@ -23,7 +26,9 @@
             <MenuItem Header="Encerrar Sessão" Height="30" FontSize="16" HorizontalAlignment="Center"  Width="145" Click="Exit_Click"/>
         </Menu>
         <Label x:Name="label" Content="Horário" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20"/>
-       
+        <Grid x:Name="gridH" Margin="180,40,20,20">
+
+        </Grid>
 
 
 

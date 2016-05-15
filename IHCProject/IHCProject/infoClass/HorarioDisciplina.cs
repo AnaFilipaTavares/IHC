@@ -52,6 +52,13 @@ namespace IHCProject.infoClass
             }
         }
 
+        public string TurmaBinding
+        {
+            get
+            {
+                return Disciplina.AnoDisciplina + " "+ turmaDisciplina;
+            }
+        }
         public Professor ProfessorDisciplina
         {
             get

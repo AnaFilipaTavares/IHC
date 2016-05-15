@@ -22,15 +22,16 @@ namespace IHCProject.ContextoDisciplina
     /// <summary>
     /// Interaction logic for MinhasDisciplinas.xaml
     /// </summary>
-    public partial class CriarAula : Page
+    public partial class CriarAulaSubstituicao : Page
     {
         private Professor professor;
+
         private HorarioDisciplina hDisciplina;
         private SqlConnection CN;
         private SqlCommand CMD;
         private List<string> listaFaltasMarcar;
         private List<ListBoxItem> list2Reset;
-        public CriarAula()
+        public CriarAulaSubstituicao()
         {
             InitializeComponent();
             data.SelectedDate = DateTime.Today;
@@ -39,10 +40,11 @@ namespace IHCProject.ContextoDisciplina
         }
 
         // Construtor para a classe Prof_Home
-        public CriarAula(Professor prof,HorarioDisciplina hoDisciplina,SqlConnection cn) : this()
+        public CriarAulaSubstituicao(Professor prof,HorarioDisciplina hoDisciplina,SqlConnection cn) : this()
         {
             // Associa os dados ao contexto da nova página.
             this.professor = prof;
+
             this.hDisciplina = hoDisciplina;
             this.CN = cn;
             loadData();
@@ -82,7 +84,7 @@ namespace IHCProject.ContextoDisciplina
         private void loadData() {
 
             // query para obter os alunos do inscritos
-            label.Content = hDisciplina.Disciplina.Nome + " "+hDisciplina.Disciplina.AnoDisciplina +" - Criar Aula";
+            label.Content = hDisciplina.Disciplina.Nome + " "+hDisciplina.Disciplina.AnoDisciplina +" - Criar Aula de Substituição";
             try
             {
                 if (CN.State == ConnectionState.Closed) CN.Open();
@@ -116,14 +118,8 @@ namespace IHCProject.ContextoDisciplina
 
         private void AulaSubstituicao_Click(object sender, RoutedEventArgs e)
         {
-            if (warningExit())
+           if (warningExit())
                 this.NavigationService.Navigate(new AulaSubstituicao(professor, CN));
-        }
-
-        private void Inicio_Click(object sender, RoutedEventArgs e)
-        {
-            if (warningExit())
-                this.NavigationService.Navigate(new PerfilDisciplina(professor,hDisciplina, CN));
         }
 
         private void CriarAula_Click(object sender, RoutedEventArgs e)
@@ -134,17 +130,13 @@ namespace IHCProject.ContextoDisciplina
         private void Historico_Click(object sender, RoutedEventArgs e)
         {
             if (warningExit())
-                this.NavigationService.Navigate(new HistoricoAulas(professor, hDisciplina, CN));
+               this.NavigationService.Navigate(new HistoricoAulasSubstituicao(professor, hDisciplina, CN));
         }
-        private void MarcarTeste_Click(object sender, RoutedEventArgs e)
-        {
-            if (warningExit())
-                this.NavigationService.Navigate(new MarcarAValiacao(professor, hDisciplina, CN));
-        }
+
         private void Voltar_Click(object sender, RoutedEventArgs e)
         {
             if (warningExit())
-                this.NavigationService.Navigate(new MinhasDisciplinas(professor, CN));
+                this.NavigationService.Navigate(new AulaSubstituicao(professor, CN));
         }
 
         private void aulaDuplaCheckBox_Click(object sender, RoutedEventArgs e)
@@ -201,11 +193,12 @@ namespace IHCProject.ContextoDisciplina
 
                     CMD = new SqlCommand();
                     CMD.Connection = CN;
-                    CMD.CommandText = "INSERT INTO ESCOLA_SECUNDARIA.AULA VALUES (@idHorario,@numeroAula,@sumario,@data,null);";
+                    CMD.CommandText = "INSERT INTO ESCOLA_SECUNDARIA.AULA VALUES (@idHorario,@numeroAula,@sumario,@data,@profSubs);";
                     CMD.Parameters.AddWithValue("@idHorario", hDisciplina.IdHorario);
                     CMD.Parameters.AddWithValue("@numeroAula", nAula1.Text);
                     CMD.Parameters.AddWithValue("@sumario", sumarioBox.Text);
                     CMD.Parameters.AddWithValue("@data", data.SelectedDate.Value.ToString("yyyy-MM-dd"));
+                    CMD.Parameters.AddWithValue("@profSubs", professor.IdProf);
                     criarAula = CMD.ExecuteNonQuery();
 
                 }
@@ -222,11 +215,12 @@ namespace IHCProject.ContextoDisciplina
 
                         CMD = new SqlCommand();
                         CMD.Connection = CN;
-                        CMD.CommandText = "INSERT INTO ESCOLA_SECUNDARIA.AULA VALUES (@idHorario,@numeroAula,@sumario,@data,null);";
+                        CMD.CommandText = "INSERT INTO ESCOLA_SECUNDARIA.AULA VALUES (@idHorario,@numeroAula,@sumario,@data,@profSubs);";
                         CMD.Parameters.AddWithValue("@idHorario", hDisciplina.IdHorario);
                         CMD.Parameters.AddWithValue("@numeroAula", nAula2.Text);
                         CMD.Parameters.AddWithValue("@sumario", sumarioBox.Text);
                         CMD.Parameters.AddWithValue("@data", data.SelectedDate.Value.ToString("yyyy-MM-dd"));
+                        CMD.Parameters.AddWithValue("@profSubs", professor.IdProf);
                         criarAula = CMD.ExecuteNonQuery();
 
                     }
@@ -245,7 +239,7 @@ namespace IHCProject.ContextoDisciplina
             if (criarAula != 0)
             {
                 //MARCAR FALTAS se não existirem erros
-                Console.WriteLine("Aula Criada");
+                Console.WriteLine("Aula de substituicao Criada");
                 foreach (string elementos in listaFaltasMarcar)
                 {
                     int erros = 0;
@@ -279,12 +273,12 @@ namespace IHCProject.ContextoDisciplina
 
             }
             else {
-                MessageBox.Show("Erro na criação da aula, não foram marcadas as faltas");
-                Console.WriteLine("Erro na criação da aula");
+                MessageBox.Show("Erro na criação da aula de Substituição, não foram marcadas as faltas");
+                Console.WriteLine("Erro na criação da aula de Substituição");
                 resetFaltas_Click(sender, e);
             }
 
-            this.NavigationService.Navigate(new PerfilDisciplina(professor, hDisciplina, CN));
+            this.NavigationService.Navigate(new HistoricoAulasSubstituicao(professor,hDisciplina, CN));
 
         }
 

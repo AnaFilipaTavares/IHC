@@ -24,8 +24,33 @@
         </Menu>
         <Label x:Name="label" Content="Minhas Disciplinas" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20"/>
 
-        <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="179" Margin="208,40,0,0" VerticalAlignment="Top" Width="408"  MouseDoubleClick="listbox_MouseDoubleClick"/>
-        <Button x:Name="BotaoAceder" Content="Aceder" HorizontalAlignment="Left" Margin="541,230,0,0" VerticalAlignment="Top" Width="75" Click="aceder_Click"/>
+        <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="179" Margin="208,40,0,0" VerticalAlignment="Top" Width="440"  MouseDoubleClick="listbox_MouseDoubleClick">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="70"/>
+                            <ColumnDefinition Width="200"/>
+                            <ColumnDefinition Width="70"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0">
+                            <TextBlock  x:Name="textName"  Text="Diciplina: " Height="30"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1">
+                            <TextBlock  x:Name="sumario"  Text="{Binding Disciplina}" Height="30"/>
+                        </StackPanel>
+                        <StackPanel  Grid.Column="2">
+                            <TextBlock x:Name="textSumario" Text="Turma: " Height="Auto"/>
+                        </StackPanel>
+                        <StackPanel  Grid.Column="3">
+                            <TextBlock x:Name="textNúmero" Text="{Binding TurmaBinding}" Height="30"/>
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+            <Button x:Name="BotaoAceder" Content="Aceder" HorizontalAlignment="Left" Margin="572,230,0,0" VerticalAlignment="Top" Width="75" Click="aceder_Click"/>
 
 
 

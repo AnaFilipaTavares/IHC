@@ -7,6 +7,9 @@
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="800"
       Title="DirecaoTurma">
+
+    
+
     <Grid>
         <Menu HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,40,30,30" Width="145" >
             <Menu.ItemsPanel>
@@ -23,8 +26,33 @@
             <MenuItem Header="Encerrar Sessão" Height="30" FontSize="16" HorizontalAlignment="Center"  Width="145" Click="Exit_Click"/>
         </Menu>
         <Label x:Name="label" Content="Direção Turma" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20"/>
-        <ListBox x:Name="TurmaDoDT" HorizontalAlignment="Left" Height="179" Margin="208,40,0,0" VerticalAlignment="Top" Width="408" MouseDoubleClick="TurmaDoDT_MouseDoubleClick"/>
-        <Button x:Name="button" Content="Aceder" HorizontalAlignment="Left" Margin="541,230,0,0" VerticalAlignment="Top" Width="75" Click="button_Click"/>
+        <ListBox x:Name="TurmaDoDT" HorizontalAlignment="Left" Height="179" Margin="208,40,0,0" VerticalAlignment="Top" Width="440" ScrollViewer.HorizontalScrollBarVisibility="Disabled"  MouseDoubleClick="TurmaDoDT_MouseDoubleClick">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="75"/>
+                            <ColumnDefinition Width="120"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Image x:Name="image" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Height="74" VerticalAlignment="Top" Width="70" Source="Images/contacts-256.png"/>
+                        <StackPanel Grid.Column="1" Grid.Row="0" >
+                            <TextBlock x:Name="textName"  Text="{Binding Nome}"/>
+                            <TextBlock x:Name="textNúmero" Text="{Binding IdAluno}"/>
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <Button x:Name="button" Content="Aceder" HorizontalAlignment="Left" Margin="572,230,0,0" VerticalAlignment="Top" Width="75" Click="button_Click"/>
 
 
 

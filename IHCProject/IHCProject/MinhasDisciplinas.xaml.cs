@@ -46,7 +46,7 @@ namespace IHCProject
             try
             {
                 if (CN.State == ConnectionState.Closed) CN.Open();
-
+               
                 CMD = new SqlCommand();
                 CMD.Connection = CN;
                 CMD.CommandText = "SELECT id, T.designação,T.ano,disciplina,TURMA.designação AS letra FROM ESCOLA_SECUNDARIA.TURMA JOIN (SELECT id, designação, ano, disciplina, turma FROM ESCOLA_SECUNDARIA.HORARIO_DISCIPLINA JOIN ESCOLA_SECUNDARIA.DISCIPLINA ON HORARIO_DISCIPLINA.disciplina= DISCIPLINA.codigo WHERE professor = @idProf) AS T ON T.turma = TURMA.codigo;";
@@ -113,6 +113,8 @@ namespace IHCProject
         {
             this.NavigationService.Navigate(new PerfilDisciplina(prof, (HorarioDisciplina)listBox.SelectedItem, CN));
         }
+
+
     }
 }
 
