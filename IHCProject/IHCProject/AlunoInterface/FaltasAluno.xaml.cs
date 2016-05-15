@@ -20,39 +20,43 @@ namespace IHCProject
     /// </summary>
     public partial class FaltasAluno : Window
     {
-        private SqlCommand CMD;
-        private string commandText;
-        private SqlConnection CN;
-        private string data;
+        private int idAluno;
+        private string disciplina;
+        private Data data1;
 
-        public FaltasAluno()
+
+        public FaltasAluno(int idAluno, string disciplina, Data data1)
         {
             InitializeComponent();
-        }
-
-        public FaltasAluno(string data, string commandText)
-        {
-            this.data = data;
-            this.commandText = commandText;
+            this.idAluno = idAluno;
+            this.disciplina = disciplina;
+            this.data1 = data1;
             loadData();
         }
 
         private void loadData()
         {
-            try
-            {
-                if (CN.State == System.Data.ConnectionState.Closed) CN.Open();
-                CMD = new SqlCommand();
-                CMD.Connection = CN;
-                CMD.CommandText = commandText;
-                SqlDataReader RDR = CMD.ExecuteReader();
 
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+          if(data1.tipo == "P")
+                label.Content = "Falta de Presença";
 
+          else if (data1.tipo == "D")
+                label.Content = "Falta Disciplinar";
+          else
+                label.Content = "Falta";
+
+
+            label2.Content = disciplina;
+
+            label4.Content = data1.data;
+
+            textBlock.Text = data1.sumario;
+
+            if (data1.descrição.Equals(""))
+                justificação.Visibility = Visibility.Hidden;
+            
+            else
+                textBlock1.Text = data1.descrição;
 
         }
     }

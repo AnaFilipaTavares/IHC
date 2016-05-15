@@ -88,26 +88,27 @@ namespace IHCProject.AlunoInterface
                 if (CN.State == System.Data.ConnectionState.Closed) CN.Open();
                 CMD = new SqlCommand();
                 CMD.Connection = CN;
-                CMD.CommandText = "SELECT designação,count(*) as nFaltas FROM(SELECT disciplina, data, sumario, descricao, designação FROM ESCOLA_SECUNDARIA.DISCIPLINA JOIN(SELECT * FROM ESCOLA_SECUNDARIA.HORARIO_DISCIPLINA JOIN(SELECT T.horario, data, sumario, descricao FROM  ESCOLA_SECUNDARIA.AULA JOIN(SELECT FALTAS_ALUNO.aluno, FALTAS_ALUNO.horario, FALTAS_ALUNO.aula, descricao, tipo FROM ESCOLA_SECUNDARIA.FALTAS_ALUNO LEFT OUTER JOIN ESCOLA_SECUNDARIA.FALTAS_JUSTIFICADAS_ALUNO ON FALTAS_JUSTIFICADAS_ALUNO.aluno = FALTAS_ALUNO.aluno AND FALTAS_JUSTIFICADAS_ALUNO.horario = FALTAS_ALUNO.horario AND FALTAS_JUSTIFICADAS_ALUNO.aula = FALTAS_ALUNO.aula WHERE FALTAS_ALUNO.aluno = " + aluno.IdAluno + ") AS T ON aula = numero AND T.horario = AULA.horario) AS T2 ON horario = id) AS T3 ON disciplina = codigo) AS T4 GROUP BY designação;";
+                CMD.CommandText = "SELECT designação,count(*) as nFaltas FROM(SELECT disciplina, data, sumario, descricao, designação FROM ESCOLA_SECUNDARIA.DISCIPLINA JOIN(SELECT * FROM ESCOLA_SECUNDARIA.HORARIO_DISCIPLINA JOIN(SELECT T.horario, data, sumario, descricao FROM  ESCOLA_SECUNDARIA.AULA JOIN(SELECT FALTAS_ALUNO.aluno, FALTAS_ALUNO.horario, FALTAS_ALUNO.aula, descricao, tipo FROM ESCOLA_SECUNDARIA.FALTAS_ALUNO LEFT OUTER JOIN ESCOLA_SECUNDARIA.FALTAS_JUSTIFICADAS_ALUNO ON FALTAS_JUSTIFICADAS_ALUNO.aluno = FALTAS_ALUNO.aluno AND FALTAS_JUSTIFICADAS_ALUNO.horario = FALTAS_ALUNO.horario AND FALTAS_JUSTIFICADAS_ALUNO.aula = FALTAS_ALUNO.aula WHERE FALTAS_ALUNO.aluno = " + aluno.IdAluno + ") AS T ON aula = numero AND T.horario = AULA.horario) AS T2 ON horario = id) AS T3 ON disciplina = codigo) AS T4 GROUP BY designação ORDER BY 1,2;";
                 SqlDataReader RDR = CMD.ExecuteReader();
 
                 while (RDR.Read())
                 {
-                    items.Add(new Falta() { disciplina = RDR["designação"].ToString(), numero = (int)RDR["nFaltas"], datas = new List<string>()});
+                    items.Add(new Falta() { disciplina = RDR["designação"].ToString(), numero = (int)RDR["nFaltas"], datas = new List<Data>()});
                 }
                 RDR.Close();
-                CMD.CommandText = "SELECT designação,data,sumario,descricao,tipo FROM ESCOLA_SECUNDARIA.DISCIPLINA JOIN (SELECT * FROM ESCOLA_SECUNDARIA.HORARIO_DISCIPLINA JOIN(SELECT T.horario,data,sumario,descricao,T.tipo FROM  ESCOLA_SECUNDARIA.AULA JOIN (SELECT FALTAS_ALUNO.aluno,FALTAS_ALUNO.horario,FALTAS_ALUNO.aula,descricao,FALTAS_ALUNO.tipo FROM ESCOLA_SECUNDARIA.FALTAS_ALUNO LEFT OUTER JOIN ESCOLA_SECUNDARIA.FALTAS_JUSTIFICADAS_ALUNO ON FALTAS_JUSTIFICADAS_ALUNO.aluno = FALTAS_ALUNO.aluno AND FALTAS_JUSTIFICADAS_ALUNO.horario = FALTAS_ALUNO.horario AND FALTAS_JUSTIFICADAS_ALUNO.aula = FALTAS_ALUNO.aula WHERE FALTAS_ALUNO.aluno = " + aluno.IdAluno + ") AS T ON aula = numero AND T.horario = AULA.horario) AS T2 ON horario = id) AS T3 ON disciplina=codigo;";
+                CMD.CommandText = "SELECT designação,data,sumario,descricao,tipo FROM ESCOLA_SECUNDARIA.DISCIPLINA JOIN (SELECT * FROM ESCOLA_SECUNDARIA.HORARIO_DISCIPLINA JOIN(SELECT T.horario,data,sumario,descricao,T.tipo FROM  ESCOLA_SECUNDARIA.AULA JOIN (SELECT FALTAS_ALUNO.aluno,FALTAS_ALUNO.horario,FALTAS_ALUNO.aula,descricao,FALTAS_ALUNO.tipo FROM ESCOLA_SECUNDARIA.FALTAS_ALUNO LEFT OUTER JOIN ESCOLA_SECUNDARIA.FALTAS_JUSTIFICADAS_ALUNO ON FALTAS_JUSTIFICADAS_ALUNO.aluno = FALTAS_ALUNO.aluno AND FALTAS_JUSTIFICADAS_ALUNO.horario = FALTAS_ALUNO.horario AND FALTAS_JUSTIFICADAS_ALUNO.aula = FALTAS_ALUNO.aula WHERE FALTAS_ALUNO.aluno = " + aluno.IdAluno + ") AS T ON aula = numero AND T.horario = AULA.horario) AS T2 ON horario = id) AS T3 ON disciplina=codigo ORDER BY 1,2;";
                 SqlDataReader RDR2 = CMD.ExecuteReader();
-
+                int j = 1;
                 while (RDR2.Read())
                 {
                     for (int i = 0; i < items.Count; i++)
                     {
                         if (items[i].disciplina.Equals(RDR2["designação"].ToString()))
                         {
-                            items[i].datas.Add(RDR2["data"].ToString().Split(' ')[0]);
+                            items[i].datas.Add(new Data() { data = RDR2["data"].ToString().Split(' ')[0], id = j, sumario = RDR2["sumario"].ToString(), descrição = RDR2["descricao"].ToString(), tipo = RDR2["tipo"].ToString() });
                         }
                     }
+                    j++;
                 }
 
                 listView.ItemsSource = items;
@@ -120,11 +121,37 @@ namespace IHCProject.AlunoInterface
 
         }
 
-        private void ChangeDate(object sender, SelectionChangedEventArgs e)
+
+        public static T FindAncestorOrSelf<T>(DependencyObject obj)
+       where T : DependencyObject
         {
+            while (obj != null)
+            {
+                T objTest = obj as T;
+
+                if (objTest != null)
+                    return objTest;
+
+                obj = VisualTreeHelper.GetParent(obj);
+            }
+            return null;
+        }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //buscar a falta da linha da listview aonde combobox foi escolhida
+            ListViewItem lvItem = FindAncestorOrSelf<ListViewItem>(sender as ComboBox);
+            ListView listView = ItemsControl.ItemsControlFromItemContainer(lvItem) as ListView;
+            int index = listView.ItemContainerGenerator.IndexFromContainer(lvItem);
+            ItemCollection listitem = listView.Items;
+            Falta f = (Falta)listitem.GetItemAt(index);
+
             var comboBox = sender as ComboBox;
-            string data = comboBox.SelectedItem as string;
-            FaltasAluno f = new FaltasAluno(data,CMD.CommandText);
+
+            Data data = comboBox.SelectedItem as Data;
+
+            FaltasAluno fa = new FaltasAluno(aluno.IdAluno, f.disciplina,data);
+            fa.Show();
         }
     }
 }
@@ -135,6 +162,24 @@ public class Falta
 
     public int numero { get; set; }
 
-    public List<String> datas { get; set; }
-     
+    public List<Data> datas { get; set; }
+
+}
+
+public class Data
+{
+    public string data { get; set; }
+
+    public int id { get; set; }
+
+    public string sumario { get; set; }
+
+    public string descrição { get; set; }
+
+    public string tipo { get; set; }
+
+    public override string ToString()
+    {
+        return id + " - " + data;
+    }
 }

@@ -5,18 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IHCProject"
         mc:Ignorable="d"
-        Title="FaltasAluno" Height="335" Width="403">
+        Title="FaltasAluno" Height="341" Width="450">
     <Grid>
-        <Label x:Name="label" Content="Fa" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-        <Label x:Name="label1" Content="Disciplina: " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="33,45,0,0" Width="83"/>
-        <Label x:Name="label2" Content="" HorizontalAlignment="Left" Margin="121,45,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.126,-0.516" Width="103"/>
-        <Label x:Name="label3" Content="Data: " HorizontalAlignment="Left" Margin="33,87,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label" Content="" HorizontalAlignment="Center" VerticalAlignment="Top" Width="Auto" FontSize="20"/>
+        <Label x:Name="label1" Content="Disciplina: " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="33,45,0,0" Width="83" FontSize="16" Background="{DynamicResource {x:Static SystemColors.GradientActiveCaptionBrushKey}}"/>
+        <Label x:Name="label2" Content="" HorizontalAlignment="Left" Margin="121,45,0,0" VerticalAlignment="Top" Width="103"/>
+        <Label x:Name="label3" Content="Data: " HorizontalAlignment="Left" Margin="33,87,0,0" VerticalAlignment="Top"  FontSize="16" Background="{DynamicResource {x:Static SystemColors.GradientActiveCaptionBrushKey}}"/>
         <Label x:Name="label4" Content="" HorizontalAlignment="Left" Margin="90,87,0,0" VerticalAlignment="Top" Width="82"/>
-        <GroupBox x:Name="sumario" Header="Sumário" HorizontalAlignment="Left" Margin="33,122,0,0" VerticalAlignment="Top" Height="71" Width="151">
-            <TextBlock x:Name="textBlock" HorizontalAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="49" Width="141" Margin="0,0,-2,0"/>
+        <GroupBox x:Name="sumario" Header="Sumário" HorizontalAlignment="Left" Margin="33,148,0,0" VerticalAlignment="Top" Height="118" Width="176"  FontSize="16" BorderThickness="2" BorderBrush="{DynamicResource {x:Static SystemColors.GradientActiveCaptionBrushKey}}">
+            <TextBlock x:Name="textBlock" HorizontalAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="90" Width="157"  FontSize="14"/>
         </GroupBox>
-        <GroupBox x:Name="justificação" Visibility="Hidden" Header="Justificação da Falta" HorizontalAlignment="Left" Margin="205,122,0,0" VerticalAlignment="Top" Height="71" Width="151">
-            <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="49" Width="141" Margin="0,0,-2,0"/>
+        <GroupBox x:Name="justificação" Header="Justificação da Falta" HorizontalAlignment="Left" Margin="229,148,0,0" VerticalAlignment="Top" Height="118" Width="187"  FontSize="16" BorderThickness="2" BorderBrush="{DynamicResource {x:Static SystemColors.GradientActiveCaptionBrushKey}}">
+            <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="63" Width="141"  FontSize="14"/>
         </GroupBox>
 
     </Grid>

@@ -85,7 +85,7 @@
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
                                     <Label Width="20" Height="30" Content="{Binding numero}"/>
-                                    <ComboBox x:Name="comboBoxDate" Width="Auto" ItemsSource="{Binding datas}" HorizontalContentAlignment="Stretch" Background="BlueViolet" SelectionChanged="ChangeDate"/>
+                                    <ComboBox x:Name="comboBoxDate" Width="Auto" ItemsSource="{Binding datas}" HorizontalContentAlignment="Stretch" Background="BlueViolet" SelectionChanged="ComboBox_SelectionChanged"/>
                                 </StackPanel>
                             </DataTemplate>
 
