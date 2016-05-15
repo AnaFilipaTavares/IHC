@@ -87,16 +87,25 @@ namespace IHCProject.AlunoInterface
 
                 CMD = new SqlCommand();
                 CMD.Connection = CN;
-                CMD.CommandText = "SELECT ano,designação,professor,nome,encarregado,dataNascimento,nomeAluno FROM ESCOLA_SECUNDARIA.TURMA JOIN (SELECT * FROM ESCOLA_SECUNDARIA.PLANO_CURSO JOIN (SELECT idAluno, encarregado, curso, turma, nome AS nomeAluno, dataNascimento FROM (SELECT * FROM ESCOLA_SECUNDARIA.ALUNO  WHERE idAluno = "+ aluno.IdAluno +") as T JOIN ESCOLA_SECUNDARIA.PESSOA ON T.ncc = PESSOA.ncc) AS T1 ON curso = codigo) AS T2 ON ESCOLA_SECUNDARIA.TURMA.codigo = turma;";
+                CMD.CommandText = "SELECT nomeEncarregado,nomeAluno,dAluno,nome,nomeCurso,ano,designação FROM ESCOLA_SECUNDARIA.PESSOA JOIN"
+                                  + "(SELECT * FROM ESCOLA_SECUNDARIA.PROFESSOR JOIN"
+                                  + "(SELECT nomeEncarregado, nomeAluno, turma, dAluno, nome as nomeCurso, ano, designação, professor FROM ESCOLA_SECUNDARIA.TURMA JOIN"
+                                  + "(SELECT * FROM ESCOLA_SECUNDARIA.PLANO_CURSO JOIN"
+                                  + "(SELECT nome as nomeEncarregado, dataNascimento, nomeAluno, turma, dAluno, curso FROM ESCOLA_SECUNDARIA.PESSOA JOIN"
+                                  + "(SELECT nome as nomeAluno, turma, dataNascimento as dAluno, curso, encarregado FROM ESCOLA_SECUNDARIA.ALUNO JOIN ESCOLA_SECUNDARIA.PESSOA ON ALUNO.ncc = PESSOA.ncc WHERE idAluno = " + aluno.IdAluno + ")"
+                                  + "AS T ON encarregado = ncc) AS T2 ON curso = codigo) AS T3 ON ESCOLA_SECUNDARIA.TURMA.codigo = turma) AS T4 ON professor = idProf)"
+                                  + "AS T5 ON T5.ncc = PESSOA.ncc;";
+
+
                 SqlDataReader RDR = CMD.ExecuteReader();
                 if (RDR.Read())
                 {
                     nomeAluno.Content = RDR["nomeAluno"].ToString();
-                    dataAluno.Content = RDR["dataNascimento"].ToString().Split()[0];
-                    encarregadoAluno.Content = RDR["encarregado"].ToString();
-                    cursoAluno.Content = RDR["nome"].ToString();
+                    dataAluno.Content = RDR["dAluno"].ToString().Split()[0];
+                    encarregadoAluno.Content = RDR["nomeEncarregado"].ToString();
+                    cursoAluno.Content = RDR["nomeCurso"].ToString();
                     turmaAluno.Content = RDR["ano"].ToString() + "º" + RDR["designação"].ToString();
-                    diretorAluno.Content = RDR["professor"].ToString();
+                    diretorAluno.Content = RDR["nome"].ToString();
                 }
                 RDR.Close();
             }
