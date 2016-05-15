@@ -4,6 +4,11 @@
              xmlns:local="clr-namespace:IHCProject"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <Style x:Key="labelStyle" TargetType="{x:Type Label}">
+
+            <Setter Property="FontSize" Value="14" />
+            
+
+        </Style>
     </Application.Resources>
 </Application>

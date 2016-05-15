@@ -17,10 +17,11 @@
     </Window.Background>
 
     <Grid>
-        <Label x:Name="falta" Content="Falta: " HorizontalAlignment="Left" Margin="38,10,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="label" Content="Justificação: " HorizontalAlignment="Left" Margin="38,41,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.712,-1.071"/>
-        <TextBox x:Name="Justificacao" HorizontalAlignment="Left" Height="66" Margin="119,45,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="260"/>
-        <Button x:Name="Confirmar" Content="Confirmar" HorizontalAlignment="Left" Margin="214,130,0,0" VerticalAlignment="Top" Width="75" Click="button_Click"/>
+        <Label Style="{StaticResource labelStyle}" x:Name="falta" Content="Falta: " HorizontalAlignment="Left" Margin="38,10,0,0" VerticalAlignment="Top"/>
 
+        <Button x:Name="Confirmar" Content="Confirmar" HorizontalAlignment="Left" Margin="214,139,0,0" VerticalAlignment="Top" Width="74" Click="button_Click"/>
+        <GroupBox x:Name="sumario" Header="Justificação " HorizontalAlignment="Left" Margin="38,41,0,0" VerticalAlignment="Top" Height="93" Width="414"  FontSize="16" BorderThickness="2" BorderBrush="{DynamicResource {x:Static SystemColors.GradientActiveCaptionBrushKey}}">
+            <TextBox x:Name="Justificacao" HorizontalAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="398" Height="62"/>
+        </GroupBox>
     </Grid>
 </Window>

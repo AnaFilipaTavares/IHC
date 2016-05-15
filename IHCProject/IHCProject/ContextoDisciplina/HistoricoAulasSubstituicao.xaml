@@ -34,35 +34,37 @@
         </Menu>
 
         <Label x:Name="label" Content="Disciplina - Criar Aula" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20"/>
-        <Label x:Name="aulas" Content="Histórico Aulas" HorizontalAlignment="Left" Margin="401,70,306,0" VerticalAlignment="Top"/>
+        <GroupBox x:Name="list" Header="Histórico de aulas de substituição lecionadas" Margin="208,80,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="14" BorderThickness="2" BorderBrush="{DynamicResource {x:Static SystemColors.GradientActiveCaptionBrushKey}}">
+            <ListBox x:Name="listaAula" HorizontalAlignment="Left" Height="179"  VerticalAlignment="Top" Width="479" ScrollViewer.HorizontalScrollBarVisibility="Disabled" MouseDoubleClick="listaAula_MouseDoubleClick">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="80"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="200"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
 
-        <ListBox x:Name="listaAula" HorizontalAlignment="Left" Height="179" Margin="208,100,0,0" VerticalAlignment="Top" Width="479" ScrollViewer.HorizontalScrollBarVisibility="Disabled" MouseDoubleClick="listaAula_MouseDoubleClick">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="70"/>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="250"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
-                        <StackPanel Grid.Column="0">
-                            <TextBlock  x:Name="textName"  Text="{Binding NAulaBinding}" Height="30"/>
-                        </StackPanel>
-                        <StackPanel Grid.Column="1">
-                            <TextBlock  x:Name="sumario"  Text="Sumário: " Height="30"/>
-                        </StackPanel>
-                        <StackPanel  Grid.Column="2">
-                            <TextBlock x:Name="textSumario" Text="{Binding Sumário}" Height="Auto"/>
-                        </StackPanel>
-                        <StackPanel  Grid.Column="3">
-                            <TextBlock x:Name="textNúmero" Text="{Binding dataBinding}" Height="30"/>
-                        </StackPanel>
-                    </Grid>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-            
+                            <StackPanel Grid.Column="0">
+                                <TextBlock  x:Name="textName"  Text="{Binding NAulaBinding}" Height="30"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1">
+                                <TextBlock  x:Name="sumario"  Text="Sumário: " Height="30"/>
+                            </StackPanel>
+                            <StackPanel  Grid.Column="2">
+                                <TextBlock x:Name="textSumario" Text="{Binding Sumário}" Height="Auto"/>
+                            </StackPanel>
+                            <StackPanel  Grid.Column="3">
+                                <TextBlock x:Name="textNúmero" Text="{Binding dataBinding}" Height="30"/>
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </GroupBox>
+
+
 
         <Button x:Name="button" Content="Editar Aula" HorizontalAlignment="Left" Margin="612,293,0,0" VerticalAlignment="Top" Width="75" Click="button_Click"/>
 

@@ -10,56 +10,55 @@
     <Grid Margin="10,0,0,0">
 
 
-        
+
 
         <Label x:Name="label" Content="Disciplina - Editar Aula" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20" />
 
-        <Label x:Name="numeroAula" Content="Número aula: " HorizontalAlignment="Left" Margin="139,79,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="numeroAula" Content="Número aula: " HorizontalAlignment="Left" Margin="159,83,0,0" VerticalAlignment="Top"/>
 
 
-        <TextBox x:Name="nAula1" HorizontalAlignment="Left" IsReadOnly="True" Height="18" Margin="224,84,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="33" />
-        <Label x:Name="datalabel" Content="Data: " HorizontalAlignment="Left" Margin="469,79,0,0" VerticalAlignment="Top"/>
-        
+        <TextBox x:Name="nAula1" HorizontalAlignment="Left" IsReadOnly="True" Height="18" Margin="244,88,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="33" />
+        <Label x:Name="datalabel" Content="Data: " HorizontalAlignment="Left" Margin="489,83,0,0" VerticalAlignment="Top"/>
 
+        <GroupBox x:Name="list" Header="Aluno inscritos " HorizontalAlignment="Center" Margin="0,219,0,81"  FontSize="14" BorderThickness="2" BorderBrush="{DynamicResource {x:Static SystemColors.GradientActiveCaptionBrushKey}}">
+            <ListBox x:Name="ListaAluno" HorizontalAlignment="Left" Height="149"  VerticalAlignment="Top" Width="467" ScrollViewer.HorizontalScrollBarVisibility="Disabled" MouseDoubleClick="ListaAluno_MouseDoubleClick" Margin="0,0,-2,-2">
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="75"/>
+                                <ColumnDefinition Width="120"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Image x:Name="image" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Height="74" VerticalAlignment="Top" Width="70" Source="../Images/contacts-256.png"/>
+                            <StackPanel Grid.Column="1" Grid.Row="0" >
+                                <TextBlock x:Name="textName"  Text="{Binding Nome}"/>
+                                <TextBlock x:Name="textNúmero" Text="{Binding IdAluno}"/>
+                                <Button x:Name="marcarFalta" Content="Marcar falta"/>
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="{x:Type ListBoxItem}">
+                        <EventSetter Event="PreviewMouseDown" Handler="ItemOnPreviewMouseDown" />
+                    </Style>
+                </ListBox.ItemContainerStyle>
+            </ListBox>
+        </GroupBox>
 
-        <Label x:Name="label2" Content="Sumário: " HorizontalAlignment="Left" Margin="139,114,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="alunos" Content="Alunos inscritos" HorizontalAlignment="Left" Margin="330,182,0,0" VerticalAlignment="Top"/>
-
-        <ListBox x:Name="ListaAluno" HorizontalAlignment="Left" Height="179" Margin="137,214,0,0" VerticalAlignment="Top" Width="479" ScrollViewer.HorizontalScrollBarVisibility="Disabled" MouseDoubleClick="ListaAluno_MouseDoubleClick">
-            <ListBox.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapPanel Orientation="Horizontal"/>
-                </ItemsPanelTemplate>
-            </ListBox.ItemsPanel>
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="75"/>
-                            <ColumnDefinition Width="120"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-                        <Image x:Name="image" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Height="74" VerticalAlignment="Top" Width="70" Source="../Images/contacts-256.png"/>
-                        <StackPanel Grid.Column="1" Grid.Row="0" >
-                            <TextBlock x:Name="textName"  Text="{Binding Nome}"/>
-                            <TextBlock x:Name="textNúmero" Text="{Binding IdAluno}"/>
-                            <Button x:Name="marcarFalta" Content="Marcar falta"/>
-                        </StackPanel>
-                    </Grid>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-            <ListBox.ItemContainerStyle>
-                <Style TargetType="{x:Type ListBoxItem}">
-                    <EventSetter Event="PreviewMouseDown" Handler="ItemOnPreviewMouseDown" />
-                </Style>
-            </ListBox.ItemContainerStyle>
-        </ListBox>
-
-        <TextBox x:Name="sumarioBox" AcceptsReturn="True" HorizontalAlignment="Left" Height="60" Margin="204,118,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="412"/>
-        <Button x:Name="button" Content="Guardar" HorizontalAlignment="Left" Margin="540,410,0,0" VerticalAlignment="Top" Width="75" Click="button_Click"/>
-        <Button x:Name="resetFaltas" Content="Reset Faltas" HorizontalAlignment="Left" Margin="137,410,0,0" VerticalAlignment="Top" Width="100" Click="resetFaltas_Click"/>
+        <GroupBox x:Name="sumario" Header="Sumário " HorizontalAlignment="Center" Height="87" Margin="0,114,0,0" VerticalAlignment="Top" Width="477"  FontSize="14" BorderThickness="2" BorderBrush="{DynamicResource {x:Static SystemColors.GradientActiveCaptionBrushKey}}">
+            <TextBox x:Name="sumarioBox" AcceptsReturn="True" HorizontalAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="467" Margin="0,0,-2,0" Height="60"/>
+        </GroupBox>
+        <Button x:Name="button" Content="Guardar" HorizontalAlignment="Left" Margin="554,408,0,0" VerticalAlignment="Top" Width="76" Click="button_Click"/>
+        <Button x:Name="resetFaltas" Content="Reset Faltas" HorizontalAlignment="Left" Margin="152,408,0,0" VerticalAlignment="Top" Width="100" Click="resetFaltas_Click"/>
 
 
 

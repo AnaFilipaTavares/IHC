@@ -23,9 +23,9 @@
             <MenuItem Header="Encerrar Sessão" Height="30" FontSize="16" HorizontalAlignment="Center"  Width="145" Click="Exit_Click"/>
         </Menu>
         <Label x:Name="label" Content="Perfil do Docente" HorizontalAlignment="Center" Margin="248,10,244,0" VerticalAlignment="Top" FontSize="20"/>
-        <Label x:Name="label1" Content="Nome: " HorizontalAlignment="Left" Margin="267,80,0,0" VerticalAlignment="Top" FontSize="14"/>
-        <Label x:Name="label2" Content="Data de Nascimento: " HorizontalAlignment="Left" Margin="267,110,0,0" VerticalAlignment="Top" FontSize="14"/>
-        <Label x:Name="label3" Content="Área de Ensino: " HorizontalAlignment="Left" Margin="267,140,0,0" VerticalAlignment="Top" FontSize="14"/>
+        <Label x:Name="label1" Content="Nome: " HorizontalAlignment="Left" Margin="267,80,0,0" VerticalAlignment="Top" FontSize="14" />
+        <Label x:Name="label2" Content="Data de Nascimento: " HorizontalAlignment="Left" Margin="267,110,0,0" VerticalAlignment="Top" FontSize="14" />
+        <Label x:Name="label3" Content="Área de Ensino: " HorizontalAlignment="Left" Margin="267,140,0,0" VerticalAlignment="Top" FontSize="14" />
         <Image x:Name="image" Source="Images/foto.jpg" HorizontalAlignment="Left"
 Margin="546,40,0,0" VerticalAlignment="Top" Width="100"/>
         <Label x:Name="nomeProf" Content="" HorizontalAlignment="Left" Margin="327,82,0,0" VerticalAlignment="Top" Width="327"/>

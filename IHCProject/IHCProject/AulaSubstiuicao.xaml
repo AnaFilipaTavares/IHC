@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:IHCProject"
       mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="800"
+      d:DesignHeight="350" d:DesignWidth="800"
       Title="DirecaoTurma">
    
     
@@ -26,37 +26,40 @@
             <MenuItem Header="Encerrar Sessão" Height="30" FontSize="16" HorizontalAlignment="Center"  Width="145" Click="Exit_Click"/>
         </Menu>
         <Label x:Name="label" Content="Aula Substituição" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20"/>
-        <ListBox x:Name="listBoxDisciplinas" HorizontalAlignment="Left" Height="179" Margin="208,80,0,0" VerticalAlignment="Top" Width="440" MouseDoubleClick="listBoxDisciplinas_MouseDoubleClick">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="70"/>
-                            <ColumnDefinition Width="150"/>
-                            <ColumnDefinition Width="70"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
-                        <StackPanel Grid.Column="0">
-                            <TextBlock  x:Name="textName"  Text="Diciplina: " Height="30"/>
-                        </StackPanel>
-                        <StackPanel Grid.Column="1">
-                            <TextBlock  x:Name="sumario"  Text="{Binding Disciplina}" Height="30"/>
-                        </StackPanel>
-                        <StackPanel  Grid.Column="2">
-                            <TextBlock x:Name="textSumario" Text="Professor: " Height="Auto"/>
-                        </StackPanel>
-                        <StackPanel  Grid.Column="3">
-                            <TextBlock x:Name="textNúmero" Text="{Binding ProfessorDisciplina.Nome}" Height="30"/>
-                        </StackPanel>
-                    </Grid>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+
+        <GroupBox x:Name="list" Header="Lista disciplinas que pode substituir " Margin="208,80,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="14" BorderThickness="2" BorderBrush="{DynamicResource {x:Static SystemColors.GradientActiveCaptionBrushKey}}">
+            <ListBox x:Name="listBoxDisciplinas" HorizontalAlignment="Left" Height="179"  VerticalAlignment="Top" Width="440" MouseDoubleClick="listBoxDisciplinas_MouseDoubleClick">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="70"/>
+                                <ColumnDefinition Width="150"/>
+                                <ColumnDefinition Width="70"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0">
+                                <TextBlock  x:Name="textName"  Text="Diciplina: " Height="30"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1">
+                                <TextBlock  x:Name="sumario"  Text="{Binding Disciplina}" Height="30"/>
+                            </StackPanel>
+                            <StackPanel  Grid.Column="2">
+                                <TextBlock x:Name="textSumario" Text="Professor: " Height="Auto"/>
+                            </StackPanel>
+                            <StackPanel  Grid.Column="3">
+                                <TextBlock x:Name="textNúmero" Text="{Binding ProfessorDisciplina.Nome}" Height="30"/>
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </GroupBox>
 
 
-        <Button x:Name="button" Content="Criar aula substituição" HorizontalAlignment="Left" Margin="521,265,0,0" VerticalAlignment="Top" Width="126" Height="25" Click="button_Click"/>
-        <Label x:Name="disciplina" Content="Disciplina: " HorizontalAlignment="Left" Margin="208,43,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="professor" Content="Professor: " HorizontalAlignment="Left" Margin="399,43,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="button" Content="Criar aula substituição" HorizontalAlignment="Left" Margin="521,290,0,-15" VerticalAlignment="Top" Width="126" Height="25" Click="button_Click"/>
+        <Label Style="{StaticResource labelStyle}" x:Name="disciplina" Content="Disciplina: " HorizontalAlignment="Left" Margin="208,43,0,0" VerticalAlignment="Top"/>
+        <Label Style="{StaticResource labelStyle}" x:Name="professor" Content="Professor: " HorizontalAlignment="Left" Margin="399,43,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="disciplina_search" HorizontalAlignment="Left" Height="23" Margin="275,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80"/>
         <TextBox x:Name="professor_search" HorizontalAlignment="Left" Height="23" Margin="467,46,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="80"/>
         <Button x:Name="search" Content="Pesquisar" HorizontalAlignment="Left" Margin="572,46,0,0" VerticalAlignment="Top" Width="75" Height="23" Click="search_Click" />

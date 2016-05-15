@@ -37,37 +37,38 @@
 
         <Label x:Name="label" Content="Disciplina - Inicio" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20"/>
 
-        <Label x:Name="nomeDiciplina" Content="Diciplina: " HorizontalAlignment="Left" Margin="210,75,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="turma" Content="Turma: " HorizontalAlignment="Left" Margin="210,95,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="alunos" Content="Alunos inscritos -TURMA-" HorizontalAlignment="Left" Margin="401,128,306,0" VerticalAlignment="Top"/>
+        <Label Style="{StaticResource labelStyle}" x:Name="nomeDiciplina" Content="Diciplina: " HorizontalAlignment="Left" Margin="210,75,0,0" VerticalAlignment="Top"/>
+        <Label Style="{StaticResource labelStyle}" x:Name="turma" Content="Turma: " HorizontalAlignment="Left" Margin="210,95,0,0" VerticalAlignment="Top"/>
 
-        <ListView x:Name="ListaAluno" HorizontalAlignment="Left" Height="179" Margin="208,170,0,0" VerticalAlignment="Top" Width="479" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-            <ListView.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapPanel Orientation="Horizontal"/>
-                </ItemsPanelTemplate>
-            </ListView.ItemsPanel>
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="75"/>
-                            <ColumnDefinition Width="120"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-                        <Image x:Name="image" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Height="74" VerticalAlignment="Top" Width="70" Source="../Images/contacts-256.png"/>
-                        <StackPanel Grid.Column="1" Grid.Row="0" >
-                            <TextBlock x:Name="textName"  Text="{Binding Nome}"/>
-                            <TextBlock x:Name="textNúmero" Text="{Binding IdAluno}"/>
 
-                        </StackPanel>
-                    </Grid>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+        <GroupBox x:Name="list" Header="Alunos inscritos na disciplina" Margin="208,130,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="14" BorderThickness="2" BorderBrush="{DynamicResource {x:Static SystemColors.GradientActiveCaptionBrushKey}}">
+            <ListView x:Name="ListaAluno" HorizontalAlignment="Left" Height="179"  VerticalAlignment="Top" Width="479" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="75"/>
+                                <ColumnDefinition Width="120"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Image x:Name="image" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Height="74" VerticalAlignment="Top" Width="70" Source="../Images/contacts-256.png"/>
+                            <StackPanel Grid.Column="1" Grid.Row="0" >
+                                <TextBlock x:Name="textName"  Text="{Binding Nome}"/>
+                                <TextBlock x:Name="textNúmero" Text="{Binding IdAluno}"/>
 
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </GroupBox>
 
 
 

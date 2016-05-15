@@ -17,11 +17,11 @@
     <Grid>
 
         <Image x:Name="image" HorizontalAlignment="Left" Height="74" Margin="10,10,0,0" VerticalAlignment="Top" Width="70" Source="Images/contacts-256.png"/>
-        <Label x:Name="nomeAluno" Content="Nome: " HorizontalAlignment="Left" Margin="121,10,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="numeroAluno" Content="Número: " HorizontalAlignment="Left" Margin="121,41,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="label" Content="Faltas Injustificadas" HorizontalAlignment="Left" Margin="196,91,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="button" Content="Justificar" HorizontalAlignment="Left" Margin="214,251,0,0" VerticalAlignment="Top" Width="75" Click="button_Click"/>
-        <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="100" Margin="80,135,0,0" VerticalAlignment="Top" Width="339"  MouseDoubleClick="Falta_MouseDoubleClick"/>
+        <Label Style="{StaticResource labelStyle}" x:Name="nomeAluno" Content="Nome: " HorizontalAlignment="Left" Margin="121,10,0,0" VerticalAlignment="Top"/>
+        <Label Style="{StaticResource labelStyle}" x:Name="numeroAluno" Content="Número: " HorizontalAlignment="Left" Margin="121,41,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label" Content="Faltas Injustificadas" HorizontalAlignment="Center" Margin="0,91,0,0" VerticalAlignment="Top" Style="{StaticResource labelStyle}"/>
+        <Button x:Name="button" Content="Justificar" HorizontalAlignment="Center" Margin="0,251,0,0" VerticalAlignment="Top" Width="75" Click="button_Click"/>
+        <ListBox x:Name="listBox" HorizontalAlignment="Center" Height="100" Margin="0,135,0,0" VerticalAlignment="Top" Width="339"  MouseDoubleClick="Falta_MouseDoubleClick"/>
 
     </Grid>
 </Window>
