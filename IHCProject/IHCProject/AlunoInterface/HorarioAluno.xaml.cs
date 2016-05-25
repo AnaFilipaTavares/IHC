@@ -1,6 +1,7 @@
 ﻿using IHCProject.infoClass;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -18,21 +19,22 @@ using System.Windows.Shapes;
 namespace IHCProject.AlunoInterface
 {
     /// <summary>
-    /// Interaction logic for PlanoCurso.xaml
+    /// Interaction logic for Notas.xaml
     /// </summary>
-    public partial class PlanoCurso : Page
+    public partial class HorarioAluno : Page
     {
 
         private Aluno aluno;
         private SqlConnection CN;
         private SqlCommand CMD;
 
-        public PlanoCurso()
+
+        public HorarioAluno()
         {
             InitializeComponent();
         }
 
-        public PlanoCurso(Aluno aluno, SqlConnection cn) : this()
+        public HorarioAluno(Aluno aluno, SqlConnection cn) : this()
         {
             // Associa os dados ao contexto da nova página.
             this.aluno = aluno;
@@ -48,7 +50,7 @@ namespace IHCProject.AlunoInterface
 
         private void Horario_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new HorarioAluno(aluno, CN));
+           
         }
 
         private void Avaliacao_Click(object sender, RoutedEventArgs e)
@@ -83,16 +85,24 @@ namespace IHCProject.AlunoInterface
         {
             try
             {
-                if (CN.State == System.Data.ConnectionState.Closed) CN.Open();
+                if (CN.State == ConnectionState.Closed) CN.Open();
 
                 CMD = new SqlCommand();
                 CMD.Connection = CN;
-                CMD.CommandText = "SELECT designação,ano FROM ESCOLA_SECUNDARIA.DISCIPLINA JOIN (SELECT disciplina, ano, idAluno FROM(SELECT * FROM ESCOLA_SECUNDARIA.ALUNO  WHERE idAluno = 5) AS T JOIN ESCOLA_SECUNDARIA.COMPOSIÇÃO_CURSO ON T.curso = COMPOSIÇÃO_CURSO.curso) AS T2 ON disciplina = codigo ORDER BY 2,1;";
+                CMD.CommandText = "SELECT designação,horaInicio,duração,diaSemana,sala FROM ESCOLA_SECUNDARIA.DISCIPLINA JOIN( ESCOLA_SECUNDARIA.HORARIO JOIN (ESCOLA_SECUNDARIA.HORARIO_DISCIPLINA JOIN (SELECT * FROM ESCOLA_SECUNDARIA.FREQUENTA WHERE aluno=@idAluno) AS T ON T.horario=HORARIO_DISCIPLINA.id) ON HORARIO.horario=HORARIO_Disciplina.id) ON codigo=disciplina;";
+                CMD.Parameters.AddWithValue("@idAluno", aluno.IdAluno);
                 SqlDataReader RDR = CMD.ExecuteReader();
                 while (RDR.Read())
                 {
-                    textBlock.Text += RDR["designação"].ToString() + " " + RDR["ano"].ToString() + "\n";
-                
+
+                    Container.Children.Add(new DisplayDisciplinaHorario(new DisciplinaHorario(RDR["sala"].ToString(), RDR["diaSemana"].ToString(), RDR["designação"].ToString(), RDR["horaInicio"].ToString().Split()[0])));
+                    //listBox.Items.Add(new HorarioDisciplina(int.Parse(RDR["id"].ToString()), new Disciplina(int.Parse(RDR["disciplina"].ToString()), int.Parse(RDR["ano"].ToString()), RDR["designação"].ToString()), RDR["letra"].ToString(), prof));
+                    if (RDR["duração"].ToString().Equals("90"))
+                    {
+                        DisciplinaHorario di = new DisciplinaHorario(RDR["sala"].ToString(), RDR["diaSemana"].ToString(), RDR["designação"].ToString(), RDR["horaInicio"].ToString().Split()[0]);
+                        di.RowIndex++;
+                        Container.Children.Add(new DisplayDisciplinaHorario(di));
+                    }
                 }
                 RDR.Close();
             }
@@ -104,14 +114,6 @@ namespace IHCProject.AlunoInterface
 
         }
 
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
-        {
-            Notas n = new Notas(aluno, CN);
-            this.NavigationService.Navigate(n);
-        }
     }
-
-
-
 }
 

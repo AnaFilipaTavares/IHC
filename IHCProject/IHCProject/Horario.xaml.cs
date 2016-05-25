@@ -42,7 +42,34 @@ namespace IHCProject
 
         private void loadData()
         {
-           // Label[][] labelsHorario = new Label[5][];
+            try
+            {
+                if (CN.State == ConnectionState.Closed) CN.Open();
+
+                CMD = new SqlCommand();
+                CMD.Connection = CN;
+                CMD.CommandText = "SELECT designação,horaInicio,duração,diaSemana,sala FROM ESCOLA_SECUNDARIA.DISCIPLINA JOIN (SELECT horario,horaInicio,duração,diaSemana,disciplina,sala FROM ESCOLA_SECUNDARIA.HORARIO JOIN ESCOLA_SECUNDARIA.HORARIO_DISCIPLINA ON horario=HORARIO_DISCIPLINA.id WHERE professor=@idProf) AS T ON T.disciplina = DISCIPLINA.codigo;";
+                CMD.Parameters.AddWithValue("@idProf", prof.IdProf);
+                SqlDataReader RDR = CMD.ExecuteReader();
+                while (RDR.Read())
+                {
+                    
+                    Container.Children.Add(new DisplayDisciplinaHorario(new DisciplinaHorario(RDR["sala"].ToString(), RDR["diaSemana"].ToString(), RDR["designação"].ToString(), RDR["horaInicio"].ToString().Split()[0])));
+                    //listBox.Items.Add(new HorarioDisciplina(int.Parse(RDR["id"].ToString()), new Disciplina(int.Parse(RDR["disciplina"].ToString()), int.Parse(RDR["ano"].ToString()), RDR["designação"].ToString()), RDR["letra"].ToString(), prof));
+                    if (RDR["duração"].ToString().Equals("90")) {
+                        DisciplinaHorario di = new DisciplinaHorario(RDR["sala"].ToString(), RDR["diaSemana"].ToString(), RDR["designação"].ToString(), RDR["horaInicio"].ToString().Split()[0]);
+                        di.RowIndex++;
+                        Container.Children.Add(new DisplayDisciplinaHorario(di));
+                    }
+                }
+                RDR.Close();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+            
         }
 
         private void horarioClick(object sender, RoutedEventArgs e)
@@ -75,5 +102,7 @@ namespace IHCProject
         {
             this.NavigationService.Navigate(new AulaSubstituicao(prof, CN));
         }
+
+        
     }
 }

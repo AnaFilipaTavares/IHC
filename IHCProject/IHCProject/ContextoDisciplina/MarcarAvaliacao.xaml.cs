@@ -32,7 +32,15 @@ namespace IHCProject.ContextoDisciplina
         public MarcarAValiacao()
         {
             InitializeComponent();
-            data.SelectedDate = DateTime.Today;
+
+            cboMonth.ItemsSource = new List<string> { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
+
+            cboYear.ItemsSource = new List<int> { DateTime.Today.Year, DateTime.Today.Year-1  };
+            /*cboYear.SelectedItem = DateTime.Today.Year;
+            cboMonth.SelectedIndex = DateTime.Today.Month-1;
+            Console.WriteLine(cboMonth.SelectedIndex +" " + (DateTime.Today.Month - 1));
+            MessageBox.Show(cboYear.SelectedItem.ToString());
+            Console.WriteLine(cboYear.SelectedItem.ToString());*/
 
         }
 
@@ -43,7 +51,35 @@ namespace IHCProject.ContextoDisciplina
             this.professor = prof;
             this.hDisciplina = hoDisciplina;
             this.CN = cn;
+            
             loadData();
+        }
+
+        private void drawCells(int ano,int mes) {
+           
+            int startDayofWeek = int.Parse(new DateTime(ano, mes, 1).DayOfWeek.ToString("D"));
+            int diasDomes= DateTime.DaysInMonth(ano,mes);
+            bool exist = false;
+            int row = 0;
+            int colum = (startDayofWeek - 1);
+            for (int i = 0; i < diasDomes; i++)
+            {
+
+                if (colum >= 0 && colum <= 4) {
+                    Container.Children.Add(new CelulaCalendario(i + 1, row, colum,ano,mes));
+                    exist = true;
+                }
+
+                if (colum == 5) {
+                    if (exist)
+                        row++;
+                    colum = -2;
+                }
+
+                colum++;
+               
+            }
+
         }
 
         private void horarioClick(object sender, RoutedEventArgs e)
@@ -81,7 +117,12 @@ namespace IHCProject.ContextoDisciplina
 
             // query para obter os alunos do inscritos
             label.Content = hDisciplina.Disciplina.Nome + " "+hDisciplina.Disciplina.AnoDisciplina +" - Marcar Avaliação";
-            
+
+            //simula
+            cboYear.SelectedIndex = 0;
+
+            cboMonth.SelectedIndex = (DateTime.Today.Month - 1);
+            drawCells(int.Parse(cboYear.SelectedItem.ToString()), cboMonth.SelectedIndex+1);
 
         }
 
@@ -118,6 +159,22 @@ namespace IHCProject.ContextoDisciplina
         private void button_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void cboMonth_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Container.Children.Clear();
+            
+            if (cboMonth.SelectedIndex != -1)
+                drawCells(int.Parse(cboYear.SelectedItem.ToString()), cboMonth.SelectedIndex + 1);
+        }
+
+        private void cboYear_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Container.Children.Clear();
+            
+            if (cboMonth.SelectedIndex!=-1)
+                drawCells(int.Parse(cboYear.SelectedItem.ToString()), cboMonth.SelectedIndex + 1);
         }
     }
     

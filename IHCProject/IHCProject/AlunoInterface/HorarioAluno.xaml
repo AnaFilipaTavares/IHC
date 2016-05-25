@@ -1,33 +1,63 @@
-﻿<Page x:Class="IHCProject.Horario"
+﻿<Page x:Class="IHCProject.AlunoInterface.HorarioAluno"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:IHCProject"
+      xmlns:local="clr-namespace:IHCProject.AlunoInterface"
       mc:Ignorable="d" 
-      d:DesignHeight="500" d:DesignWidth="850"
-      Title="Horario">
+      Title="Notas" d:DesignWidth="850" d:DesignHeight="500" >
+ 
+    <Page.Resources>
+        <Style x:Key="myStyle" TargetType="{x:Type ListViewItem}">
+            <Setter Property="Background" Value="SkyBlue"/>
+            <Setter Property="Focusable" Value="false"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Foreground" Value="Black"/>
+        </Style>
+    </Page.Resources>
+    <Page.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FF9FD6E6" Offset="0.003"/>
+            <GradientStop Color="White" Offset="1"/>
+        </LinearGradientBrush>
+    </Page.Background>
 
-    
-
-    <Grid x:Name="gridMASTER">
-        <Menu HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,40,30,30" Width="145" >
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.22*"/>
+            <ColumnDefinition Width="0.78*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="0.8*"/>
+        </Grid.RowDefinitions>
+        
+        <Menu Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top" Width="Auto" >
             <Menu.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <StackPanel />
+                    <StackPanel >
+                        <StackPanel.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FF9A99B9" Offset="1"/>
+                                <GradientStop Color="White"/>
+                            </LinearGradientBrush>
+                        </StackPanel.Background>
+                    </StackPanel>
                 </ItemsPanelTemplate>
             </Menu.ItemsPanel>
-            <MenuItem Header="Perfil" Height="30" FontSize="16" Width="145" HorizontalAlignment="Center" Click="Perfil_Click"/>
-            <MenuItem Header="Horário" Height="30" FontSize="16" HorizontalAlignment=
-                      "Center" Width="145" Click="horarioClick"/>
-            <MenuItem Header="Minhas Disciplinas" Height="30" FontSize="16" HorizontalAlignment="Center" Width="145" Click="disciplinaClick"/>
-            <MenuItem Header="Aula Substituição" Height="30" FontSize="16" HorizontalAlignment="Center"  Width="145" Click="AulaSubstituicao_Click"/>
-            <MenuItem Header="Direção de Turma" Height="30" FontSize="16" HorizontalAlignment="Center"  Width="145" Click="DirecaoTurma_Click"/>
-            <MenuItem Header="Encerrar Sessão" Height="30" FontSize="16" HorizontalAlignment="Center"  Width="145" Click="Exit_Click"/>
+            <MenuItem Header="Perfil" Height="30" FontSize="20" Width="145" HorizontalAlignment="Center" Click="Perfil_Click" BorderBrush="#FF7400FF" BorderThickness="0"/>
+            <MenuItem Header="Horário" Height="30" FontSize="20" HorizontalAlignment="Center" Width="145" Click="Horario_Click" BorderBrush="#FF7400FF" BorderThickness="0"/>
+            <MenuItem Header="Calendário de&#xD;&#xA;Avaliações" Height="63" FontSize="20" HorizontalAlignment="Center" Width="145" Click="Avaliacao_Click" BorderBrush="#FF7400FF" BorderThickness="0" />
+            <MenuItem Header="Faltas" Height="30" FontSize="20" HorizontalAlignment="Center"  Width="145" Click="Falta_Click" BorderBrush="#FF7400FF" BorderThickness="0" />
+            <MenuItem Header="Notas" Height="30" FontSize="20" HorizontalAlignment="Center"  Width="145" BorderBrush="#FF7400FF" Click="Notas_Click" BorderThickness="0" />
+            <MenuItem Header="Plano de Curso" Height="30" FontSize="20" HorizontalAlignment="Center"  Width="145" BorderBrush="#FF7400FF" Click="Plano_Click" BorderThickness="0" />
+            <MenuItem Header="Encerrar Sessão" Height="30" FontSize="20" HorizontalAlignment="Center"  Width="145" Click="Exit_Click" BorderBrush="#FF7400FF" BorderThickness="0" />
         </Menu>
-        <Label x:Name="label" Content="Horário" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20"/>
 
-        <Grid x:Name="horarioTabel" Margin="170,90,10,10">
+        <Label x:Name="label" Grid.Column="1" Grid.Row="0" Content="Horário Aluno" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="25"/>
+
+
+        <Grid x:Name="horarioTabel" Grid.Column="1" Grid.Row="1" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="40"></RowDefinition>
                 <RowDefinition Height="380"></RowDefinition>
@@ -77,9 +107,5 @@
             </Grid>
         </Grid>
 
-
-
-
     </Grid>
-
 </Page>

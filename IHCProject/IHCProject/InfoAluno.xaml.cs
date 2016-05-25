@@ -53,12 +53,12 @@ namespace IHCProject
 
                 CMD = new SqlCommand();
                 CMD.Connection = CN;
-                CMD.CommandText = "SELECT AULA.horario,AULA.numero,designação,HORARIO_DISCIPLINA.ano,data FROM ((ESCOLA_SECUNDARIA.AULA JOIN (SELECT FALTAS_ALUNO.aluno,FALTAS_ALUNO.horario,FALTAS_ALUNO.aula FROM ESCOLA_SECUNDARIA.FALTAS_ALUNO LEFT OUTER JOIN ESCOLA_SECUNDARIA.FALTAS_JUSTIFICADAS_ALUNO ON FALTAS_JUSTIFICADAS_ALUNO.aluno=FALTAS_ALUNO.aluno WHERE FALTAS_ALUNO.aluno=@idAluno) AS T ON T.horario=AULA.horario AND AULA.numero=T.aula) JOIN ESCOLA_SECUNDARIA.HORARIO_DISCIPLINA ON HORARIO_DISCIPLINA.id=AULA.horario) JOIN ESCOLA_SECUNDARIA.DISCIPLINA ON DISCIPLINA.codigo=HORARIO_DISCIPLINA.disciplina;";
+                CMD.CommandText = "SELECT ano,designação,numAula,horario,data FROM ESCOLA_SECUNDARIA.DISCIPLINA JOIN (SELECT * FROM ESCOLA_SECUNDARIA.HORARIO_DISCIPLINA JOIN(SELECT numAula,T.horario,data,sumario,descricao,T.tipo FROM  ESCOLA_SECUNDARIA.AULA JOIN (SELECT FALTAS_ALUNO.aula as numAula,FALTAS_ALUNO.aluno,FALTAS_ALUNO.horario,FALTAS_ALUNO.aula,descricao,FALTAS_ALUNO.tipo FROM ESCOLA_SECUNDARIA.FALTAS_ALUNO LEFT OUTER JOIN ESCOLA_SECUNDARIA.FALTAS_JUSTIFICADAS_ALUNO ON FALTAS_JUSTIFICADAS_ALUNO.aluno = FALTAS_ALUNO.aluno AND FALTAS_JUSTIFICADAS_ALUNO.horario = FALTAS_ALUNO.horario AND FALTAS_JUSTIFICADAS_ALUNO.aula = FALTAS_ALUNO.aula WHERE FALTAS_ALUNO.aluno = @idAluno and descricao IS NULL) AS T ON aula = numero AND T.horario = AULA.horario) AS T2 ON horario = id) AS T3 ON disciplina=codigo ORDER BY 1,2;";
                 CMD.Parameters.AddWithValue("@idAluno", aluno.IdAluno);
                 SqlDataReader RDR = CMD.ExecuteReader();
                 while (RDR.Read())
                 {
-                    listBox.Items.Add(new Aula(int.Parse(RDR["horario"].ToString()), int.Parse(RDR["numero"].ToString()), RDR["designação"].ToString(), int.Parse(RDR["ano"].ToString()), RDR["data"].ToString().Split()[0]));
+                    listBox.Items.Add(new Aula(int.Parse(RDR["horario"].ToString()), int.Parse(RDR["numAula"].ToString()), RDR["designação"].ToString(), int.Parse(RDR["ano"].ToString()), RDR["data"].ToString().Split()[0]));
                 }
                 RDR.Close();
             }

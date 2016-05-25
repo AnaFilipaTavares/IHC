@@ -36,12 +36,41 @@
         </Menu>
 
         <Label x:Name="label" Content="Disciplina - Criar Aula" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20"/>
-        <Label x:Name="datalabel" Content="Data: " HorizontalAlignment="Left" Margin="372,75,0,0" VerticalAlignment="Top"/>
-        <DatePicker x:Name="data"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="411,75,0,0" Width="107" Height="25"/>
-        <Button x:Name="button" Content="Marcar Avaliação" HorizontalAlignment="Left" Margin="556,75,0,0" VerticalAlignment="Top" Width="110" Click="button_Click"/>
+        <ComboBox x:Name="cboMonth" HorizontalAlignment="Left" Height="34" Margin="170,70,0,0" VerticalAlignment="Top" Width="152" FontSize="18.667"  SelectionChanged="cboMonth_SelectionChanged" />
+        <ComboBox x:Name="cboYear" Height="34" Margin="376,70,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="87" FontSize="18.667"  SelectionChanged="cboYear_SelectionChanged"  />
 
-        <Grid x:Name="gridH" Margin="180,120,20,100">
 
+
+        <Grid x:Name="horarioTabel" Margin="170,120,130,10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <StackPanel Orientation="Horizontal"  Grid.Row="0">
+                <TextBlock Width="100" Height="40" VerticalAlignment="Center" Background="Azure" TextAlignment="Center" TextBlock.FontSize="16" >Segunda</TextBlock>
+                <TextBlock Width="100" Height="40" VerticalAlignment="Center" Background="Azure" TextAlignment="Center" TextBlock.FontSize="16" >Terça</TextBlock>
+                <TextBlock Width="100" Height="40" VerticalAlignment="Center" Background="Azure" TextAlignment="Center" TextBlock.FontSize="16" >Quarta</TextBlock>
+                <TextBlock Width="100" Height="40" VerticalAlignment="Center" Background="Azure" TextAlignment="Center" TextBlock.FontSize="16" >Quinta</TextBlock>
+                <TextBlock Width="100" Height="40" VerticalAlignment="Center" Background="Azure" TextAlignment="Center" TextBlock.FontSize="16" >Sexta</TextBlock>
+            </StackPanel>
+
+            <Grid Name="Container" Grid.Column="1" Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition  Height="Auto"></RowDefinition>
+                    <RowDefinition  Height="Auto"></RowDefinition>
+                    <RowDefinition  Height="Auto"></RowDefinition>
+                    <RowDefinition  Height="Auto"></RowDefinition>
+                    <RowDefinition  Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"></ColumnDefinition>
+                    <ColumnDefinition Width="100"></ColumnDefinition>
+                    <ColumnDefinition Width="100"></ColumnDefinition>
+                    <ColumnDefinition Width="100"></ColumnDefinition>
+                    <ColumnDefinition Width="100"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+            </Grid>
         </Grid>
 
     </Grid>

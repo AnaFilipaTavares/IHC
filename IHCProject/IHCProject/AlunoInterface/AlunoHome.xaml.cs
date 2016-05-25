@@ -48,7 +48,7 @@ namespace IHCProject.AlunoInterface
 
         private void Horario_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("horario");
+            this.NavigationService.Navigate(new HorarioAluno(aluno, CN));
         }
 
         private void Avaliacao_Click(object sender, RoutedEventArgs e)

@@ -58,6 +58,9 @@
     <Compile Include="AlunoInterface\AlunoHome.xaml.cs">
       <DependentUpon>AlunoHome.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AlunoInterface\HorarioAluno.xaml.cs">
+      <DependentUpon>HorarioAluno.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AlunoInterface\Faltas.xaml.cs">
       <DependentUpon>Faltas.xaml</DependentUpon>
     </Compile>
@@ -97,6 +100,14 @@
     <Compile Include="ContextoDisciplina\PerfilDisciplina.xaml.cs">
       <DependentUpon>PerfilDisciplina.xaml</DependentUpon>
     </Compile>
+    <Compile Include="infoClass\CelulaCalendario.xaml.cs">
+      <DependentUpon>CelulaCalendario.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="infoClass\DisciplinaSala.cs" />
+    <Compile Include="infoClass\DisciplinaHorario.cs" />
+    <Compile Include="infoClass\DisplayDisciplinaHorario.xaml.cs">
+      <DependentUpon>DisplayDisciplinaHorario.xaml</DependentUpon>
+    </Compile>
     <Compile Include="infoClass\HorarioDisciplina.cs" />
     <Compile Include="JustificarFalta.xaml.cs">
       <DependentUpon>JustificarFalta.xaml</DependentUpon>
@@ -106,6 +117,10 @@
       <DependentUpon>InfoAluno.xaml</DependentUpon>
     </Compile>
     <Page Include="AlunoInterface\AlunoHome.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="AlunoInterface\HorarioAluno.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -160,6 +175,14 @@
     <Page Include="ContextoDisciplina\PerfilDisciplina.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="infoClass\CelulaCalendario.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="infoClass\DisplayDisciplinaHorario.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="JustificarFalta.xaml">
       <Generator>MSBuild:Compile</Generator>
