@@ -83,29 +83,32 @@ namespace IHCProject.AlunoInterface
         private void loadData()
         {
             List<Falta> items = new List<Falta>();
+            faltas.Background = Brushes.LightSeaGreen;
             try
             {
                 if (CN.State == System.Data.ConnectionState.Closed) CN.Open();
                 CMD = new SqlCommand();
                 CMD.Connection = CN;
-                CMD.CommandText = "SELECT designação,count(*) as nFaltas FROM(SELECT disciplina, data, sumario, descricao, designação FROM ESCOLA_SECUNDARIA.DISCIPLINA JOIN(SELECT * FROM ESCOLA_SECUNDARIA.HORARIO_DISCIPLINA JOIN(SELECT T.horario, data, sumario, descricao FROM  ESCOLA_SECUNDARIA.AULA JOIN(SELECT FALTAS_ALUNO.aluno, FALTAS_ALUNO.horario, FALTAS_ALUNO.aula, descricao, tipo FROM ESCOLA_SECUNDARIA.FALTAS_ALUNO LEFT OUTER JOIN ESCOLA_SECUNDARIA.FALTAS_JUSTIFICADAS_ALUNO ON FALTAS_JUSTIFICADAS_ALUNO.aluno = FALTAS_ALUNO.aluno AND FALTAS_JUSTIFICADAS_ALUNO.horario = FALTAS_ALUNO.horario AND FALTAS_JUSTIFICADAS_ALUNO.aula = FALTAS_ALUNO.aula WHERE FALTAS_ALUNO.aluno = " + aluno.IdAluno + ") AS T ON aula = numero AND T.horario = AULA.horario) AS T2 ON horario = id) AS T3 ON disciplina = codigo) AS T4 GROUP BY designação ORDER BY 1,2;";
+                CMD.CommandText = "EXEC ESCOLA_SECUNDARIA.SP_NumFaltasAluno @aluno;";
+                CMD.Parameters.AddWithValue("@aluno", aluno.IdAluno);
                 SqlDataReader RDR = CMD.ExecuteReader();
 
                 while (RDR.Read())
                 {
-                    items.Add(new Falta() { disciplina = RDR["designação"].ToString(), numero = (int)RDR["nFaltas"], datas = new List<Data>()});
+                    items.Add(new Falta() { Disciplina = RDR["designação"].ToString(), Numero = (int)RDR["nFaltas"], Datas = new List<Data>()});
                 }
                 RDR.Close();
-                CMD.CommandText = "SELECT designação,data,sumario,descricao,tipo FROM ESCOLA_SECUNDARIA.DISCIPLINA JOIN (SELECT * FROM ESCOLA_SECUNDARIA.HORARIO_DISCIPLINA JOIN(SELECT T.horario,data,sumario,descricao,T.tipo FROM  ESCOLA_SECUNDARIA.AULA JOIN (SELECT FALTAS_ALUNO.aluno,FALTAS_ALUNO.horario,FALTAS_ALUNO.aula,descricao,FALTAS_ALUNO.tipo FROM ESCOLA_SECUNDARIA.FALTAS_ALUNO LEFT OUTER JOIN ESCOLA_SECUNDARIA.FALTAS_JUSTIFICADAS_ALUNO ON FALTAS_JUSTIFICADAS_ALUNO.aluno = FALTAS_ALUNO.aluno AND FALTAS_JUSTIFICADAS_ALUNO.horario = FALTAS_ALUNO.horario AND FALTAS_JUSTIFICADAS_ALUNO.aula = FALTAS_ALUNO.aula WHERE FALTAS_ALUNO.aluno = " + aluno.IdAluno + ") AS T ON aula = numero AND T.horario = AULA.horario) AS T2 ON horario = id) AS T3 ON disciplina=codigo ORDER BY 1,2;";
+                CMD.CommandText = "EXEC ESCOLA_SECUNDARIA.SP_FaltasAluno @idaluno";
+                CMD.Parameters.AddWithValue("@idaluno", aluno.IdAluno);
                 SqlDataReader RDR2 = CMD.ExecuteReader();
                 int j = 1;
                 while (RDR2.Read())
                 {
                     for (int i = 0; i < items.Count; i++)
                     {
-                        if (items[i].disciplina.Equals(RDR2["designação"].ToString()))
+                        if (items[i].Disciplina.Equals(RDR2["designação"].ToString()))
                         {
-                            items[i].datas.Add(new Data() { data = RDR2["data"].ToString().Split(' ')[0], id = j, sumario = RDR2["sumario"].ToString(), descrição = RDR2["descricao"].ToString(), tipo = RDR2["tipo"].ToString() });
+                            items[i].Datas.Add(new Data() { Date = RDR2["data"].ToString().Split(' ')[0], Id = j, Sumario = RDR2["sumario"].ToString(), Descrição = RDR2["descricao"].ToString(), Tipo = RDR2["tipo"].ToString() });
                         }
                     }
                     j++;
@@ -120,7 +123,6 @@ namespace IHCProject.AlunoInterface
             }
 
         }
-
 
         public static T FindAncestorOrSelf<T>(DependencyObject obj)
        where T : DependencyObject
@@ -150,7 +152,7 @@ namespace IHCProject.AlunoInterface
 
             Data data = comboBox.SelectedItem as Data;
 
-            FaltasAluno fa = new FaltasAluno(aluno.IdAluno, f.disciplina,data);
+            FaltasAluno fa = new FaltasAluno(aluno.IdAluno, f.Disciplina,data);
             fa.Show();
         }
     }
@@ -158,28 +160,130 @@ namespace IHCProject.AlunoInterface
 
 public class Falta
 {
-    public string disciplina { get; set; }
+    private string disciplina;
 
-    public int numero { get; set; }
+    private int numero;
 
-    public List<Data> datas { get; set; }
+    private List<Data> datas;
 
+    public string Disciplina
+    {
+        get
+        {
+            return disciplina;
+        }
+
+        set
+        {
+            disciplina = value;
+        }
+    }
+
+    public int Numero
+    {
+        get
+        {
+            return numero;
+        }
+
+        set
+        {
+            numero = value;
+        }
+    }
+
+    public List<Data> Datas
+    {
+        get
+        {
+            return datas;
+        }
+
+        set
+        {
+            datas = value;
+        }
+    }
 }
 
 public class Data
 {
-    public string data { get; set; }
+    private string data;
 
-    public int id { get; set; }
+    private int id;
 
-    public string sumario { get; set; }
+    private string sumario;
 
-    public string descrição { get; set; }
+    private string descrição;
 
-    public string tipo { get; set; }
+    private string tipo;
+    public string Date
+    {
+        get
+        {
+            return data;
+        }
+
+        set
+        {
+            data = value;
+        }
+    }
+
+    public int Id
+    {
+        get
+        {
+            return id;
+        }
+
+        set
+        {
+            id = value;
+        }
+    }
+
+    public string Sumario
+    {
+        get
+        {
+            return sumario;
+        }
+
+        set
+        {
+            sumario = value;
+        }
+    }
+
+    public string Descrição
+    {
+        get
+        {
+            return descrição;
+        }
+
+        set
+        {
+            descrição = value;
+        }
+    }
+
+    public string Tipo
+    {
+        get
+        {
+            return tipo;
+        }
+
+        set
+        {
+            tipo = value;
+        }
+    }
 
     public override string ToString()
     {
-        return id + " - " + data;
+        return Id + " - " + Date;
     }
 }

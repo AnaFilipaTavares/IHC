@@ -45,13 +45,13 @@
                     </StackPanel>
                 </ItemsPanelTemplate>
             </Menu.ItemsPanel>
-            <MenuItem Header="Perfil" Height="30" FontSize="20" Width="145" HorizontalAlignment="Center" Click="Perfil_Click" BorderBrush="#FF7400FF" BorderThickness="0"/>
-            <MenuItem Header="Horário" Height="30" FontSize="20" HorizontalAlignment="Center" Width="145" Click="Horario_Click" BorderBrush="#FF7400FF" BorderThickness="0"/>
-            <MenuItem Header="Calendário de&#xD;&#xA;Avaliações" Height="63" FontSize="20" HorizontalAlignment="Center" Width="145" Click="Avaliacao_Click" BorderBrush="#FF7400FF" BorderThickness="0" />
-            <MenuItem Header="Faltas" Height="30" FontSize="20" HorizontalAlignment="Center"  Width="145" Click="Falta_Click" BorderBrush="#FF7400FF" BorderThickness="0" />
-            <MenuItem Header="Notas" Height="30" FontSize="20" HorizontalAlignment="Center"  Width="145" BorderBrush="#FF7400FF" Click="Notas_Click" BorderThickness="0" />
-            <MenuItem Header="Plano de Curso" Height="30" FontSize="20" HorizontalAlignment="Center"  Width="145" BorderBrush="#FF7400FF" Click="Plano_Click" BorderThickness="0" />
-            <MenuItem Header="Encerrar Sessão" Height="30" FontSize="20" HorizontalAlignment="Center"  Width="145" Click="Exit_Click" BorderBrush="#FF7400FF" BorderThickness="0" />
+            <MenuItem Name="perfil" Header="Perfil" Height="30" FontSize="20" Width="145" HorizontalAlignment="Center" Click="Perfil_Click" BorderBrush="#FF7400FF" BorderThickness="0"/>
+            <MenuItem Name="horario" Header="Horário" Height="30" FontSize="20" HorizontalAlignment="Center" Width="145" Click="Horario_Click" BorderBrush="#FF7400FF" BorderThickness="0"/>
+            <MenuItem Name="Calendario" Header="Calendário de&#xD;&#xA;Avaliações" Height="63" FontSize="20" HorizontalAlignment="Center" Width="145" Click="Avaliacao_Click" BorderBrush="#FF7400FF" BorderThickness="0" />
+            <MenuItem Name="faltas" Header="Faltas" Height="30" FontSize="20" HorizontalAlignment="Center"  Width="145" Click="Falta_Click" BorderBrush="#FF7400FF" BorderThickness="0" />
+            <MenuItem Name="notas" Header="Notas" Height="30" FontSize="20" HorizontalAlignment="Center"  Width="145" BorderBrush="#FF7400FF" Click="Notas_Click" BorderThickness="0" />
+            <MenuItem Name="plano" Header="Plano de Curso" Height="30" FontSize="20" HorizontalAlignment="Center"  Width="145" BorderBrush="#FF7400FF" Click="Plano_Click" BorderThickness="0" />
+            <MenuItem Name="logout" Header="Encerrar Sessão" Height="30" FontSize="20" HorizontalAlignment="Center"  Width="145" Click="Exit_Click" BorderBrush="#FF7400FF" BorderThickness="0" />
         </Menu>
 
         <Label x:Name="label" Grid.Column="1" Grid.Row="0" Content="Horário Aluno" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="25"/>

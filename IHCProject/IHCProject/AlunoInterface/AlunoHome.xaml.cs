@@ -81,6 +81,7 @@ namespace IHCProject.AlunoInterface
 
         private void loadData()
         {
+            perfil.Background = Brushes.LightSeaGreen;
             try
             {
                 if (CN.State == System.Data.ConnectionState.Closed) CN.Open();

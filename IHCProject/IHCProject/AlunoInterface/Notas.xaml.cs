@@ -83,6 +83,7 @@ namespace IHCProject.AlunoInterface
         private void loadData()
         {
             List<Nota> items = new List<Nota>();
+            notas.Background = Brushes.LightSeaGreen;
             try
             {
                 if (CN.State == System.Data.ConnectionState.Closed) CN.Open();
@@ -92,7 +93,7 @@ namespace IHCProject.AlunoInterface
                 SqlDataReader RDR = CMD.ExecuteReader();
                 while (RDR.Read())
                 {
-                    items.Add(new Nota() { disciplina = RDR["designação"].ToString() + " " + RDR["ano"].ToString(), nota = (int)RDR["nota"]});
+                    items.Add(new Nota() { Disciplina = RDR["designação"].ToString() + " " + RDR["ano"].ToString(), Note = (int)RDR["nota"]});
                 }
 
                 listView.ItemsSource = items;
@@ -110,7 +111,33 @@ namespace IHCProject.AlunoInterface
 
 public class Nota
 {
-    public string disciplina { get; set; }
+    private string disciplina;
 
-    public int nota { get; set; }
+    private int nota;
+    
+    public string Disciplina
+    {
+        get
+        {
+            return disciplina;
+        }
+
+        set
+        {
+            disciplina = value;
+        }
+    }
+
+    public int Note
+    {
+        get
+        {
+            return nota;
+        }
+
+        set
+        {
+            nota = value;
+        }
+    }
 }

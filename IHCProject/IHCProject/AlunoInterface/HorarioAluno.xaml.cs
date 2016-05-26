@@ -83,6 +83,7 @@ namespace IHCProject.AlunoInterface
 
         private void loadData()
         {
+            horario.Background = Brushes.LightSeaGreen;
             try
             {
                 if (CN.State == ConnectionState.Closed) CN.Open();

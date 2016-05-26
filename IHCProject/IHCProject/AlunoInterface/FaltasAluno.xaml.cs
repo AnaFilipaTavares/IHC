@@ -37,10 +37,10 @@ namespace IHCProject
         private void loadData()
         {
 
-          if(data1.tipo == "P")
+          if(data1.Tipo == "P")
                 label.Content = "Falta de Presença";
 
-          else if (data1.tipo == "D")
+          else if (data1.Tipo == "D")
                 label.Content = "Falta Disciplinar";
           else
                 label.Content = "Falta";
@@ -48,15 +48,15 @@ namespace IHCProject
 
             label2.Content = disciplina;
 
-            label4.Content = data1.data;
+            label4.Content = data1.Date;
 
-            textBlock.Text = data1.sumario;
+            textBlock.Text = data1.Sumario;
 
-            if (data1.descrição.Equals(""))
+            if (data1.Descrição.Equals(""))
                 justificação.Visibility = Visibility.Hidden;
             
             else
-                textBlock1.Text = data1.descrição;
+                textBlock1.Text = data1.Descrição;
 
         }
     }
