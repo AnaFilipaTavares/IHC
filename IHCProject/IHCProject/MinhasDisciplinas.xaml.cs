@@ -43,6 +43,7 @@ namespace IHCProject
 
         private void loadData()
         {
+            
             try
             {
                 if (CN.State == ConnectionState.Closed) CN.Open();

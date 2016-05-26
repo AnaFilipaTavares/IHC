@@ -5,58 +5,73 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:IHCProject"
       mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="800"
+      d:DesignHeight="450" d:DesignWidth="800" 
       Title="DirecaoTurma">
 
     
 
     <Grid>
-        <Menu HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,40,30,30" Width="145" >
-            <Menu.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <StackPanel />
-                </ItemsPanelTemplate>
-            </Menu.ItemsPanel>
-            <MenuItem Header="Perfil" Height="30" FontSize="16" Width="145" HorizontalAlignment="Center" Click="Perfil_Click"/>
-            <MenuItem Header="Horário" Height="30" FontSize="16" HorizontalAlignment=
-                      "Center" Width="145" Click="horarioClick"/>
-            <MenuItem Header="Minhas Disciplinas" Height="30" FontSize="16" HorizontalAlignment="Center" Width="145" Click="disciplinaClick"/>
-            <MenuItem Header="Aula Substituição" Height="30" FontSize="16" HorizontalAlignment="Center"  Width="145" Click="AulaSubstituicao_Click"/>
-            <MenuItem Header="Direção de Turma" Height="30" FontSize="16" HorizontalAlignment="Center"  Width="145" Click="DirecaoTurma_Click"/>
-            <MenuItem Header="Encerrar Sessão" Height="30" FontSize="16" HorizontalAlignment="Center"  Width="145" Click="Exit_Click"/>
-        </Menu>
-        <Label x:Name="label" Content="Direção Turma" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20"/>
 
-        <GroupBox x:Name="list" Header="Lista Alunos da direção de turma " Margin="208,45,153,45" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="14" BorderThickness="2" BorderBrush="{DynamicResource {x:Static SystemColors.GradientActiveCaptionBrushKey}}">
-            <ListBox x:Name="TurmaDoDT" HorizontalAlignment="Left" Height="163" VerticalAlignment="Top" Width="433" ScrollViewer.HorizontalScrollBarVisibility="Disabled"  MouseDoubleClick="TurmaDoDT_MouseDoubleClick">
-                <ListBox.ItemsPanel>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.22*"/>
+            <ColumnDefinition Width="0.78*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="0.8*"/>
+        </Grid.RowDefinitions>
+
+        <GroupBox x:Name="gp_menu" Background="White" Grid.Column="0" Grid.Row="1" Header="Menu principal"  FontSize="14" VerticalAlignment="Top" HorizontalAlignment="center" BorderThickness="2" BorderBrush="{DynamicResource {x:Static SystemColors.GradientActiveCaptionBrushKey}}">
+            <Menu Width="145"  Background="White">
+                <Menu.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <WrapPanel Orientation="Horizontal"/>
+                        <StackPanel />
                     </ItemsPanelTemplate>
-                </ListBox.ItemsPanel>
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="75"/>
-                                <ColumnDefinition Width="120"/>
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
-                            <Image x:Name="image" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Height="74" VerticalAlignment="Top" Width="70" Source="Images/contacts-256.png"/>
-                            <StackPanel Grid.Column="1" Grid.Row="0" >
-                                <TextBlock x:Name="textName"  Text="{Binding Nome}"/>
-                                <TextBlock x:Name="textNúmero" Text="{Binding IdAluno}"/>
-                            </StackPanel>
-                        </Grid>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+                </Menu.ItemsPanel>
+                <MenuItem Header="Perfil" Height="30" FontSize="16" Width="145" HorizontalAlignment="Center" Click="Perfil_Click"/>
+                <MenuItem Header="Horário" Height="30" FontSize="16" HorizontalAlignment=
+                          "Center" Width="145" Click="horarioClick"/>
+                <MenuItem Header="Minhas Disciplinas" Height="30" FontSize="16" HorizontalAlignment="Center" Width="145" Click="disciplinaClick"/>
+                <MenuItem Header="Aula Substituição" Height="30" FontSize="16" HorizontalAlignment="Center"  Width="145" Click="AulaSubstituicao_Click"/>
+                <MenuItem Header="Direção de Turma" Height="30" FontSize="16" HorizontalAlignment="Center"  Width="145" Click="DirecaoTurma_Click"/>
+                <MenuItem Header="Encerrar Sessão" Height="30" FontSize="16" HorizontalAlignment="Center"  Width="145" Click="Exit_Click"/>
+            </Menu>
         </GroupBox>
+        
+        <Label Grid.Column="1" Grid.Row="0" x:Name="label" Content="Direção Turma" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20"/>
 
-        <Button x:Name="button" Content="Aceder" HorizontalAlignment="Left" Margin="572,239,0,0" VerticalAlignment="Top" Width="75" Click="button_Click"/>
 
+        <StackPanel Grid.Column="1" Grid.Row="1">
+            <GroupBox x:Name="list" Header="Lista Alunos da direção de turma "  Height="300" Margin="20,0,20,0"  VerticalAlignment="Top" HorizontalAlignment="Stretch" FontSize="14" BorderThickness="2" BorderBrush="{DynamicResource {x:Static SystemColors.GradientActiveCaptionBrushKey}}">
+                <ListBox x:Name="TurmaDoDT" ScrollViewer.HorizontalScrollBarVisibility="Disabled"  MouseDoubleClick="TurmaDoDT_MouseDoubleClick">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="75"/>
+                                    <ColumnDefinition Width="120"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Image x:Name="image" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Height="74" VerticalAlignment="Top" Width="70" Source="Images/contacts-256.png"/>
+                                <StackPanel Grid.Column="1" Grid.Row="0" >
+                                    <TextBlock x:Name="textName"  Text="{Binding Nome}"/>
+                                    <TextBlock x:Name="textNúmero" Text="{Binding IdAluno}"/>
+                                </StackPanel>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </GroupBox>
+
+            <Button x:Name="button" Content="Aceder" HorizontalAlignment="Right" Margin="0,10,25,0" Width="75" Click="button_Click"/>
+        </StackPanel>
 
 
 

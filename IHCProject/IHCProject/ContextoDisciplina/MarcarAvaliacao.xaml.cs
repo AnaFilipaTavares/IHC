@@ -97,7 +97,7 @@ namespace IHCProject.ContextoDisciplina
         
        private void drawCells(int ano,int mes) {
 
-            ISet<Marcacao> todasMarcacoes = queryMarcacoes();
+            ISet<Marcacao> todasMarcacoes = queryMarcacoes(mes);
 
             int startDayofWeek = int.Parse(new DateTime(ano, mes, 1).DayOfWeek.ToString("D"));
             int diasDomes= DateTime.DaysInMonth(ano,mes);
@@ -139,7 +139,7 @@ namespace IHCProject.ContextoDisciplina
 
         }
 
-        private ISet<Marcacao> queryMarcacoes()
+        private ISet<Marcacao> queryMarcacoes(int mes)
         {
             ISet<Marcacao> setReturn = new HashSet<Marcacao>();
 
@@ -149,7 +149,7 @@ namespace IHCProject.ContextoDisciplina
 
                 CMD = new SqlCommand();
                 CMD.Connection = CN;
-                CMD.CommandText = "SELECT designação,tipoAvaliacao,data FROM ESCOLA_SECUNDARIA.DISCIPLINA JOIN (ESCOLA_SECUNDARIA.HORARIO_DISCIPLINA JOIN (ESCOLA_SECUNDARIA.MARCA_AVALIAÇÕES JOIN (select horario from ESCOLA_SECUNDARIA.FREQUENTA where aluno IN( SELECT aluno FROM ESCOLA_SECUNDARIA.UDF_ListaAlunosDisciplina (@idHorario)) group by horario) AS T ON T.horario=MARCA_AVALIAÇÕES.horario) ON MARCA_AVALIAÇÕES.horario=id) ON disciplina = codigo";
+                CMD.CommandText = "SELECT designação,tipoAvaliacao,data FROM ESCOLA_SECUNDARIA.DISCIPLINA JOIN (ESCOLA_SECUNDARIA.HORARIO_DISCIPLINA JOIN (ESCOLA_SECUNDARIA.MARCA_AVALIAÇÕES JOIN (select horario from ESCOLA_SECUNDARIA.FREQUENTA where aluno IN( SELECT aluno FROM ESCOLA_SECUNDARIA.UDF_ListaAlunosDisciplina (@idHorario)) group by horario) AS T ON T.horario=MARCA_AVALIAÇÕES.horario) ON MARCA_AVALIAÇÕES.horario=id) ON disciplina = codigo  WHERE data LIKE '____-" + String.Format("{0:00}", mes) + "-__'";
                 CMD.Parameters.AddWithValue("@idHorario", hDisciplina.IdHorario);
                 SqlDataReader RDR = CMD.ExecuteReader();
                 while (RDR.Read())
