@@ -94,6 +94,9 @@
     <Compile Include="ContextoDisciplina\HistoricoAulas.xaml.cs">
       <DependentUpon>HistoricoAulas.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ContextoDisciplina\MarcarAvaliacaoPop.xaml.cs">
+      <DependentUpon>MarcarAvaliacaoPop.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ContextoDisciplina\MarcarFaltaAluno.xaml.cs">
       <DependentUpon>MarcarFaltaAluno.xaml</DependentUpon>
     </Compile>
@@ -165,6 +168,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="ContextoDisciplina\HistoricoAulas.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ContextoDisciplina\MarcarAvaliacaoPop.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
