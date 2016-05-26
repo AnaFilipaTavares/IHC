@@ -154,10 +154,17 @@ namespace IHCProject
             if (!professor_search.Text.Equals(""))
             {
                 if (existWhere)
-                    query += " AND PESSOA.nome LIKE '%" + professor_search.Text+"%'";
-                else
-                    query += " WHERE PESSOA.nome LIKE '%" + professor_search.Text+"%'";
+                    query += " AND PESSOA.nome LIKE '%" + professor_search.Text + "%'";
+                else {
+                    query += " WHERE PESSOA.nome LIKE '%" + professor_search.Text + "%'";
+                    existWhere = true;
+                }
             }
+
+            if (existWhere)
+                query += " AND idProf!=@idProf;";
+            else
+                query += " WHERE idProf!=@idProf;";
 
                 try
             {
@@ -166,6 +173,7 @@ namespace IHCProject
                 CMD = new SqlCommand();
                 CMD.Connection = CN;
                 CMD.CommandText = query;
+                CMD.Parameters.AddWithValue("@idProf", prof.IdProf);
                 SqlDataReader RDR = CMD.ExecuteReader();
                 while (RDR.Read())
                 {
