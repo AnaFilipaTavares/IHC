@@ -54,7 +54,8 @@ namespace IHCProject.AlunoInterface
 
         private void Avaliacao_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Avaliaçoes");
+            ConsultarAvaliação p = new ConsultarAvaliação(aluno, CN);
+            this.NavigationService.Navigate(p);
         }
 
         private void Notas_Click(object sender, RoutedEventArgs e)
@@ -89,7 +90,8 @@ namespace IHCProject.AlunoInterface
                 if (CN.State == System.Data.ConnectionState.Closed) CN.Open();
                 CMD = new SqlCommand();
                 CMD.Connection = CN;
-                CMD.CommandText = "SELECT designação,ano,nota FROM ESCOLA_SECUNDARIA.NOTAS JOIN ESCOLA_SECUNDARIA.DISCIPLINA ON codigo = disciplina WHERE aluno = " + aluno.IdAluno + ";";
+                CMD.CommandText = "EXEC ESCOLA_SECUNDARIA.SP_NotasAluno @aluno;";
+                CMD.Parameters.AddWithValue("@aluno", aluno.IdAluno);
                 SqlDataReader RDR = CMD.ExecuteReader();
                 while (RDR.Read())
                 {

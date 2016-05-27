@@ -22,13 +22,7 @@
         </Style>
 
     </Page.Resources>
-    <Page.Background>
-        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-            <GradientStop Color="#FF9FD6E6" Offset="0.003"/>
-            <GradientStop Color="White" Offset="1"/>
-        </LinearGradientBrush>
-    </Page.Background>
-
+ 
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.22*"/>
@@ -40,27 +34,23 @@
 
         </Grid.RowDefinitions>
 
-        <Menu Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top" Width="Auto" >
-            <Menu.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <StackPanel >
-                        <StackPanel.Background>
-                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="#FF99A4B9" Offset="1"/>
-                                <GradientStop Color="White"/>
-                            </LinearGradientBrush>
-                        </StackPanel.Background>
-                    </StackPanel>
-                </ItemsPanelTemplate>
-            </Menu.ItemsPanel>
-            <MenuItem Name="perfil" Header="Perfil" Height="30" FontSize="20" Width="145" HorizontalAlignment="Center" Click="Perfil_Click" BorderBrush="#FF7400FF" BorderThickness="0"/>
-            <MenuItem Name="horario" Header="Horário" Height="30" FontSize="20" HorizontalAlignment="Center" Width="145" Click="Horario_Click" BorderBrush="#FF7400FF" BorderThickness="0"/>
-            <MenuItem Name="Calendario" Header="Calendário de&#xD;&#xA;Avaliações" Height="63" FontSize="20" HorizontalAlignment="Center" Width="145" Click="Avaliacao_Click" BorderBrush="#FF7400FF" BorderThickness="0" />
-            <MenuItem Name="faltas" Header="Faltas" Height="30" FontSize="20" HorizontalAlignment="Center"  Width="145" Click="Falta_Click" BorderBrush="#FF7400FF" BorderThickness="0" />
-            <MenuItem Name="notas" Header="Notas" Height="30" FontSize="20" HorizontalAlignment="Center"  Width="145" BorderBrush="#FF7400FF" Click="Notas_Click" BorderThickness="0" />
-            <MenuItem Name="plano" Header="Plano de Curso" Height="30" FontSize="20" HorizontalAlignment="Center"  Width="145" BorderBrush="#FF7400FF" Click="Plano_Click" BorderThickness="0" />
-            <MenuItem Name="logout" Header="Encerrar Sessão" Height="30" FontSize="20" HorizontalAlignment="Center"  Width="145" Click="Exit_Click" BorderBrush="#FF7400FF" BorderThickness="0" />
-        </Menu>
+        <GroupBox x:Name="gp_menu" Background="White" Grid.Column="0" Grid.Row="1" Header="Menu principal"  FontSize="14" VerticalAlignment="Top" HorizontalAlignment="center" BorderThickness="2" BorderBrush="{DynamicResource {x:Static SystemColors.GradientActiveCaptionBrushKey}}">
+            <Menu   Width="145"  Background="White" >
+                <Menu.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel />
+                    </ItemsPanelTemplate>
+                </Menu.ItemsPanel>
+                <MenuItem Name="perfil" Header="Perfil" Height="30" FontSize="16" Width="145" HorizontalAlignment="Center" Click="Perfil_Click"/>
+                <MenuItem Name="horario" Header="Horário" Height="30" FontSize="16" HorizontalAlignment="Center" Width="145" Click="Horario_Click"/>
+                <MenuItem Name="Calendario" Header="Calendário de&#xD;&#xA;Avaliações" Height="45" FontSize="16" HorizontalAlignment="Center" Width="145" Click="Avaliacao_Click"/>
+                <MenuItem Name="faltas" Header="Faltas" Height="30" FontSize="16" HorizontalAlignment="Center"  Width="145" Click="Falta_Click"/>
+                <MenuItem Name="notas" Header="Notas" Height="30" FontSize="16" HorizontalAlignment="Center"  Width="145" Click="Notas_Click"/>
+                <MenuItem Name="plano" Header="Plano de Curso" Height="30" FontSize="16" HorizontalAlignment="Center"  Width="145" Click="Plano_Click" />
+                <MenuItem Name="logout" Header="Encerrar Sessão" Height="30" FontSize="16" HorizontalAlignment="Center"  Width="145" Click="Exit_Click"/>
+            </Menu>
+        </GroupBox>
+
         <Label x:Name="label" Grid.Column="1" Grid.Row="0" Content="Notas" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="25"/>
 
         <ListView x:Name="listView" Grid.Column="1" Grid.Row="1"  ItemContainerStyle="{StaticResource myStyle}" HorizontalAlignment="Center" Height="Auto" VerticalAlignment="Top" Width="Auto" Background="{x:Null}" BorderBrush="Black" Margin="134,10,130,0">

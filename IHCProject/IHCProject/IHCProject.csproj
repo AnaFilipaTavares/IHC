@@ -58,6 +58,9 @@
     <Compile Include="AlunoInterface\AlunoHome.xaml.cs">
       <DependentUpon>AlunoHome.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AlunoInterface\ConsultarAvaliação.xaml.cs">
+      <DependentUpon>ConsultarAvaliação.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AlunoInterface\HorarioAluno.xaml.cs">
       <DependentUpon>HorarioAluno.xaml</DependentUpon>
     </Compile>
@@ -106,6 +109,9 @@
     <Compile Include="infoClass\CelulaCalendario.xaml.cs">
       <DependentUpon>CelulaCalendario.xaml</DependentUpon>
     </Compile>
+    <Compile Include="infoClass\CelulaCalendarioAluno.xaml.cs">
+      <DependentUpon>CelulaCalendarioAluno.xaml</DependentUpon>
+    </Compile>
     <Compile Include="infoClass\DisciplinaSala.cs" />
     <Compile Include="infoClass\DisciplinaHorario.cs" />
     <Compile Include="infoClass\DisplayDisciplinaHorario.xaml.cs">
@@ -122,6 +128,10 @@
     <Page Include="AlunoInterface\AlunoHome.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="AlunoInterface\ConsultarAvaliação.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AlunoInterface\HorarioAluno.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -184,6 +194,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="infoClass\CelulaCalendario.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="infoClass\CelulaCalendarioAluno.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

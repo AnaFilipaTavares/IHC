@@ -53,7 +53,8 @@ namespace IHCProject.AlunoInterface
 
         private void Avaliacao_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Avaliaçoes");
+            ConsultarAvaliação p = new ConsultarAvaliação(aluno, CN);
+            this.NavigationService.Navigate(p);
         }
 
         private void Notas_Click(object sender, RoutedEventArgs e)

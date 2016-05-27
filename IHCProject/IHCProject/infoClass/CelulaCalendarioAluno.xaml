@@ -1,0 +1,17 @@
+﻿<UserControl x:Class="IHCProject.infoClass.CelulaCalendarioAluno"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:IHCProject.infoClass"
+             mc:Ignorable="d" 
+             Height="Auto" Width="Auto" Background="AliceBlue">
+    <GroupBox Name="gB">
+        <StackPanel>
+            <TextBlock HorizontalAlignment="Right" TextAlignment="Center" Height="Auto" Width="Auto" Name="numDia">
+            </TextBlock>
+            <TextBlock Height="46" Width="100" Name="list">
+            </TextBlock>
+        </StackPanel>
+    </GroupBox>
+</UserControl>

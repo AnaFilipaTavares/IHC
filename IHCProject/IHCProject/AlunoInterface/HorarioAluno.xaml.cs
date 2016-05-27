@@ -55,7 +55,8 @@ namespace IHCProject.AlunoInterface
 
         private void Avaliacao_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Avaliaçoes");
+            ConsultarAvaliação p = new ConsultarAvaliação(aluno, CN);
+            this.NavigationService.Navigate(p);
         }
 
         private void Notas_Click(object sender, RoutedEventArgs e)
@@ -90,8 +91,8 @@ namespace IHCProject.AlunoInterface
 
                 CMD = new SqlCommand();
                 CMD.Connection = CN;
-                CMD.CommandText = "SELECT designação,horaInicio,duração,diaSemana,sala FROM ESCOLA_SECUNDARIA.DISCIPLINA JOIN( ESCOLA_SECUNDARIA.HORARIO JOIN (ESCOLA_SECUNDARIA.HORARIO_DISCIPLINA JOIN (SELECT * FROM ESCOLA_SECUNDARIA.FREQUENTA WHERE aluno=@idAluno) AS T ON T.horario=HORARIO_DISCIPLINA.id) ON HORARIO.horario=HORARIO_Disciplina.id) ON codigo=disciplina;";
-                CMD.Parameters.AddWithValue("@idAluno", aluno.IdAluno);
+                CMD.CommandText = "EXEC ESCOLA_SECUNDARIA.SP_HorarioAluno @aluno;";
+                CMD.Parameters.AddWithValue("@aluno", aluno.IdAluno);
                 SqlDataReader RDR = CMD.ExecuteReader();
                 while (RDR.Read())
                 {
