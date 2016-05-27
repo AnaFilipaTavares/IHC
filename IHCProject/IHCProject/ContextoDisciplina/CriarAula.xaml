@@ -68,7 +68,7 @@
                     <Label FontSize="13" x:Name="numeroAula" Content="Número aula: " HorizontalAlignment="Left"  VerticalAlignment="Top"/>
 
 
-                    <TextBox x:Name="nAula1" HorizontalAlignment="Left" Height="18" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="33" TextChanged="nAula1_TextChanged" />
+                    <TextBox x:Name="nAula1" HorizontalAlignment="Left" IsReadOnly="True" Height="18" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="33" TextChanged="nAula1_TextChanged" />
                     <Label x:Name="label_e" IsEnabled="False" Content="e" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                     <TextBox x:Name="nAula2" IsEnabled="False" IsReadOnly="True" HorizontalAlignment="Left" Height="18" TextWrapping="Wrap" Text="" VerticalAlignment="center" Width="33"/>
                     <CheckBox Margin="20,0,0,0" FontSize="13" x:Name="aulaDuplaCheckBox" Content="Aula dupla"   VerticalAlignment="center"  Click="aulaDuplaCheckBox_Click"/>

@@ -99,6 +99,14 @@ namespace IHCProject.ContextoDisciplina
                     ListaAluno.Items.Add(new Aluno(int.Parse(RDR["idAluno"].ToString()), RDR["nome"].ToString()));
                 }
                 RDR.Close();
+
+                //obter a aula
+                CMD = new SqlCommand();
+                CMD.Connection = CN;
+                CMD.CommandText = "SELECT ESCOLA_SECUNDARIA.ultimaAula(@idHorario)";
+                CMD.Parameters.AddWithValue("@idHorario", hDisciplina.IdHorario);
+                int ret = (int)CMD.ExecuteScalar();
+                nAula1.Text = (ret + 1) + "";
             }
             catch (Exception ex)
             {
