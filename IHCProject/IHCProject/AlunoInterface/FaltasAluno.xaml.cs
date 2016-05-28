@@ -28,9 +28,12 @@ namespace IHCProject
         public FaltasAluno(int idAluno, string disciplina, Data data1)
         {
             InitializeComponent();
+            this.Top = (SystemParameters.FullPrimaryScreenHeight - this.Height) / 2;
+            this.Left = (SystemParameters.FullPrimaryScreenWidth - this.Width) / 2;
             this.idAluno = idAluno;
             this.disciplina = disciplina;
             this.data1 = data1;
+
             loadData();
         }
 

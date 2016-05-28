@@ -25,6 +25,8 @@ namespace IHCProject.AlunoInterface
         {
             InitializeComponent();
             this.a = a;
+            this.Top = (SystemParameters.FullPrimaryScreenHeight - this.Height) / 2;
+            this.Left = (SystemParameters.FullPrimaryScreenWidth - this.Width) / 2;
             loadData();
         }
 

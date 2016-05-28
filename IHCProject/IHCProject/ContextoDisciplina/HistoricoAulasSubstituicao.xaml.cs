@@ -81,7 +81,7 @@ namespace IHCProject.ContextoDisciplina
 
                 CMD = new SqlCommand();
                 CMD.Connection = CN;
-                CMD.CommandText = "SELECT horario,numero,data,sumario FROM ESCOLA_SECUNDARIA.AULA WHERE horario=@idHorario AND profSubstituto=@idProf";
+                CMD.CommandText = "SELECT horario,numero,data,sumario FROM ESCOLA_SECUNDARIA.AULA WHERE horario=@idHorario AND profSubstituto=@idProf ORDER BY numero DESC";
                 CMD.Parameters.AddWithValue("@idHorario", hDisciplina.IdHorario);
                 CMD.Parameters.AddWithValue("@idProf", professor.IdProf);
                 SqlDataReader RDR = CMD.ExecuteReader();

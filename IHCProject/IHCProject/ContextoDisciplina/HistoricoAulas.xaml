@@ -85,7 +85,7 @@
                                         <TextBlock x:Name="textSumario" Text="{Binding Sumário}" Height="Auto"/>
                                     </StackPanel>
                                     <StackPanel  Grid.Column="3">
-                                        <TextBlock x:Name="textNúmero" Text="{Binding dataBinding}" Height="30"/>
+                                        <TextBlock x:Name="textNúmero" Margin="10,0,0,0" Text="{Binding dataBinding}" Height="30"/>
                                     </StackPanel>
                                 </Grid>
                             </DataTemplate>
