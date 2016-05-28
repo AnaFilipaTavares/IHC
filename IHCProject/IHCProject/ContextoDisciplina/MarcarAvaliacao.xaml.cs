@@ -72,7 +72,7 @@ namespace IHCProject.ContextoDisciplina
         {
             InitializeComponent();
 
-            cboMonth.ItemsSource = new List<string> { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
+            cboMonth.ItemsSource = new List<string> { "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro" };
 
             cboYear.ItemsSource = new List<int> { DateTime.Today.Year, DateTime.Today.Year-1  };
             /*cboYear.SelectedItem = DateTime.Today.Year;
@@ -155,7 +155,7 @@ namespace IHCProject.ContextoDisciplina
                 SqlDataReader RDR = CMD.ExecuteReader();
                 while (RDR.Read())
                 {
-                    setReturn.Add(new Marcacao(RDR["designação"].ToString()+" "+ RDR["tipoAvaliacao"].ToString()[0], Convert.ToDateTime(RDR["data"].ToString())));
+                    setReturn.Add(new Marcacao(RDR["designação"].ToString()+" - "+ RDR["tipoAvaliacao"].ToString()[0], Convert.ToDateTime(RDR["data"].ToString())));
                 }
                 RDR.Close();
             }

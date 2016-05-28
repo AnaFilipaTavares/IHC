@@ -90,6 +90,12 @@ namespace IHCProject.infoClass
         }
         private void GroupBox_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            if (DateTime.Compare( DateTime.Today, new DateTime(year, month, dia))>0) {
+                MessageBox.Show("Não tem permições para marcar avaliações em data inferior á data atual");
+                return;
+            }
+
+
             MarcarAvaliacaoPop popupWind = new MarcarAvaliacaoPop(hDisciplina, new DateTime(year, month, dia), CN);
             Console.WriteLine(new DateTime(year, month, dia));
             popupWind.Top = (SystemParameters.FullPrimaryScreenHeight - popupWind.Height) / 2;

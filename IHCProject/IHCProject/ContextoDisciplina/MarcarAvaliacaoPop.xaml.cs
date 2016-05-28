@@ -79,7 +79,7 @@ namespace IHCProject.ContextoDisciplina
                 CMD.CommandText = "INSERT INTO ESCOLA_SECUNDARIA.MARCA_AVALIAÇÕES VALUES (@idHorario,@date,@tipo);";
                 CMD.Parameters.AddWithValue("@idHorario", hDisciplina.IdHorario);
                 CMD.Parameters.AddWithValue("@date", date.ToString("yyyy-MM-dd"));
-                CMD.Parameters.AddWithValue("@tipo", ((ComboBoxItem)comboBox.SelectedValue).Content);
+                CMD.Parameters.AddWithValue("@tipo", ((ComboBoxItem)comboBox.SelectedValue).Content.ToString().Split()[0]);
 
                 inseriu = CMD.ExecuteNonQuery();
 
