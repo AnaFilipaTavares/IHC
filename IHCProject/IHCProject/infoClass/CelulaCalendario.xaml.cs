@@ -91,7 +91,7 @@ namespace IHCProject.infoClass
         private void GroupBox_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (DateTime.Compare( DateTime.Today, new DateTime(year, month, dia))>0) {
-                MessageBox.Show("Não tem permições para marcar avaliações em data inferior á data atual");
+                MessageBox.Show("Não tem permissões para marcar avaliações em data inferior á data atual");
                 return;
             }
 

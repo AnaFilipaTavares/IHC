@@ -5,10 +5,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:IHCProject.infoClass"
              mc:Ignorable="d" 
-             Height="Auto" Width="Auto" Background="AliceBlue">
+             Height="60" Width="110" Background="AliceBlue">
     <GroupBox Name="gB">
         <StackPanel>
-            <TextBlock HorizontalAlignment="Right" TextAlignment="Center" Height="Auto" Width="Auto" Name="numDia">
+            <TextBlock HorizontalAlignment="Right" TextAlignment="Center" Height="14" Width="20" Name="numDia">
             </TextBlock>
             <TextBlock Height="46" Width="100" Name="list">
             </TextBlock>

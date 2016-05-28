@@ -81,6 +81,12 @@ namespace IHCProject.AlunoInterface
             this.NavigationService.Navigate(new Login());
         }
 
+        private void Aula_Click(object sender, RoutedEventArgs e)
+        {
+            DisciplinasAluno d = new DisciplinasAluno(aluno, CN);
+            this.NavigationService.Navigate(d);
+        }
+
         private void loadData()
         {
             List<Nota> items = new List<Nota>();

@@ -9,9 +9,9 @@
     <Grid>
         <Label x:Name="label" Content="" HorizontalAlignment="Center" VerticalAlignment="Top" Width="Auto" FontSize="20"/>
         <Label x:Name="label1" Content="Disciplina: " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="33,45,0,0" Width="83" FontSize="16" Background="{DynamicResource {x:Static SystemColors.GradientActiveCaptionBrushKey}}"/>
-        <Label x:Name="label2" Content="" HorizontalAlignment="Left" Margin="121,45,0,0" VerticalAlignment="Top" Width="103"/>
+        <Label x:Name="label2" Content="" HorizontalAlignment="Left" Margin="121,45,0,0" VerticalAlignment="Top" Width="147"/>
         <Label x:Name="label3" Content="Data: " HorizontalAlignment="Left" Margin="33,87,0,0" VerticalAlignment="Top"  FontSize="16" Background="{DynamicResource {x:Static SystemColors.GradientActiveCaptionBrushKey}}"/>
-        <Label x:Name="label4" Content="" HorizontalAlignment="Left" Margin="90,87,0,0" VerticalAlignment="Top" Width="82"/>
+        <Label x:Name="label4" Content="" HorizontalAlignment="Left" Margin="90,87,0,0" VerticalAlignment="Top" Width="158"/>
         <GroupBox x:Name="sumario" Header="Sumário" HorizontalAlignment="Left" Margin="33,148,0,0" VerticalAlignment="Top" Height="118" Width="176"  FontSize="16" BorderThickness="2" BorderBrush="{DynamicResource {x:Static SystemColors.GradientActiveCaptionBrushKey}}">
             <TextBlock x:Name="textBlock" HorizontalAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="90" Width="157"  FontSize="14"/>
         </GroupBox>

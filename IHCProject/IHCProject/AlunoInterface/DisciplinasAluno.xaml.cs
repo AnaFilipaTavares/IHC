@@ -1,10 +1,10 @@
 ﻿using System;
+using System.Data.SqlClient;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Data.SqlClient;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -14,30 +14,71 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using IHCProject.infoClass;
+using System.Data;
 
 namespace IHCProject.AlunoInterface
 {
     /// <summary>
-    /// Interaction logic for AlunoHome.xaml
+    /// Interaction logic for DisciplinasAluno.xaml
     /// </summary>
-    public partial class AlunoHome : Page
+    public partial class DisciplinasAluno : Page
     {
+
         private Aluno aluno;
         private SqlConnection CN;
         private SqlCommand CMD;
 
-        public AlunoHome()
+        public DisciplinasAluno()
         {
             InitializeComponent();
         }
 
-        // Construtor para a classe 
-        public AlunoHome(Aluno aluno, SqlConnection cn) : this()
+        public DisciplinasAluno(Aluno aluno, SqlConnection cn) : this()
         {
             // Associa os dados ao contexto da nova página.
             this.aluno = aluno;
             this.CN = cn;
             loadData();
+        }
+
+        private void loadData()
+        {
+            aula.Background = Brushes.LightSeaGreen;
+            try
+            {
+                if (CN.State == ConnectionState.Closed) CN.Open();
+                   
+                CMD = new SqlCommand();
+                CMD.Connection = CN;
+                CMD.CommandText = "SELECT * FROM ESCOLA_SECUNDARIA.UDF_ListaDisciplinasAluno(@aluno) ORDER BY 3,2;";
+                CMD.Parameters.AddWithValue("@aluno", aluno.IdAluno);
+                SqlDataReader RDR = CMD.ExecuteReader();
+                while (RDR.Read())
+                {
+
+                    listBox.Items.Add(new Disciplina(0, int.Parse(RDR["ano"].ToString()), RDR["designação"].ToString()));
+                }
+                RDR.Close();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+           
+        }
+
+        private void aceder_Click(object sender, RoutedEventArgs e)
+        {
+            Disciplina temp = (Disciplina)listBox.SelectedItem;
+            if (temp == null)
+            {
+                MessageBox.Show("Selecione uma opção");
+            }
+            else
+            {
+                this.NavigationService.Navigate(new HistoricoAulasAluno(aluno, temp, CN));
+            }
         }
 
         private void Perfil_Click(object sender, RoutedEventArgs e)
@@ -80,54 +121,19 @@ namespace IHCProject.AlunoInterface
             this.NavigationService.Navigate(new Login());
         }
 
-        private void loadData()
-        {
-            perfil.Background = Brushes.LightSeaGreen;
-            try
-            {
-                if (CN.State == System.Data.ConnectionState.Closed) CN.Open();
-
-                CMD = new SqlCommand();
-                CMD.Connection = CN;
-                CMD.CommandText = "EXEC ESCOLA_SECUNDARIA.SP_DadosAluno @aluno;";
-                CMD.Parameters.AddWithValue("@aluno", aluno.IdAluno);
-
-                SqlDataReader RDR = CMD.ExecuteReader();
-                if (RDR.Read())
-                {
-                    nomeAluno.Content = RDR["nomeAluno"].ToString();
-                    dataAluno.Content = RDR["dAluno"].ToString().Split()[0];
-                    encarregadoAluno.Content = RDR["nomeEncarregado"].ToString();
-                    cursoAluno.Content = RDR["nomeCurso"].ToString();
-                    turmaAluno.Content = RDR["ano"].ToString() + "º" + RDR["designação"].ToString();
-                    diretorAluno.Content = RDR["nome"].ToString();
-                }
-                RDR.Close();
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show(ex.Message);
-            }
-
-        }
-
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
-        {
-            PlanoCurso p = new PlanoCurso(aluno, CN);
-            this.NavigationService.Navigate(p);
-        }
-
-        private void notas_Click(object sender, RoutedEventArgs e)
-        {
-            Notas n = new Notas(aluno, CN);
-            this.NavigationService.Navigate(n);
-        }
-
         private void Aula_Click(object sender, RoutedEventArgs e)
         {
-            DisciplinasAluno d = new DisciplinasAluno(aluno,CN);
+            DisciplinasAluno d = new DisciplinasAluno(aluno, CN);
             this.NavigationService.Navigate(d);
         }
+
+        private void listbox_MouseDoubleClick(object sender, RoutedEventArgs e)
+        {
+            Disciplina temp = (Disciplina)listBox.SelectedItem;
+            this.NavigationService.Navigate(new HistoricoAulasAluno(aluno, temp, CN));
+        }
+
     }
+
+
 }

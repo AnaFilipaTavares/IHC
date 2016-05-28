@@ -1,12 +1,13 @@
-﻿<Page x:Class="IHCProject.MinhasDisciplinas"
+﻿<Page x:Class="IHCProject.AlunoInterface.DisciplinasAluno"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:IHCProject"
+      xmlns:local="clr-namespace:IHCProject.AlunoInterface"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="MinhasDisciplinas">
+       d:DesignHeight="450" d:DesignWidth="800"
+      Title="DisciplinasAluno">
+
     <Grid>
 
         <Grid.ColumnDefinitions>
@@ -19,27 +20,27 @@
         </Grid.RowDefinitions>
 
         <GroupBox x:Name="gp_menu" Background="White" Grid.Column="0" Grid.Row="1" Header="Menu principal"  FontSize="14" VerticalAlignment="Top" HorizontalAlignment="center" BorderThickness="2" BorderBrush="{DynamicResource {x:Static SystemColors.GradientActiveCaptionBrushKey}}">
-            <Menu   Width="145"  Background="White">
+            <Menu   Width="145"  Background="White" >
                 <Menu.ItemsPanel>
                     <ItemsPanelTemplate>
                         <StackPanel />
                     </ItemsPanelTemplate>
                 </Menu.ItemsPanel>
-                <MenuItem Header="Perfil" Height="30" FontSize="16" Width="145" HorizontalAlignment="Center" Click="Perfil_Click"/>
-                <MenuItem Header="Horário" Height="30" FontSize="16" HorizontalAlignment=
-                      "Center" Width="145" Click="horarioClick"/>
-                <MenuItem Background="LightSeaGreen" Header="Minhas Disciplinas" Height="30" FontSize="16" HorizontalAlignment="Center" Width="145" Click="disciplinaClick"/>
-                <MenuItem Header="Aula Substituição" Height="30" FontSize="16" HorizontalAlignment="Center"  Width="145" Click="AulaSubstituicao_Click"/>
-                <MenuItem Header="Direção de Turma" Height="30" FontSize="16" HorizontalAlignment="Center"  Width="145" Click="DirecaoTurma_Click"/>
-                <MenuItem Header="Encerrar Sessão" Height="30" FontSize="16" HorizontalAlignment="Center"  Width="145" Click="Exit_Click"/>
+                <MenuItem Name="perfil" Header="Perfil" Height="30" FontSize="16" Width="145" HorizontalAlignment="Center" Click="Perfil_Click"/>
+                <MenuItem Name="horario" Header="Horário" Height="30" FontSize="16" HorizontalAlignment="Center" Width="145" Click="Horario_Click"/>
+                <MenuItem Name="Calendario" Header="Calendário de&#xD;&#xA;Avaliações" Height="45" FontSize="16" HorizontalAlignment="Center" Width="145" Click="Avaliacao_Click"/>
+                <MenuItem Name="aula" Header="Consultar Aula" Height="30" FontSize="16" HorizontalAlignment="Center" Width="145"  Click="Aula_Click"/>
+                <MenuItem Name="faltas" Header="Faltas" Height="30" FontSize="16" HorizontalAlignment="Center"  Width="145" Click="Falta_Click"/>
+                <MenuItem Name="notas" Header="Notas" Height="30" FontSize="16" HorizontalAlignment="Center"  Width="145" Click="Notas_Click"/>
+                <MenuItem Name="plano" Header="Plano de Curso" Height="30" FontSize="16" HorizontalAlignment="Center"  Width="145" Click="Plano_Click" />
+                <MenuItem Name="logout" Header="Encerrar Sessão" Height="30" FontSize="16" HorizontalAlignment="Center"  Width="145" Click="Exit_Click"/>
             </Menu>
         </GroupBox>
 
-
-        <Label Grid.Column="1" Grid.Row="0" x:Name="label" Content="Minhas Disciplinas" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20"/>
+        <Label Grid.Column="1" Grid.Row="0" x:Name="label" Content="Minhas Disciplinas" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="25"/>
 
         <StackPanel Grid.Column="1" Grid.Row="1">
-            <GroupBox x:Name="list" Header="Lista Disciplinas Lecionadas" Height="300" Margin="20,0,20,0" FontSize="14" VerticalAlignment="Top" HorizontalAlignment="Stretch" BorderThickness="2" BorderBrush="{DynamicResource {x:Static SystemColors.GradientActiveCaptionBrushKey}}">
+            <GroupBox x:Name="list" Header="Lista Disciplinas frequentadas" Height="300" Margin="20,0,20,0" FontSize="14" VerticalAlignment="Top" HorizontalAlignment="Stretch" BorderThickness="2" BorderBrush="{DynamicResource {x:Static SystemColors.GradientActiveCaptionBrushKey}}">
                 <ListBox x:Name="listBox" MouseDoubleClick="listbox_MouseDoubleClick">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
@@ -54,26 +55,15 @@
                                     <TextBlock  x:Name="textName"  Text="Disciplina: " Height="30"/>
                                 </StackPanel>
                                 <StackPanel Grid.Column="1">
-                                    <TextBlock  x:Name="sumario"  Text="{Binding Disciplina}" Height="30"/>
-                                </StackPanel>
-                                <StackPanel  Grid.Column="2">
-                                    <TextBlock x:Name="textSumario" Text="Turma: " Height="Auto"/>
-                                </StackPanel>
-                                <StackPanel  Grid.Column="3">
-                                    <TextBlock x:Name="textNúmero" Text="{Binding TurmaBinding}" Height="30"/>
+                                    <TextBlock  x:Name="sumario"  Text="{Binding}" Height="30"/>
                                 </StackPanel>
                             </Grid>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
             </GroupBox>
-
-
             <Button  x:Name="BotaoAceder" Content="Aceder"  Height="25" Margin="0,10,25,0" VerticalAlignment="Top"  HorizontalAlignment="Right" Width="75" Click="aceder_Click"/>
         </StackPanel>
-
-
-
     </Grid>
 
 </Page>

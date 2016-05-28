@@ -61,6 +61,7 @@
                 <MenuItem Name="perfil" Header="Perfil" Height="30" FontSize="16" Width="145" HorizontalAlignment="Center" Click="Perfil_Click"/>
                 <MenuItem Name="horario" Header="Horário" Height="30" FontSize="16" HorizontalAlignment="Center" Width="145" Click="Horario_Click"/>
                 <MenuItem Name="Calendario" Header="Calendário de&#xD;&#xA;Avaliações" Height="45" FontSize="16" HorizontalAlignment="Center" Width="145" Click="Avaliacao_Click"/>
+                <MenuItem Name="aula" Header="Consultar Aula" Height="30" FontSize="16" HorizontalAlignment="Center" Width="145"  Click="Aula_Click"/>
                 <MenuItem Name="faltas" Header="Faltas" Height="30" FontSize="16" HorizontalAlignment="Center"  Width="145" Click="Falta_Click"/>
                 <MenuItem Name="notas" Header="Notas" Height="30" FontSize="16" HorizontalAlignment="Center"  Width="145" Click="Notas_Click"/>
                 <MenuItem Name="plano" Header="Plano de Curso" Height="30" FontSize="16" HorizontalAlignment="Center"  Width="145" Click="Plano_Click" />
