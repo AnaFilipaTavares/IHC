@@ -46,7 +46,7 @@
                     </StackPanel>
                 </StackPanel>
             </GroupBox>
-            <Image  x:Name="image" Source="Images/foto.jpg" Margin="40,0,0,0" VerticalAlignment="Center" Width="100"/>
+            <Image  x:Name="image" Source="../Images/contacts-256.png" Margin="40,0,0,0" VerticalAlignment="Center" Width="100"/>
         </StackPanel>
        
         <Label x:Name="label" Grid.Column="1" Grid.Row="0" Content="Perfil do Aluno" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="25"/>

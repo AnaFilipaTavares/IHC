@@ -72,7 +72,7 @@ namespace IHCProject.ContextoDisciplina
                 SqlDataReader RDR = CMD.ExecuteReader();
                 while (RDR.Read())
                 {
-                    listaAluno.Add(new Aluno(int.Parse(RDR["idAluno"].ToString()), RDR["nome"].ToString()));
+                    listaAluno.Add( new Aluno(int.Parse(RDR["idAluno"].ToString()), RDR["nome"].ToString()));
                 }
                 RDR.Close();
             }
@@ -118,23 +118,10 @@ namespace IHCProject.ContextoDisciplina
                     }
                 }
                 if (ocorrencias==0)
-                    ListaAluno.Items.Add(al);
+                    ListaAluno.Items.Add(new CelulaAlunoFalta(al));
             }
         }
 
-        
-        private void openPopupWindow(Aluno selected) {
-            MarcarFaltaAluno popupWind = new MarcarFaltaAluno((selected), listaFaltasMarcar, CN);
-            popupWind.Top = (SystemParameters.FullPrimaryScreenHeight - popupWind.Height) / 2;
-            popupWind.Left = (SystemParameters.FullPrimaryScreenWidth - popupWind.Width) / 2;
-            popupWind.ShowDialog();
-        }
-
-        private void ListaAluno_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            openPopupWindow((Aluno)ListaAluno.SelectedItem);
-
-        }
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
@@ -178,35 +165,38 @@ namespace IHCProject.ContextoDisciplina
             {
                 //MARCAR FALTAS se não existirem erros
                 Console.WriteLine("Aula Editada");
-                foreach (string elementos in listaFaltasMarcar)
+                foreach (CelulaAlunoFalta elementos in ListaAluno.Items)
                 {
-                    int erros = 0;
-                    try
+                    if (elementos.getMarcarfalta() == true)
                     {
-                        if (CN.State == ConnectionState.Closed) CN.Open();
+                        int erros = 0;
+                        try
+                        {
+                            if (CN.State == ConnectionState.Closed) CN.Open();
 
-                        CMD = new SqlCommand();
-                        CMD.Connection = CN;
-                        CMD.CommandText = "INSERT INTO ESCOLA_SECUNDARIA.FALTAS_ALUNO VALUES (@idAluno,@idHorario,@numeroAula,@tipo);";
-                        CMD.Parameters.AddWithValue("@idAluno", elementos.Split()[0]);
-                        CMD.Parameters.AddWithValue("@idHorario", aulaEdit.Horario);
-                        CMD.Parameters.AddWithValue("@numeroAula", nAula1.Text);
-                        CMD.Parameters.AddWithValue("@tipo", elementos.Split()[1][0]);
-                        erros = CMD.ExecuteNonQuery();
+                            CMD = new SqlCommand();
+                            CMD.Connection = CN;
+                            CMD.CommandText = "INSERT INTO ESCOLA_SECUNDARIA.FALTAS_ALUNO VALUES (@idAluno,@idHorario,@numeroAula,@tipo);";
+                            CMD.Parameters.AddWithValue("@idAluno", elementos.getNumero());
+                            CMD.Parameters.AddWithValue("@idHorario", aulaEdit.Horario);
+                            CMD.Parameters.AddWithValue("@numeroAula", nAula1.Text);
+                            CMD.Parameters.AddWithValue("@tipo", elementos.getTipofalta()[0]);
+                            erros = CMD.ExecuteNonQuery();
 
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
+                        Console.WriteLine(elementos + " " + elementos.getTipofalta());
+                        if (erros != 0)
+                        {
+                            Console.WriteLine("Falta adicionada");
+                        }
+                        else {
+                            Console.WriteLine("Erro na falta " + elementos);
+                        }
                     }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                    }
-                    if (erros != 0)
-                    {
-                        Console.WriteLine("Falta adicionada");
-                    }
-                    else {
-                        Console.WriteLine("Erro na falta " + elementos);
-                    }
-
                 }
 
             }
@@ -220,27 +210,15 @@ namespace IHCProject.ContextoDisciplina
 
         }
 
-        private void ItemOnPreviewMouseDown( object sender, MouseButtonEventArgs e)
-        {
-            ((ListBoxItem)sender).IsSelected = true;
-            int temp = listaFaltasMarcar.Count;
-            openPopupWindow((Aluno)ListaAluno.SelectedItem);
-            //caso exista uma marcação de faltas
-            if (temp != listaFaltasMarcar.Count)
-            {
-                list2Reset.Add((ListBoxItem)sender);
-                ((ListBoxItem)sender).IsEnabled = false;
-            }
-        }
+
 
         private void resetFaltas_Click(object sender, RoutedEventArgs e)
         {
-            foreach (ListBoxItem elementos in list2Reset)
+            foreach (CelulaAlunoFalta elementos in ListaAluno.Items)
             {
-                elementos.IsEnabled = true;
+                elementos.checkMarcarFalta.IsChecked = false;
+                elementos.cbTipoFalta.SelectedIndex = 0;
             }
-            list2Reset.Clear();
-            listaFaltasMarcar.Clear();
         }
         /*
             retorna true se for para sair

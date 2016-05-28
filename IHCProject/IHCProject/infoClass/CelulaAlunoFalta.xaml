@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="IHCProject.infoClass.CelulaAlunoFalta"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:IHCProject.infoClass"
+             mc:Ignorable="d" 
+             d:DesignHeight="95" >
+    <Grid Margin="0,10,0,10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="75"/>
+            <ColumnDefinition Width="180"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Image x:Name="image" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Height="74" VerticalAlignment="Top" Width="70" Source="../Images/contacts-256.png"/>
+        <StackPanel Grid.Column="1" Grid.Row="0" >
+            <TextBlock x:Name="tbName" VerticalAlignment="Center" Text="Nome:" />
+            <TextBlock x:Name="tbNumero" VerticalAlignment="Center" Text="Número: "/>
+            <DockPanel >
+                <TextBlock VerticalAlignment="Center" Text="Tipo Falta: "></TextBlock>
+                <ComboBox  x:Name="cbTipoFalta" Margin="10,0,10,0"  SelectedIndex="0">
+                    <ComboBoxItem Content="Presença" ></ComboBoxItem>
+                    <ComboBoxItem Content="Disciplinar"></ComboBoxItem>
+                    <ComboBoxItem Content="Outra"></ComboBoxItem>
+                </ComboBox>
+            </DockPanel>
+            <CheckBox x:Name="checkMarcarFalta" VerticalAlignment="Center" Content="Marcar falta" Checked="checkMarcarFalta_Checked" Unchecked="checkMarcarFalta_Unchecked"></CheckBox>
+        </StackPanel>
+    </Grid>
+</UserControl>

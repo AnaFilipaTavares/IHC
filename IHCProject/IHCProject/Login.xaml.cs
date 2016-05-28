@@ -36,6 +36,14 @@ namespace IHCProject
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
+            int userId;
+            if (!int.TryParse(userBox.Text, out userId)) {
+                Console.WriteLine("user não numérico return");
+                MessageBox.Show("Número de utilizador inválido");
+                return;
+            }
+
+
             string pass = null;
             int id = -1;
             string dataNascimento = null;
@@ -125,6 +133,13 @@ namespace IHCProject
             }
             
             
+        }
+
+        private void Page_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter) {
+                button_Click(sender, null);
+            }
         }
     }
 }

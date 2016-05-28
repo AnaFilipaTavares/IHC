@@ -96,6 +96,14 @@ namespace IHCProject.infoClass
             popupWind.Left = (SystemParameters.FullPrimaryScreenWidth - popupWind.Width) / 2;
             popupWind.ShowDialog();
             
+            DependencyObject parent = VisualTreeHelper.GetParent(this);
+            while (!(parent is MarcarAValiacao))
+            {
+                parent = VisualTreeHelper.GetParent(parent);
+            }
+            ((MarcarAValiacao)parent).drawCells(year,month);
+
+
         }
 
         public void setAvaliacoes(List<string> temp)

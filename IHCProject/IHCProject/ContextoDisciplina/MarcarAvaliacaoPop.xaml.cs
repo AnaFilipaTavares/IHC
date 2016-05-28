@@ -30,6 +30,7 @@ namespace IHCProject.ContextoDisciplina
         private DateTime date;
         private SqlConnection CN;
         private SqlCommand CMD;
+        //private MarcarAValiacao referenciaPai;
 
         public MarcarAvaliacaoPop()
         {

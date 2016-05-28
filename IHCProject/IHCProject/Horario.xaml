@@ -31,7 +31,7 @@
                     </ItemsPanelTemplate>
                 </Menu.ItemsPanel>
                 <MenuItem Header="Perfil" Height="30" FontSize="16" Width="145" HorizontalAlignment="Center" Click="Perfil_Click"/>
-                <MenuItem Header="Horário" Height="30" FontSize="16" HorizontalAlignment=
+                <MenuItem Background="LightSeaGreen" Header="Horário" Height="30" FontSize="16" HorizontalAlignment=
                       "Center" Width="145" Click="horarioClick"/>
                 <MenuItem Header="Minhas Disciplinas" Height="30" FontSize="16" HorizontalAlignment="Center" Width="145" Click="disciplinaClick"/>
                 <MenuItem Header="Aula Substituição" Height="30" FontSize="16" HorizontalAlignment="Center"  Width="145" Click="AulaSubstituicao_Click"/>

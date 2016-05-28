@@ -21,7 +21,20 @@
         <Label Style="{StaticResource labelStyle}" x:Name="numeroAluno" Content="Número: " HorizontalAlignment="Left" Margin="121,41,0,0" VerticalAlignment="Top"/>
         <Label x:Name="label" Content="Faltas Injustificadas" HorizontalAlignment="Center" Margin="0,91,0,0" VerticalAlignment="Top" Style="{StaticResource labelStyle}"/>
         <Button x:Name="button" Content="Justificar" HorizontalAlignment="Center" Margin="0,251,0,0" VerticalAlignment="Top" Width="75" Click="button_Click"/>
-        <ListBox x:Name="listBox" HorizontalAlignment="Center" Height="100" Margin="0,135,0,0" VerticalAlignment="Top" Width="339"  MouseDoubleClick="Falta_MouseDoubleClick"/>
+        <ListBox x:Name="listBox" HorizontalAlignment="Center" Height="100" Margin="0,135,0,0" VerticalAlignment="Top" Width="339"  MouseDoubleClick="Falta_MouseDoubleClick">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <DockPanel>
+                        <TextBlock Text="Disciplina: "></TextBlock>
+                        <TextBlock Text="{Binding Disciplina}"></TextBlock>
+                        <Label Content="  "></Label>
+                        <TextBlock Text="{Binding NAulaBinding}"></TextBlock>
+                        <Label Content="  "></Label>
+                        <TextBlock HorizontalAlignment="Right" Text="{Binding dataBinding}"></TextBlock>
+                    </DockPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
 
     </Grid>
 </Window>

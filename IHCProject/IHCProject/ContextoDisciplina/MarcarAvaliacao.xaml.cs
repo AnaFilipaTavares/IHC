@@ -95,7 +95,7 @@ namespace IHCProject.ContextoDisciplina
         }
        
         
-       private void drawCells(int ano,int mes) {
+       public void drawCells(int ano,int mes) {
 
             ISet<Marcacao> todasMarcacoes = queryMarcacoes(mes);
 
@@ -141,8 +141,9 @@ namespace IHCProject.ContextoDisciplina
 
         private ISet<Marcacao> queryMarcacoes(int mes)
         {
+            Container.Children.Clear();
             ISet<Marcacao> setReturn = new HashSet<Marcacao>();
-
+            
             try
             {
                 if (CN.State == ConnectionState.Closed) CN.Open();
@@ -250,7 +251,7 @@ namespace IHCProject.ContextoDisciplina
 
         private void cboMonth_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Container.Children.Clear();
+            
             
             if (cboMonth.SelectedIndex != -1)
                 drawCells(int.Parse(cboYear.SelectedItem.ToString()), cboMonth.SelectedIndex + 1);
@@ -258,7 +259,7 @@ namespace IHCProject.ContextoDisciplina
 
         private void cboYear_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Container.Children.Clear();
+            
             
             if (cboMonth.SelectedIndex!=-1)
                 drawCells(int.Parse(cboYear.SelectedItem.ToString()), cboMonth.SelectedIndex + 1);
