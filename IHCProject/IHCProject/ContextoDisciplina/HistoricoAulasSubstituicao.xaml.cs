@@ -148,8 +148,10 @@ namespace IHCProject.ContextoDisciplina
 
         private void listaAula_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            openPopupWindow((Aula)listaAula.SelectedItem);
-            loadData();
+            if ((Aula)listaAula.SelectedItem != null) {
+                openPopupWindow((Aula)listaAula.SelectedItem);
+                loadData();
+            }
         }
     }
 

@@ -101,14 +101,15 @@ namespace IHCProject
 
         private void listBoxDisciplinas_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if (MessageBox.Show("Tem a certeza que pretende criar uma aula de substituição\n" + ((HorarioDisciplina)listBoxDisciplinas.SelectedValue).ToString(), "criar aula", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
-            {
-                Console.WriteLine("cria aula substituicao");
-                this.NavigationService.Navigate(new CriarAulaSubstituicao(prof,(HorarioDisciplina)listBoxDisciplinas.SelectedItem, CN));
-            }
-            else {
-                Console.WriteLine("Não cria aula substituicao");
-            }
+            if ((HorarioDisciplina)listBoxDisciplinas.SelectedItem != null)
+                if (MessageBox.Show("Tem a certeza que pretende criar uma aula de substituição\n" + ((HorarioDisciplina)listBoxDisciplinas.SelectedValue).ToString(), "criar aula", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+                    Console.WriteLine("cria aula substituicao");
+                    this.NavigationService.Navigate(new CriarAulaSubstituicao(prof,(HorarioDisciplina)listBoxDisciplinas.SelectedItem, CN));
+                }
+                else {
+                    Console.WriteLine("Não cria aula substituicao");
+                }
 
         }
 

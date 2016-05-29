@@ -110,7 +110,8 @@ namespace IHCProject.ContextoDisciplina
             catch (Exception ex)
             {
 
-                MessageBox.Show(ex.Message);
+                Console.WriteLine(ex.Message);
+                MessageBox.Show("Ocorreu um erro, repita a operação");
             }
 
         }

@@ -112,7 +112,9 @@ namespace IHCProject
 
         private void listbox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            this.NavigationService.Navigate(new PerfilDisciplina(prof, (HorarioDisciplina)listBox.SelectedItem, CN));
+            if ((HorarioDisciplina)listBox.SelectedItem!=null)
+                this.NavigationService.Navigate(new PerfilDisciplina(prof, (HorarioDisciplina)listBox.SelectedItem, CN));
+            Console.WriteLine("double click");
         }
 
 

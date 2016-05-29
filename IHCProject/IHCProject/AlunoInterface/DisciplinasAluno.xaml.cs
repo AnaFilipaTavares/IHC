@@ -129,8 +129,10 @@ namespace IHCProject.AlunoInterface
 
         private void listbox_MouseDoubleClick(object sender, RoutedEventArgs e)
         {
-            Disciplina temp = (Disciplina)listBox.SelectedItem;
-            this.NavigationService.Navigate(new HistoricoAulasAluno(aluno, temp, CN));
+            if ((Disciplina)listBox.SelectedItem != null) { 
+                Disciplina temp = (Disciplina)listBox.SelectedItem;
+                this.NavigationService.Navigate(new HistoricoAulasAluno(aluno, temp, CN));
+            }
         }
 
     }

@@ -115,7 +115,8 @@ namespace IHCProject
 
         private void TurmaDoDT_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            openPopupWindow((Aluno)TurmaDoDT.SelectedValue);
+            if ((Aluno)TurmaDoDT.SelectedValue!=null)
+                openPopupWindow((Aluno)TurmaDoDT.SelectedValue);
         }
 
         private void button_Click(object sender, RoutedEventArgs e)

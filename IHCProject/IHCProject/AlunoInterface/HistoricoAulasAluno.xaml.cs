@@ -131,10 +131,12 @@ namespace IHCProject.AlunoInterface
 
         private void listaAula_MouseDoubleClick(object sender, RoutedEventArgs e)
         {
-            Aula aula = (Aula)listaAula.SelectedItem;
-            InfoAula a = new InfoAula(aula);
-            a.Show();
-            
+            if ((Aula)listaAula.SelectedItem != null) { 
+                Aula aula = (Aula)listaAula.SelectedItem;
+                InfoAula a = new InfoAula(aula);
+                a.Show();
+            }
+
         }
 
 
