@@ -88,7 +88,8 @@ namespace IHCProject.ContextoDisciplina
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Erro: Já existe uma avaliação desta disciplina para esse dia");
+                Console.WriteLine(ex.Message);
             }
         }
     }
