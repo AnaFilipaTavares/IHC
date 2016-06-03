@@ -1,7 +1,6 @@
 ﻿using System;
-
-using System.Data.SqlClient;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,38 +13,30 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Data;
-using IHCProject.infoClass;
 
 namespace IHCProject.Secretaria
 {
     /// <summary>
-    /// Interaction logic for MinhasDisciplinas.xaml
+    /// Interaction logic for Inserções.xaml
     /// </summary>
-    public partial class Inicio : Page
+    public partial class Inserções : Page
     {
-        private SecretariaData secretaria;
-
         private SqlConnection CN;
-        private SqlCommand CMD;
 
-        public Inicio()
+        public Inserções()
         {
             InitializeComponent();
         }
 
-        public Inicio(SecretariaData secretaria, SqlConnection cN):this()
+        public Inserções(SqlConnection CN) :this()
         {
-            this.secretaria = secretaria;
-            CN = cN;
-
+            this.CN = CN;
         }
 
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        private void Curso_Click(object sender, RoutedEventArgs e)
         {
-            Inserções i = new Inserções(CN);
-            this.NavigationService.Navigate(i);
+            InsertCurso c = new InsertCurso(CN);
+            this.NavigationService.Navigate(c);
         }
     }
-
 }

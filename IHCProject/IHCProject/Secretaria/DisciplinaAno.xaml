@@ -1,0 +1,16 @@
+﻿<UserControl x:Class="IHCProject.Secretaria.DisciplinaAno"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:IHCProject.Secretaria"
+             mc:Ignorable="d" d:DesignWidth="145.188" d:DesignHeight="69.624" 
+             Height="50" Width="300" >
+    <Grid>
+        <DockPanel>
+            <CheckBox x:Name="checkBox" HorizontalAlignment="Left"  VerticalAlignment="Center" Padding="5"/>
+            <TextBox x:Name="nomeDisciplina" Text="" HorizontalAlignment="Left" Width="200" VerticalAlignment="Center" TextChanged="nomeDisciplina_TextChanged"></TextBox>
+            <ComboBox x:Name="comboBox" Width="50" HorizontalAlignment="Right" VerticalAlignment="Center" Background="BlueViolet"></ComboBox>
+        </DockPanel>
+    </Grid>
+</UserControl>
