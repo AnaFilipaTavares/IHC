@@ -127,12 +127,16 @@
       <DependentUpon>DisplayDisciplinaHorario.xaml</DependentUpon>
     </Compile>
     <Compile Include="infoClass\HorarioDisciplina.cs" />
+    <Compile Include="infoClass\SecretariaData.cs" />
     <Compile Include="JustificarFalta.xaml.cs">
       <DependentUpon>JustificarFalta.xaml</DependentUpon>
     </Compile>
     <Compile Include="infoClass\Aluno.cs" />
     <Compile Include="InfoAluno.xaml.cs">
       <DependentUpon>InfoAluno.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Secretaria\Inicio.xaml.cs">
+      <DependentUpon>Inicio.xaml</DependentUpon>
     </Compile>
     <Page Include="AlunoInterface\AlunoHome.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -271,6 +275,10 @@
     <Page Include="InfoAluno.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Secretaria\Inicio.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>

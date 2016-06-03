@@ -53,8 +53,9 @@ namespace IHCProject.ContextoDisciplina
         }
         
         private void loadData() {
-            
+
             // query para obter os alunos do inscritos
+
             label.Content = aulaEdit.Disciplina + " "+aulaEdit.AnoDisciplina +" - Editar Aula";
             nAula1.Text = aulaEdit.NumeroAula+"";
             datalabel.Content = "Data: " + aulaEdit.Data;

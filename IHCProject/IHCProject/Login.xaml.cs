@@ -26,6 +26,7 @@ namespace IHCProject
     {
         private SqlConnection CN;
         private SqlCommand CMD;
+        private static string key = "WASERDTFVGYHJCKC";
         
 
         public Login()
@@ -50,7 +51,7 @@ namespace IHCProject
             string nome = null;
             int idade = -1;
 
-            bool isProf = true;
+            int contextoUtilizador = 0;
             try
             {
 
@@ -58,8 +59,9 @@ namespace IHCProject
 
                 CMD = new SqlCommand();
                 CMD.Connection = CN;
-                CMD.CommandText = "SELECT T.idProf,nome,idade,dataNascimento,pass FROM ESCOLA_SECUNDARIA.PESSOA JOIN ESCOLA_SECUNDARIA.PROFESSOR JOIN (SELECT * FROM ESCOLA_SECUNDARIA.PROFESSORCONTAS WHERE idProf=@idProf) AS T ON T.idProf=PROFESSOR.idProf ON PESSOA.ncc=PROFESSOR.ncc;";
-                CMD.Parameters.AddWithValue("@idProf",userBox.Text);
+                CMD.CommandText = "EXEC PROJETO.p_loginProf @idProf,@key1";
+                CMD.Parameters.AddWithValue("@idProf", userBox.Text);
+                CMD.Parameters.AddWithValue("@key1", key);
                 SqlDataReader RDR = CMD.ExecuteReader();
                 if (RDR.Read()) {
                     pass=RDR["pass"].ToString();
@@ -74,9 +76,10 @@ namespace IHCProject
                 
                 // é um aluno
                 if (pass==null) {
-                    isProf = false;
-                    CMD.CommandText = "SELECT T.idAluno,nome,idade,dataNascimento,pass FROM ESCOLA_SECUNDARIA.PESSOA JOIN ESCOLA_SECUNDARIA.ALUNO JOIN  (SELECT * FROM ESCOLA_SECUNDARIA.ALUNOCONTAS WHERE idAluno=@idAluno) AS T ON T.idAluno=ALUNO.idAluno ON PESSOA.ncc=Aluno.ncc;";
+                    contextoUtilizador = 1;
+                    CMD.CommandText = "EXEC PROJETO.p_loginAluno @idAluno,@key2";
                     CMD.Parameters.AddWithValue("@idAluno", userBox.Text);
+                    CMD.Parameters.AddWithValue("@key2", key);
                     RDR = CMD.ExecuteReader();
                     if (RDR.Read())
                     {
@@ -90,6 +93,26 @@ namespace IHCProject
                     
                 }
 
+                // é um admistrador
+                if (pass == null)
+                {
+                    contextoUtilizador = 2;
+                    CMD.CommandText = "EXEC PROJETO.p_loginSecretaria @idUser,@key";
+                    CMD.Parameters.AddWithValue("@idUser", userBox.Text);
+                    CMD.Parameters.AddWithValue("@key", key);
+                    RDR = CMD.ExecuteReader();
+                    if (RDR.Read())
+                    {
+                        pass = RDR["password"].ToString();
+                        id = int.Parse(RDR["idAdmin"].ToString());
+                        nome = RDR["nome"].ToString();
+                        dataNascimento = RDR["dataNascimento"].ToString().Split()[0];
+                        idade = int.Parse(RDR["idade"].ToString());
+                    }
+                    RDR.Close();
+
+                }
+
                 //erro nao encontrou utilizador
                 if (pass == null) {
                     MessageBox.Show("Número de utilizador inválido");
@@ -97,15 +120,30 @@ namespace IHCProject
                 }
 
                 //entrar na conta respetiva
-                if (isProf)
+                if (contextoUtilizador == 0)
                 {
                     //verificar pass
                     if (password.Password.Equals(pass))
                     {
                         //entrar na conta do prof
-                        Professor prof = new Professor(id,nome,idade,dataNascimento);
-                        MinhasDisciplinas Menu = new MinhasDisciplinas(prof,CN);
+                        Professor prof = new Professor(id, nome, idade, dataNascimento);
+                        MinhasDisciplinas Menu = new MinhasDisciplinas(prof, CN);
                         this.NavigationService.Navigate(Menu);
+                    }
+                    else {
+                        MessageBox.Show("Password de utilizador inválida");
+                        return;
+                    }
+                }
+                else if (contextoUtilizador == 1)
+                {
+                    //verificar pass
+                    if (password.Password.Equals(pass))
+                    {
+                        //entrar na conta do aluno
+                        Aluno aluno = new Aluno(id, nome, idade, dataNascimento);
+                        AlunoInterface.AlunoHome home = new AlunoInterface.AlunoHome(aluno, CN);
+                        this.NavigationService.Navigate(home);
                     }
                     else {
                         MessageBox.Show("Password de utilizador inválida");
@@ -116,9 +154,10 @@ namespace IHCProject
                     //verificar pass
                     if (password.Password.Equals(pass))
                     {
+                        Console.WriteLine("secretaria");
                         //entrar na conta do aluno
-                        Aluno aluno = new Aluno(id, nome, idade, dataNascimento);
-                        AlunoInterface.AlunoHome home = new AlunoInterface.AlunoHome(aluno,CN);
+                        SecretariaData sec = new SecretariaData(id, nome, idade, dataNascimento);
+                        Secretaria.Inicio home = new Secretaria.Inicio(sec, CN);
                         this.NavigationService.Navigate(home);
                     }
                     else {
