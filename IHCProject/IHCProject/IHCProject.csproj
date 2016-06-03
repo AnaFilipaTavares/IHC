@@ -141,8 +141,17 @@
     <Compile Include="Secretaria\Inicio.xaml.cs">
       <DependentUpon>Inicio.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Secretaria\InsertAluno.xaml.cs">
+      <DependentUpon>InsertAluno.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Secretaria\InsertCurso.xaml.cs">
       <DependentUpon>InsertCurso.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Secretaria\InsertEE.xaml.cs">
+      <DependentUpon>InsertEE.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Secretaria\InsertProf.xaml.cs">
+      <DependentUpon>InsertProf.xaml</DependentUpon>
     </Compile>
     <Compile Include="Secretaria\Inserções.xaml.cs">
       <DependentUpon>Inserções.xaml</DependentUpon>
@@ -293,7 +302,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Secretaria\InsertAluno.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Secretaria\InsertCurso.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Secretaria\InsertEE.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Secretaria\InsertProf.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

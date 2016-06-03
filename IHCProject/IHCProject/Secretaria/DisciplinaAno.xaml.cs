@@ -92,10 +92,6 @@ namespace IHCProject.Secretaria
 
                 if (((DisciplinaAno)v.Items.GetItemAt(v.Items.Count - 1)).nomeDisciplina.Text.Equals("") && ((DisciplinaAno)v.Items.GetItemAt(v.Items.Count - 2)).nomeDisciplina.Text.Equals(""))
                     v.Items.RemoveAt(v.Items.Count - 1);
-
-
-
-
             }
         }
     }

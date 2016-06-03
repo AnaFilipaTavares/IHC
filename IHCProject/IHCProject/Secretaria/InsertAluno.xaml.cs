@@ -17,38 +17,38 @@ using System.Windows.Shapes;
 namespace IHCProject.Secretaria
 {
     /// <summary>
-    /// Interaction logic for Inserções.xaml
+    /// Interaction logic for InsertAluno.xaml
     /// </summary>
-    public partial class Inserções : Page
+    public partial class InsertAluno : Page
     {
-        private SqlConnection CN;
+        private SqlConnection cN;
 
-        public Inserções()
+        public InsertAluno()
         {
             InitializeComponent();
         }
-
-        public Inserções(SqlConnection CN) :this()
+        public InsertAluno(SqlConnection cN): this()
         {
-            this.CN = CN;
+            this.cN = cN;
         }
+
+
 
         private void Curso_Click(object sender, RoutedEventArgs e)
         {
-            InsertCurso c = new InsertCurso(CN);
+            InsertCurso c = new InsertCurso(cN);
             this.NavigationService.Navigate(c);
         }
 
         private void Prof_Click(object sender, RoutedEventArgs e)
         {
-            InsertProf p = new InsertProf(CN);
+            InsertProf p = new InsertProf(cN);
             this.NavigationService.Navigate(p);
         }
 
         private void Aluno_Click(object sender, RoutedEventArgs e)
         {
-            InsertAluno a = new InsertAluno(CN);
-            this.NavigationService.Navigate(a);
+
         }
     }
 }
