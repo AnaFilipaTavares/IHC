@@ -81,7 +81,7 @@ namespace IHCProject
 
                 CMD = new SqlCommand();
                 CMD.Connection = CN;
-                CMD.CommandText = "SELECT PESSOA.nome,PROFESSOR.idProf, HORARIO_DISCIPLINA.id,DISCIPLINA.codigo,DISCIPLINA.designação AS nomeDisciplina,HORARIO_DISCIPLINA.ano,TURMA.designação FROM ESCOLA_SECUNDARIA.HORARIO_DISCIPLINA JOIN ESCOLA_SECUNDARIA.PROFESSOR ON professor=idProf JOIN ESCOLA_SECUNDARIA.PESSOA ON PESSOA.ncc=PROFESSOR.ncc JOIN ESCOLA_SECUNDARIA.DISCIPLINA ON disciplina=codigo JOIN ESCOLA_SECUNDARIA.TURMA ON turma=TURMA.codigo WHERE idProf!=@idProf;";
+                CMD.CommandText = "EXEC PROJETO.p_listaSubstProf @idProf @disciplina @professor";
                 CMD.Parameters.AddWithValue("@idProf", prof.IdProf);
                 SqlDataReader RDR = CMD.ExecuteReader();
                 while (RDR.Read())
@@ -143,37 +143,25 @@ namespace IHCProject
         private void search_Click(object sender, RoutedEventArgs e)
         {
             listBoxDisciplinas.Items.Clear();
-            string query = "SELECT PESSOA.nome,PROFESSOR.idProf, HORARIO_DISCIPLINA.id,DISCIPLINA.codigo,DISCIPLINA.designação AS nomeDisciplina,HORARIO_DISCIPLINA.ano,TURMA.designação FROM ESCOLA_SECUNDARIA.HORARIO_DISCIPLINA JOIN ESCOLA_SECUNDARIA.PROFESSOR ON professor=idProf JOIN ESCOLA_SECUNDARIA.PESSOA ON PESSOA.ncc=PROFESSOR.ncc JOIN ESCOLA_SECUNDARIA.DISCIPLINA ON disciplina=codigo JOIN ESCOLA_SECUNDARIA.TURMA ON turma=TURMA.codigo";
-            bool existWhere = false;
 
-            if (!disciplina_search.Text.Equals(""))
-            {
-                query += " WHERE DISCIPLINA.designação LIKE '%" + disciplina_search.Text+"%'";
-                existWhere = true;
-            }
-
-            if (!professor_search.Text.Equals(""))
-            {
-                if (existWhere)
-                    query += " AND PESSOA.nome LIKE '%" + professor_search.Text + "%'";
-                else {
-                    query += " WHERE PESSOA.nome LIKE '%" + professor_search.Text + "%'";
-                    existWhere = true;
-                }
-            }
-
-            if (existWhere)
-                query += " AND idProf!=@idProf;";
-            else
-                query += " WHERE idProf!=@idProf;";
-
-                try
+            try
             {
                 if (CN.State == ConnectionState.Closed) CN.Open();
 
                 CMD = new SqlCommand();
                 CMD.Connection = CN;
-                CMD.CommandText = query;
+                CMD.CommandText = "EXEC PROJETO.p_listaSubstProf @idProf @disciplina @professor";
+
+                if (!disciplina_search.Text.Equals("")) { 
+                    CMD.CommandText = "EXEC PROJETO.p_listaSubstProf @idProf @disciplina";
+                    CMD.Parameters.AddWithValue("@disciplina", disciplina_search.Text);
+                }
+                if (!professor_search.Text.Equals(""))
+                {
+                    CMD.CommandText = "EXEC PROJETO.p_listaSubstProf @idProf @disciplina";
+                    CMD.Parameters.AddWithValue("@professor", professor_search.Text);
+                }
+
                 CMD.Parameters.AddWithValue("@idProf", prof.IdProf);
                 SqlDataReader RDR = CMD.ExecuteReader();
                 while (RDR.Read())

@@ -120,6 +120,18 @@ namespace IHCProject.infoClass
                 case "12:45:00":
                     rowIndex = 4;
                     break;
+                case "13:40:00":
+                    rowIndex = 5;
+                    break;
+                case "14:40:00":
+                    rowIndex = 6;
+                    break;
+                case "15:30:00":
+                    rowIndex =7 ;
+                    break;
+                case "16:25:00":
+                    rowIndex = 8;
+                    break;
                 default:
                     rowIndex = -1;
                     break;
