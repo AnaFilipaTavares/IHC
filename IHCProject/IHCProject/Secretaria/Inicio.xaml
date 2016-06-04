@@ -31,7 +31,7 @@
             </Menu>
         </GroupBox>
 
-        <Label x:Name="label" Grid.Column="1" Grid.Row="0" Content="Disciplina - Inicio" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20"/>
+        <Label x:Name="label" Grid.Column="1" Grid.Row="0" Content="Secretaria - Inicio" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20"/>
 
         <Grid Grid.Column="1" Grid.Row="1">
 

@@ -51,7 +51,7 @@
                     <MenuItem Header="Curso" Height="30" FontSize="16" Width="60" HorizontalAlignment="Center" Click="Curso_Click" />
                     <MenuItem Header="Aluno" Height="30" FontSize="16" Width="60" HorizontalAlignment="Center" Click="Aluno_Click" />
                     <MenuItem Header="Professor" Height="30" FontSize="16" Width="Auto" HorizontalAlignment="Center" Click="Prof_Click" />
-                    <MenuItem Header="Encarregado de Educação" Height="30" FontSize="16" Width="Auto" HorizontalAlignment="Center" />
+                    <MenuItem Header="Encarregado de Educação" Height="30" FontSize="16" Width="Auto" HorizontalAlignment="Center" Click="EE_Click" />
 
                 </Menu>
             </GroupBox>
@@ -88,11 +88,10 @@
                 <Label x:Name="label8" Grid.Row="8" Content="Encarregado Educação: " HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16"/>
                 <TextBox x:Name="t8" Text="" Height="30"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="241" FontSize="16" Grid.Row="8"/>
                 <Label x:Name="label9" Grid.Row="9" Content="Curso: " HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16"/>
-                <TextBox x:Name="t9" Text="" Height="30"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="241" FontSize="16" Grid.Row="9"/>
-                <Label x:Name="label10" Grid.Row="10" Content="Turma: " HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16"/>
-                <TextBox x:Name="t10" Text="" Height="30"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="241" FontSize="16" Grid.Row="10"/>
+                <ComboBox x:Name="t9" Text="{Binding Nome}" Height="30"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="241" FontSize="16" Grid.Row="9"/>
                 <Label x:Name="label11" Grid.Row="2" Content="Nome: " HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16"/>
                 <TextBox x:Name="t11" Text="" Height="30"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="241" FontSize="16" Grid.Row="2"/>
+                <Button x:Name="button" Grid.Row="10" Width="60" Height="30" Content="Guardar"  HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="50,0" Click="button_Click"/>
             </Grid>
         </Grid>
     </Grid>

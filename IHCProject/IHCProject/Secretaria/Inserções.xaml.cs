@@ -50,5 +50,11 @@ namespace IHCProject.Secretaria
             InsertAluno a = new InsertAluno(CN);
             this.NavigationService.Navigate(a);
         }
+
+        private void EE_Click(object sender, RoutedEventArgs e)
+        {
+            InsertEE x = new InsertEE(CN);
+            this.NavigationService.Navigate(x);
+        }
     }
 }

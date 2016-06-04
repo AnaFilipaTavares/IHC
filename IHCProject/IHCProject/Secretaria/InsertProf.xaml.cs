@@ -33,7 +33,6 @@ namespace IHCProject.Secretaria
             this.cN = cN;
         }
 
-
         private void Curso_Click(object sender, RoutedEventArgs e)
         {
             InsertCurso c = new InsertCurso(cN);
@@ -48,8 +47,14 @@ namespace IHCProject.Secretaria
 
         private void Aluno_Click(object sender, RoutedEventArgs e)
         {
-            InsertAluno a  = new InsertAluno(cN);
+            InsertAluno a = new InsertAluno(cN);
             this.NavigationService.Navigate(a);
+        }
+
+        private void EE_Click(object sender, RoutedEventArgs e)
+        {
+            InsertEE x = new InsertEE(cN);
+            this.NavigationService.Navigate(x);
         }
     }
 }

@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using IHCProject.infoClass;
 
 namespace IHCProject.Secretaria
 {
@@ -22,17 +23,18 @@ namespace IHCProject.Secretaria
     public partial class InsertAluno : Page
     {
         private SqlConnection cN;
+        private SqlCommand CMD;
 
         public InsertAluno()
         {
             InitializeComponent();
+
         }
-        public InsertAluno(SqlConnection cN): this()
+        public InsertAluno(SqlConnection cN) : this()
         {
             this.cN = cN;
+            loadData();
         }
-
-
 
         private void Curso_Click(object sender, RoutedEventArgs e)
         {
@@ -46,9 +48,43 @@ namespace IHCProject.Secretaria
             this.NavigationService.Navigate(p);
         }
 
+        private void EE_Click(object sender, RoutedEventArgs e)
+        {
+            InsertEE x = new InsertEE(cN);
+            this.NavigationService.Navigate(x);
+        }
+
         private void Aluno_Click(object sender, RoutedEventArgs e)
         {
+            loadData();
+        }
 
+        private void loadData()
+        {
+            try
+            {
+                if (cN.State == System.Data.ConnectionState.Closed) cN.Open();
+
+                CMD = new SqlCommand();
+                CMD.Connection = cN;
+                CMD.CommandText = "SELECT * from PROJETO.PLANO_CURSO;";
+                SqlDataReader RDR = CMD.ExecuteReader();
+                while (RDR.Read())
+                {
+                    t9.Items.Add(new Curso(int.Parse(RDR["codigo"].ToString()), RDR["nome"].ToString()));
+
+                }
+                RDR.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro na base de dados");
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
         }
     }
 }

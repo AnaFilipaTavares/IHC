@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:IHCProject.Secretaria"
       mc:Ignorable="d" 
-       d:DesignHeight="450" d:DesignWidth="800" 
+       d:DesignHeight="505.5" d:DesignWidth="812" 
       Title="InsertCurso">
 
     <Grid>
@@ -48,9 +48,11 @@
                             <StackPanel Orientation="Horizontal"/>
                         </ItemsPanelTemplate>
                     </Menu.ItemsPanel>
-                    <MenuItem Header="Início" Height="30" FontSize="16" Width="60" HorizontalAlignment="Center" />
-                    <MenuItem Background="LightSeaGreen" Header="Curso" Height="30" FontSize="16" Width="60" HorizontalAlignment="Center" />
-                    <MenuItem Header="Aluno" Height="30" FontSize="16" Width="60" HorizontalAlignment="Center" />
+                    <MenuItem Background="LightSeaGreen" Header="Início" Height="30" FontSize="16" Width="60" HorizontalAlignment="Center" />
+                    <MenuItem Header="Curso" Height="30" FontSize="16" Width="60" HorizontalAlignment="Center" Click="Curso_Click" />
+                    <MenuItem Header="Aluno" Height="30" FontSize="16" Width="60" HorizontalAlignment="Center" Click="Aluno_Click" />
+                    <MenuItem Header="Professor" Height="30" FontSize="16" Width="Auto" HorizontalAlignment="Center" Click="Prof_Click" />
+                    <MenuItem Header="Encarregado de Educação" Height="30" FontSize="16" Width="Auto" HorizontalAlignment="Center" Click="EE_Click" />
 
                 </Menu>
             </GroupBox>
@@ -59,14 +61,14 @@
                     <Label x:Name="Curso" Content="Curso: " HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="16"/>
                     <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="31" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="161"/>
                 </DockPanel>
-                <ListView x:Name="listView" HorizontalAlignment="Center" VerticalAlignment="Top">
+                <ListView x:Name="listView" Height="300" HorizontalAlignment="Center" VerticalAlignment="Top">
                     <ListView.ItemContainerStyle>
-                    <Style TargetType="ListViewItem">
-                        <Setter Property="Focusable" Value="false"/>
-                    </Style>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="Focusable" Value="false"/>
+                        </Style>
                     </ListView.ItemContainerStyle>
-                    </ListView>
-                <Button x:Name="button" Width="60" Height="40" Content="Guardar"  HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="50,0" Click="button_Click"/>
+                </ListView>
+                <Button x:Name="button" Width="60" Height="35" Content="Guardar"  HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="50,0" Click="button_Click"/>
             </StackPanel>
         </Grid>
     </Grid>

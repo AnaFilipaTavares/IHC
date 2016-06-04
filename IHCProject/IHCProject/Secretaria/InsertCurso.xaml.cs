@@ -130,8 +130,35 @@ namespace IHCProject.Secretaria
                 MessageBox.Show("Erro na base de dados");
                 Console.WriteLine(ex.Message);
             }
+            MessageBox.Show("Curso adicionado com sucesso");
             listView.Items.Clear();
+            textBox.Clear();
             loadData();
         }
+
+        private void Curso_Click(object sender, RoutedEventArgs e)
+        {
+            loadData();
+        }
+
+        private void Prof_Click(object sender, RoutedEventArgs e)
+        {
+            InsertProf p = new InsertProf(CN);
+            this.NavigationService.Navigate(p);
+        }
+
+        private void Aluno_Click(object sender, RoutedEventArgs e)
+        {
+            InsertAluno a = new InsertAluno(CN);
+            this.NavigationService.Navigate(a);
+        }
+
+        private void EE_Click(object sender, RoutedEventArgs e)
+        {
+            InsertEE x = new InsertEE(CN);
+            this.NavigationService.Navigate(x);
+        }
+
+
     }
 }

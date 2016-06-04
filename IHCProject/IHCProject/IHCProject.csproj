@@ -121,6 +121,7 @@
     <Compile Include="infoClass\CelulaCalendarioAluno.xaml.cs">
       <DependentUpon>CelulaCalendarioAluno.xaml</DependentUpon>
     </Compile>
+    <Compile Include="infoClass\Curso.cs" />
     <Compile Include="infoClass\DisciplinaSala.cs" />
     <Compile Include="infoClass\DisciplinaHorario.cs" />
     <Compile Include="infoClass\DisplayDisciplinaHorario.xaml.cs">

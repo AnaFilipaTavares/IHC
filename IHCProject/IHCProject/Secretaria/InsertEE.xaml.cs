@@ -27,10 +27,9 @@ namespace IHCProject.Secretaria
             InitializeComponent();
         }
 
-        private void Aluno_Click(object sender, RoutedEventArgs e)
+        public InsertEE(SqlConnection cN): this()
         {
-            InsertAluno a = new InsertAluno(cN);
-            this.NavigationService.Navigate(a);
+            this.cN = cN;
         }
 
         private void Curso_Click(object sender, RoutedEventArgs e)
@@ -43,6 +42,24 @@ namespace IHCProject.Secretaria
         {
             InsertProf p = new InsertProf(cN);
             this.NavigationService.Navigate(p);
+        }
+
+        private void Aluno_Click(object sender, RoutedEventArgs e)
+        {
+            InsertAluno a = new InsertAluno(cN);
+            this.NavigationService.Navigate(a);
+        }
+
+        private void EE_Click(object sender, RoutedEventArgs e)
+        {
+            InsertEE x = new InsertEE(cN);
+            this.NavigationService.Navigate(x);
+        }
+
+
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
         }
     }
 }
