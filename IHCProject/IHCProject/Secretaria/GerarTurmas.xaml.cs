@@ -134,7 +134,7 @@ namespace IHCProject.Secretaria
 
                     CMD = new SqlCommand();
                     CMD.Connection = CN;
-                    CMD.CommandText = "EXEC PROJETO.insertDiretorTurma @idProf,@idTurma;";
+                    CMD.CommandText = "EXEC PROJETO.p_insertDiretorTurma @idProf,@idTurma;";
                     CMD.Parameters.AddWithValue("@idTurma", ((Turma)cblistTurmas.SelectedItem).IdTurma);
                     CMD.Parameters.AddWithValue("@idProf", ((Professor)cblistProfessores.SelectedItem).IdProf);
 

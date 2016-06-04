@@ -26,7 +26,7 @@ namespace IHCProject
     {
         private Professor professor;
         private SqlConnection CN;
-        private SqlCommand CMD;
+
         public Prof_Home()
         {
             InitializeComponent();

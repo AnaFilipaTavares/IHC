@@ -76,7 +76,8 @@ namespace IHCProject
 
                 CMD = new SqlCommand();
                 CMD.Connection = CN;
-                CMD.CommandText = "SELECT ano,designação FROM ESCOLA_SECUNDARIA.TURMA WHERE professor=" + professor.IdProf + ";";
+                CMD.CommandText = "EXEC PROJETO.p_TurmabyDT @idProf";
+                CMD.Parameters.AddWithValue("@idProf", professor.IdProf);
                 SqlDataReader RDR = CMD.ExecuteReader();
                 if (RDR.Read())
                 {
@@ -97,7 +98,8 @@ namespace IHCProject
 
                 CMD = new SqlCommand();
                 CMD.Connection = CN;
-                CMD.CommandText = "SELECT nome,idAluno FROM ((SELECT codigo FROM ESCOLA_SECUNDARIA.TURMA WHERE professor="+ professor.IdProf+ ") AS t JOIN ESCOLA_SECUNDARIA.ALUNO ON t.codigo=ALUNO.turma) JOIN ESCOLA_SECUNDARIA.PESSOA ON ALUNO.ncc=PESSOA.ncc";
+                CMD.CommandText = "EXEC PROJETO.p_AlunosTurmabyDT @idProf";
+                CMD.Parameters.AddWithValue("@idProf", professor.IdProf);
                 SqlDataReader RDR = CMD.ExecuteReader();
                 while (RDR.Read())
                 {   
