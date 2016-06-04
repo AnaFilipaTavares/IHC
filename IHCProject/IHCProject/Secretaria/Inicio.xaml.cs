@@ -24,19 +24,19 @@ namespace IHCProject.Secretaria
     /// </summary>
     public partial class Inicio : Page
     {
-        private SecretariaData secretaria;
+
 
         private SqlConnection CN;
-        private SqlCommand CMD;
+
 
         public Inicio()
         {
             InitializeComponent();
         }
 
-        public Inicio(SecretariaData secretaria, SqlConnection cN):this()
+        public Inicio(SqlConnection cN):this()
         {
-            this.secretaria = secretaria;
+          
             CN = cN;
 
         }
@@ -44,6 +44,12 @@ namespace IHCProject.Secretaria
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
             Inserções i = new Inserções(CN);
+            this.NavigationService.Navigate(i);
+        }
+
+        private void Gestao_Click(object sender, RoutedEventArgs e)
+        {
+            GestInico i = new GestInico(CN);
             this.NavigationService.Navigate(i);
         }
     }

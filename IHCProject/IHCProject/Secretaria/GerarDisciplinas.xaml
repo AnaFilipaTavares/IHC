@@ -1,0 +1,77 @@
+﻿<Page x:Class="IHCProject.Secretaria.GerarDisciplinas"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:IHCProject.Secretaria"
+      mc:Ignorable="d" 
+     d:DesignHeight="450" d:DesignWidth="800" 
+      Title="InsertProf">
+
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.22*"/>
+            <ColumnDefinition Width="0.78*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="0.8*"/>
+        </Grid.RowDefinitions>
+
+        <GroupBox Grid.Column="0" Grid.Row="1" x:Name="gp_menu" Background="White" Header="Menu principal"  FontSize="14" VerticalAlignment="Top" HorizontalAlignment="center" BorderThickness="2" BorderBrush="{DynamicResource {x:Static SystemColors.GradientActiveCaptionBrushKey}}">
+            <Menu  Background="White"  Width="145" >
+                <Menu.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel />
+                    </ItemsPanelTemplate>
+                </Menu.ItemsPanel>
+                <MenuItem Header="Perfil" Height="30" FontSize="16" Width="145" HorizontalAlignment="Center" Click="Perfil_Click"/>
+                <MenuItem Header="Inserções" Height="30" FontSize="16" Width="145" HorizontalAlignment="Center" Click="Insert_Click"/>
+                <MenuItem Header="Gestão" Height="30" FontSize="16" Width="145" HorizontalAlignment="Center" />
+                         </Menu>
+        </GroupBox>
+
+        <Label x:Name="label" Grid.Column="1" Grid.Row="0" Content="Disciplina - Inicio" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20"/>
+
+        <Grid Grid.Column="1" Grid.Row="1">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="0.8*"/>
+            </Grid.RowDefinitions>
+
+            <GroupBox Margin="20,0,20,0" Grid.Row="0" Background="White" x:Name="menu2" Header="Menu inserções" VerticalAlignment="Top" HorizontalAlignment="Stretch" FontSize="14"  BorderThickness="2" BorderBrush="{DynamicResource {x:Static SystemColors.GradientActiveCaptionBrushKey}}">
+                <Menu Background="White" HorizontalAlignment="center"   >
+                    <Menu.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </Menu.ItemsPanel>
+                    <MenuItem Header="Início" Height="30" FontSize="16" Width="60" HorizontalAlignment="Center" Click="Gest_inicio" />
+                    <MenuItem Background="LightSeaGreen"  Header="Disciplinas" Height="30" FontSize="16" Width="Auto" HorizontalAlignment="Center" Click="Gest_DisciplinaClick" />
+                    <MenuItem Header="Turmas" Height="30" FontSize="16" Width="Auto" HorizontalAlignment="Center" Click="Gest_turmaClick" />
+                    <MenuItem Header="Horário" Height="30" FontSize="16" Width="Auto" HorizontalAlignment="Center" Click="Gest_horarioClick" />
+
+                </Menu>
+            </GroupBox>
+
+            <Grid Grid.Column="1" Grid.Row="1" Margin="20,0,0,0">
+                <StackPanel>
+                    <GroupBox  x:Name="gpseach" Header="Filtros de pesquisa" HorizontalAlignment="Stretch" Margin="20,0,20,0" VerticalAlignment="Top" FontSize="14" BorderThickness="2" BorderBrush="{DynamicResource {x:Static SystemColors.GradientActiveCaptionBrushKey}}">
+                        <StackPanel HorizontalAlignment="Center" Grid.Column="1" Grid.Row="1" Orientation="Horizontal">
+                            <Label  Style="{StaticResource labelStyle}" x:Name="disciplina" Content="Professor: " HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                            <ComboBox Name="cblistProfessores" Width="200" />
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox  x:Name="list" HorizontalAlignment="Stretch" Height="250" Margin="20,0,20,0" Header="Lista disciplinas sem professor "  FontSize="14" BorderThickness="2" BorderBrush="{DynamicResource {x:Static SystemColors.GradientActiveCaptionBrushKey}}">
+                        <ListBox x:Name="listBoxDisciplinas"   />
+                    </GroupBox>
+                    <Button  x:Name="button" Content="Gerar Horario" HorizontalAlignment="Right" Margin="0,10,25,0" VerticalAlignment="Top" Width="126" Height="25" Click="button_Click"/>
+                </StackPanel>
+
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>
+

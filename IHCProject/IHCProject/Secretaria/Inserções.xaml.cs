@@ -56,5 +56,11 @@ namespace IHCProject.Secretaria
             InsertEE x = new InsertEE(CN);
             this.NavigationService.Navigate(x);
         }
+
+        private void Gestao_Click(object sender, RoutedEventArgs e)
+        {
+            GestInico x = new GestInico(CN);
+            this.NavigationService.Navigate(x);
+        }
     }
 }

@@ -19,47 +19,47 @@ namespace IHCProject.Secretaria
     /// <summary>
     /// Interaction logic for InsertProf.xaml
     /// </summary>
-    public partial class InsertProf : Page
+    public partial class GestInico : Page
     {
         private SqlConnection cN;
 
-        public InsertProf()
+        public GestInico()
         {
             InitializeComponent();
         }
 
-        public InsertProf(SqlConnection cN): this()
+        public GestInico(SqlConnection cN): this()
         {
             this.cN = cN;
         }
 
-        private void Curso_Click(object sender, RoutedEventArgs e)
+        private void Gest_DisciplinaClick(object sender, RoutedEventArgs e)
         {
-            InsertCurso c = new InsertCurso(cN);
-            this.NavigationService.Navigate(c);
-        }
-
-        private void Prof_Click(object sender, RoutedEventArgs e)
-        {
-            InsertProf p = new InsertProf(cN);
-            this.NavigationService.Navigate(p);
-        }
-
-        private void Aluno_Click(object sender, RoutedEventArgs e)
-        {
-            InsertAluno a = new InsertAluno(cN);
+            GerarDisciplinas a = new GerarDisciplinas(cN);
             this.NavigationService.Navigate(a);
         }
 
-        private void EE_Click(object sender, RoutedEventArgs e)
+        private void Gest_horarioClick(object sender, RoutedEventArgs e)
         {
-            InsertEE x = new InsertEE(cN);
-            this.NavigationService.Navigate(x);
+            GerarHorario a = new GerarHorario(cN);
+            this.NavigationService.Navigate(a);
         }
 
-        private void Gestao_Click(object sender, RoutedEventArgs e)
+        private void Gest_turmaClick(object sender, RoutedEventArgs e)
         {
-            GestInico x = new GestInico(cN);
+            GerarTurmas a = new GerarTurmas(cN);
+            this.NavigationService.Navigate(a);
+        }
+
+
+        private void Perfil_Click(object sender, RoutedEventArgs e)
+        {
+            Inicio x = new Inicio(cN);
+            this.NavigationService.Navigate(x);
+        }
+        private void Insert_Click(object sender, RoutedEventArgs e)
+        {
+            Inserções x = new Inserções(cN);
             this.NavigationService.Navigate(x);
         }
     }

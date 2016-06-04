@@ -28,8 +28,8 @@
                 </Menu.ItemsPanel>
                 <MenuItem Header="Perfil" Height="30" FontSize="16" Width="145" HorizontalAlignment="Center"/>
                 <MenuItem Header="Inserções" Height="30" FontSize="16" Width="145" HorizontalAlignment="Center"/>
-
-            </Menu>
+                <MenuItem Header="Gestão" Height="30" FontSize="16" Width="145" HorizontalAlignment="Center" Click="Gestao_Click"/>
+                         </Menu>
         </GroupBox>
 
         <Label x:Name="label" Grid.Column="1" Grid.Row="0" Content="Disciplina - Inicio" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20"/>

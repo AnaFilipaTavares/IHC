@@ -27,7 +27,7 @@
                 </Menu.ItemsPanel>
                 <MenuItem Header="Perfil" Height="30" FontSize="16" Width="145" HorizontalAlignment="Center"/>
                 <MenuItem Header="Inserções" Height="30" FontSize="16" Width="145" HorizontalAlignment="Center" Click="MenuItem_Click"/>
-
+                <MenuItem Header="Gestão" Height="30" FontSize="16" Width="145" HorizontalAlignment="Center" Click="Gestao_Click"/>
             </Menu>
         </GroupBox>
 

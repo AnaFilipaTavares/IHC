@@ -128,6 +128,7 @@
       <DependentUpon>DisplayDisciplinaHorario.xaml</DependentUpon>
     </Compile>
     <Compile Include="infoClass\HorarioDisciplina.cs" />
+    <Compile Include="infoClass\Turma.cs" />
     <Compile Include="infoClass\SecretariaData.cs" />
     <Compile Include="JustificarFalta.xaml.cs">
       <DependentUpon>JustificarFalta.xaml</DependentUpon>
@@ -136,8 +137,20 @@
     <Compile Include="InfoAluno.xaml.cs">
       <DependentUpon>InfoAluno.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Secretaria\DisciplinaAddProf.xaml.cs">
+      <DependentUpon>DisciplinaAddProf.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Secretaria\DisciplinaAno.xaml.cs">
       <DependentUpon>DisciplinaAno.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Secretaria\GerarTurmas.xaml.cs">
+      <DependentUpon>GerarTurmas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Secretaria\GerarDisciplinas.xaml.cs">
+      <DependentUpon>GerarDisciplinas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Secretaria\GerarHorario.xaml.cs">
+      <DependentUpon>GerarHorario.xaml</DependentUpon>
     </Compile>
     <Compile Include="Secretaria\Inicio.xaml.cs">
       <DependentUpon>Inicio.xaml</DependentUpon>
@@ -150,6 +163,9 @@
     </Compile>
     <Compile Include="Secretaria\InsertEE.xaml.cs">
       <DependentUpon>InsertEE.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Secretaria\GestInico.xaml.cs">
+      <DependentUpon>GestInico.xaml</DependentUpon>
     </Compile>
     <Compile Include="Secretaria\InsertProf.xaml.cs">
       <DependentUpon>InsertProf.xaml</DependentUpon>
@@ -295,9 +311,25 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Secretaria\DisciplinaAddProf.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Secretaria\DisciplinaAno.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Secretaria\GerarTurmas.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Secretaria\GerarDisciplinas.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Secretaria\GerarHorario.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Secretaria\Inicio.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -314,6 +346,10 @@
     <Page Include="Secretaria\InsertEE.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Secretaria\GestInico.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Secretaria\InsertProf.xaml">
       <SubType>Designer</SubType>

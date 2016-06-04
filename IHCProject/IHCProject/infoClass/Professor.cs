@@ -82,7 +82,7 @@ namespace IHCProject.infoClass
 
         public override string ToString()
         {
-            return "Nome: " + nome + " Número: " + idProf;
+            return nome + " Id: " + idProf;
         }
     }
 }

@@ -89,7 +89,7 @@ namespace IHCProject.AlunoInterface
 
                 CMD = new SqlCommand();
                 CMD.Connection = CN;
-                CMD.CommandText = "EXEC ESCOLA_SECUNDARIA.SP_DadosAluno @aluno;";
+                CMD.CommandText = "EXEC PROJETO.SP_DadosAluno @aluno;";
                 CMD.Parameters.AddWithValue("@aluno", aluno.IdAluno);
 
                 SqlDataReader RDR = CMD.ExecuteReader();

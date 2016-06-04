@@ -86,5 +86,11 @@ namespace IHCProject.Secretaria
         private void button_Click(object sender, RoutedEventArgs e)
         {
         }
+
+        private void Gestao_Click(object sender, RoutedEventArgs e)
+        {
+            GestInico x = new GestInico(cN);
+            this.NavigationService.Navigate(x);
+        }
     }
 }

@@ -54,7 +54,6 @@ namespace IHCProject
             int contextoUtilizador = 0;
             try
             {
-
                 if (CN.State==ConnectionState.Closed) CN.Open();
 
                 CMD = new SqlCommand();
@@ -64,7 +63,7 @@ namespace IHCProject
                 CMD.Parameters.AddWithValue("@key1", key);
                 SqlDataReader RDR = CMD.ExecuteReader();
                 if (RDR.Read()) {
-                    pass=RDR["pass"].ToString();
+                    pass=RDR["password"].ToString();
                     id = int.Parse(RDR["idProf"].ToString());
                     nome = RDR["nome"].ToString();
                     dataNascimento = RDR["dataNascimento"].ToString().Split()[0];
@@ -83,7 +82,7 @@ namespace IHCProject
                     RDR = CMD.ExecuteReader();
                     if (RDR.Read())
                     {
-                        pass = RDR["pass"].ToString();
+                        pass = RDR["password"].ToString();
                         id = int.Parse(RDR["idAluno"].ToString());
                         nome = RDR["nome"].ToString();
                         dataNascimento = RDR["dataNascimento"].ToString().Split()[0];
@@ -155,9 +154,9 @@ namespace IHCProject
                     if (password.Password.Equals(pass))
                     {
                         Console.WriteLine("secretaria");
-                        //entrar na conta do aluno
-                        SecretariaData sec = new SecretariaData(id, nome, idade, dataNascimento);
-                        Secretaria.Inicio home = new Secretaria.Inicio(sec, CN);
+                        //entrar na conta da secretaria
+   
+                        Secretaria.Inicio home = new Secretaria.Inicio(CN);
                         this.NavigationService.Navigate(home);
                     }
                     else {
