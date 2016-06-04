@@ -96,16 +96,16 @@ namespace IHCProject.AlunoInterface
                 if (CN.State == System.Data.ConnectionState.Closed) CN.Open();
                 CMD = new SqlCommand();
                 CMD.Connection = CN;
-                CMD.CommandText = "EXEC ESCOLA_SECUNDARIA.SP_NumFaltasAluno @aluno;";
+                CMD.CommandText = "EXEC PROJETO.p_numFaltasAluno @aluno;";
                 CMD.Parameters.AddWithValue("@aluno", aluno.IdAluno);
                 SqlDataReader RDR = CMD.ExecuteReader();
 
                 while (RDR.Read())
                 {
-                    items.Add(new Falta() { Disciplina = RDR["designação"].ToString(), Numero = (int)RDR["nFaltas"], Datas = new List<Data>()});
+                    items.Add(new Falta() { Disciplina = RDR["nome"].ToString(), Numero = (int)RDR["nFaltas"], Datas = new List<Data>()});
                 }
                 RDR.Close();
-                CMD.CommandText = "EXEC ESCOLA_SECUNDARIA.SP_FaltasAluno @idaluno";
+                CMD.CommandText = "EXEC PROJETO.p_faltasAluno @idaluno";
                 CMD.Parameters.AddWithValue("@idaluno", aluno.IdAluno);
                 SqlDataReader RDR2 = CMD.ExecuteReader();
                 int j = 1;
@@ -113,9 +113,9 @@ namespace IHCProject.AlunoInterface
                 {
                     for (int i = 0; i < items.Count; i++)
                     {
-                        if (items[i].Disciplina.Equals(RDR2["designação"].ToString()))
+                        if (items[i].Disciplina.Equals(RDR2["disciplina"].ToString()))
                         {
-                            items[i].Datas.Add(new Data() { Date = RDR2["data"].ToString().Split(' ')[0], Id = j, Sumario = RDR2["sumario"].ToString(), Descrição = RDR2["descricao"].ToString(), Tipo = RDR2["tipo"].ToString() });
+                            items[i].Datas.Add(new Data() { Date = RDR2["data"].ToString().Split(' ')[0], Id = j, Sumario = RDR2["sumario"].ToString(), Descrição = RDR2["justificação"].ToString(), Tipo = RDR2["tipo"].ToString() });
                         }
                     }
                     j++;

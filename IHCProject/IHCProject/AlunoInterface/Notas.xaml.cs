@@ -96,12 +96,12 @@ namespace IHCProject.AlunoInterface
                 if (CN.State == System.Data.ConnectionState.Closed) CN.Open();
                 CMD = new SqlCommand();
                 CMD.Connection = CN;
-                CMD.CommandText = "EXEC ESCOLA_SECUNDARIA.SP_NotasAluno @aluno;";
+                CMD.CommandText = "EXEC PROJETO.p_notasAluno @aluno;";
                 CMD.Parameters.AddWithValue("@aluno", aluno.IdAluno);
                 SqlDataReader RDR = CMD.ExecuteReader();
                 while (RDR.Read())
                 {
-                    items.Add(new Nota() { Disciplina = RDR["designação"].ToString() + " " + RDR["ano"].ToString(), Note = (int)RDR["nota"]});
+                    items.Add(new Nota() { Disciplina = RDR["nome"].ToString() + " " + RDR["ano"].ToString(), Note = (int)RDR["nota"]});
                 }
 
                 listView.ItemsSource = items;
