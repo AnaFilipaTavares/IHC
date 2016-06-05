@@ -39,8 +39,7 @@ namespace IHCProject.Secretaria
 
         private void loadData()
         {
-            cblistProfessores.Items.Clear();
-            listBoxDisciplinas.Items.Clear();
+
             try
             {
                 if (CN.State == ConnectionState.Closed) CN.Open();
@@ -49,10 +48,13 @@ namespace IHCProject.Secretaria
                 CMD.Connection = CN;
                 CMD.CommandText = "EXEC PROJETO.p_todosProfessores";
                 SqlDataReader RDR = CMD.ExecuteReader();
+                List<Professor> temp = new List<Professor>();
                 while (RDR.Read())
                 {
-                    cblistProfessores.Items.Add(new Professor(int.Parse(RDR["idProf"].ToString()), RDR["nome"].ToString()));
+                    temp.Add(new Professor(int.Parse(RDR["idProf"].ToString()), RDR["nome"].ToString()));
+                    
                 }
+                cblistProfessores.ItemsSource = temp;
                 RDR.Close();
 
                 cblistProfessores.SelectedIndex = 0;
@@ -66,20 +68,27 @@ namespace IHCProject.Secretaria
 
             // preencher a listBOX
 
+        }
+
+        private void loadDisciplinas() {
+
             try
             {
                 if (CN.State == ConnectionState.Closed) CN.Open();
 
                 CMD = new SqlCommand();
                 CMD.Connection = CN;
-                CMD.CommandText = "EXEC PROJETO.p_disciplinasSemProfessor";
+                CMD.CommandText = "EXEC PROJETO.p_disciplinasSemProfessor @idProf";
+                CMD.Parameters.AddWithValue("@idProf", ((Professor)cblistProfessores.SelectedItem).IdProf);
                 SqlDataReader RDR = CMD.ExecuteReader();
+                List<DisciplinaAddProf> temp = new List<DisciplinaAddProf>();
                 while (RDR.Read())
                 {
-                    listBoxDisciplinas.Items.Add(new DisciplinaAddProf(int.Parse(RDR["id"].ToString()), RDR["nome"].ToString()+" "+RDR["ano"].ToString()+" "+ RDR["designação"].ToString()));
+                    temp.Add(new DisciplinaAddProf(int.Parse(RDR["id"].ToString()), RDR["nome"].ToString() + " " + RDR["ano"].ToString() + " " + RDR["designação"].ToString()));
                 }
+                listBoxDisciplinas.ItemsSource = temp;
                 RDR.Close();
-
+                listBoxDisciplinas.SelectedIndex = 0;
 
 
             }
@@ -88,6 +97,7 @@ namespace IHCProject.Secretaria
                 Console.WriteLine(ex.Message);
             }
         }
+
         private void Gest_DisciplinaClick(object sender, RoutedEventArgs e)
         {
 
@@ -124,8 +134,8 @@ namespace IHCProject.Secretaria
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            foreach (DisciplinaAddProf diciplina in listBoxDisciplinas.Items) {
-                if (diciplina.checkBox.IsChecked == true)
+            
+                if (cblistProfessores.SelectedItem!= null && listBoxDisciplinas.SelectedItem!=null)
                 {
                     try
                     {
@@ -134,7 +144,7 @@ namespace IHCProject.Secretaria
                         CMD = new SqlCommand();
                         CMD.Connection = CN;
                         CMD.CommandText = "EXEC PROJETO.p_atribuirProfDisciplina @idDisciplina,@idProf;";
-                        CMD.Parameters.AddWithValue("@idDisciplina", diciplina.Id);
+                        CMD.Parameters.AddWithValue("@idDisciplina", ((DisciplinaAddProf)listBoxDisciplinas.SelectedItem).Id);
                         CMD.Parameters.AddWithValue("@idProf", ((Professor)cblistProfessores.SelectedItem).IdProf);
 
                         int temp = CMD.ExecuteNonQuery();
@@ -146,14 +156,20 @@ namespace IHCProject.Secretaria
                     catch (Exception ex)
                     {
                         Console.WriteLine(ex.Message);
-                        MessageBox.Show("Não foi possivel fazer a seguinte associação "+diciplina.Name);
+                        MessageBox.Show("Não foi possivel fazer a seguinte associação " + ((DisciplinaAddProf)listBoxDisciplinas.SelectedItem).Id);
                     }
-                }
-            }
+                
+            
             loadData();
+            }
 
         }
 
-   
+        private void cblistProfessores_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+            loadDisciplinas();
+
+        }
     }
 }

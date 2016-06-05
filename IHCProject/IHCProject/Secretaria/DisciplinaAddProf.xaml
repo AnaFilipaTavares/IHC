@@ -8,7 +8,7 @@
              d:DesignHeight="40" d:DesignWidth="350">
     <Grid HorizontalAlignment="Stretch">
         <DockPanel>
-            <CheckBox x:Name="checkBox" Content="Leciona: " HorizontalAlignment="Left"  VerticalAlignment="Center" />
+            
             <TextBlock Name="tbnomeDisciplina" Text="" Width="175"/>
         </DockPanel>
 

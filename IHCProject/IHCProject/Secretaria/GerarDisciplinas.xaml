@@ -59,15 +59,24 @@
             <Grid Grid.Column="1" Grid.Row="1" Margin="20,0,0,0">
                 <StackPanel>
                     <GroupBox  x:Name="gpseach" Header="Filtros de pesquisa" HorizontalAlignment="Stretch" Margin="20,0,20,0" VerticalAlignment="Top" FontSize="14" BorderThickness="2" BorderBrush="{DynamicResource {x:Static SystemColors.GradientActiveCaptionBrushKey}}">
+                        <StackPanel>
                         <StackPanel HorizontalAlignment="Center" Grid.Column="1" Grid.Row="1" Orientation="Horizontal">
-                            <Label  Style="{StaticResource labelStyle}" x:Name="disciplina" Content="Professor: " HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                            <ComboBox Name="cblistProfessores" Width="200" />
+                            <Label  Style="{StaticResource labelStyle}" x:Name="prof" Content="Professor: " HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                                <ComboBox Name="cblistProfessores" Width="300" SelectionChanged="cblistProfessores_SelectionChanged" />
+                                
+                            </StackPanel>
+                            <StackPanel HorizontalAlignment="Center" Grid.Column="1" Grid.Row="1" Orientation="Horizontal">
+                                <Label  Style="{StaticResource labelStyle}" x:Name="disciplina" Content="Disciplina: " HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                                <ComboBox Name="listBoxDisciplinas" Width="300" />
+                                
+                            </StackPanel>
                         </StackPanel>
                     </GroupBox>
-                    <GroupBox  x:Name="list" HorizontalAlignment="Stretch" Height="250" Margin="20,0,20,0" Header="Lista disciplinas sem professor "  FontSize="14" BorderThickness="2" BorderBrush="{DynamicResource {x:Static SystemColors.GradientActiveCaptionBrushKey}}">
-                        <ListBox x:Name="listBoxDisciplinas"   />
-                    </GroupBox>
-                    <Button  x:Name="button" Content="Gerar Horario" HorizontalAlignment="Right" Margin="0,10,25,0" VerticalAlignment="Top" Width="126" Height="25" Click="button_Click"/>
+
+                          
+
+                    
+                    <Button  x:Name="button" Content="Associar" HorizontalAlignment="Right" Margin="0,10,25,0" VerticalAlignment="Top" Width="126" Height="25" Click="button_Click"/>
                 </StackPanel>
 
             </Grid>

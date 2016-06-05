@@ -142,7 +142,8 @@ namespace IHCProject.Secretaria
         }
         private void Gest_DisciplinaClick(object sender, RoutedEventArgs e)
         {
-           
+            GerarDisciplinas a = new GerarDisciplinas(CN);
+            this.NavigationService.Navigate(a);
         }
 
 
