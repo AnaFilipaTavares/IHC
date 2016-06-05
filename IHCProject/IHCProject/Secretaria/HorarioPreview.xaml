@@ -1,0 +1,78 @@
+﻿<Window x:Class="IHCProject.Secretaria.HorarioPreview"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:IHCProject.ContextoDisciplina"
+      mc:Ignorable="d" 
+
+      Title="Horirio popUp" Height="500" Width="650">
+    <Window.Background>
+
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FF9FD6E6" Offset="0.003"/>
+                <GradientStop Color="White" Offset="1"/>
+            </LinearGradientBrush>
+
+    </Window.Background>
+    <Grid Margin="0,0,0,0">
+
+
+
+        <StackPanel Margin="20,0,20,0">
+            <Label x:Name="label" Content="Disciplina - Editar Aula" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20" />
+            <Grid  x:Name="horarioTabel" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"></RowDefinition>
+                    <RowDefinition Height="380"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120"></ColumnDefinition>
+                    <ColumnDefinition Width="500"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Horizontal" Grid.Column="1"  Grid.Row="0">
+                    <TextBlock Width="100" Height="30" VerticalAlignment="Center" Background="WhiteSmoke" TextAlignment="Center" TextBlock.FontSize="16" >Segunda</TextBlock>
+                    <TextBlock Width="100" Height="30" VerticalAlignment="Center" Background="WhiteSmoke" TextAlignment="Center" TextBlock.FontSize="16" >Terça</TextBlock>
+                    <TextBlock Width="100" Height="30" VerticalAlignment="Center" Background="WhiteSmoke" TextAlignment="Center" TextBlock.FontSize="16" >Quarta</TextBlock>
+                    <TextBlock Width="100" Height="30" VerticalAlignment="Center" Background="WhiteSmoke" TextAlignment="Center" TextBlock.FontSize="16" >Quinta</TextBlock>
+                    <TextBlock Width="100" Height="30" VerticalAlignment="Center" Background="WhiteSmoke" TextAlignment="Center" TextBlock.FontSize="16" >Sexta</TextBlock>
+                </StackPanel>
+                <StackPanel Orientation="Vertical"  Grid.Column="0"  Grid.Row="1">
+                    <TextBlock   Height="40" Background="WhiteSmoke" VerticalAlignment="Center" TextAlignment="Center" TextBlock.FontSize="16" >09:00 - 09:50</TextBlock>
+                    <TextBlock   Height="40" Background="WhiteSmoke" VerticalAlignment="Center" TextAlignment="Center" TextBlock.FontSize="16" >09:50 - 10:40</TextBlock>
+                    <TextBlock   Height="40" Background="WhiteSmoke" VerticalAlignment="Center" TextAlignment="Center" TextBlock.FontSize="16" >11:00 - 11:50</TextBlock>
+                    <TextBlock   Height="40" Background="WhiteSmoke" VerticalAlignment="Center" TextAlignment="Center" TextBlock.FontSize="16" >11:50 - 12:40</TextBlock>
+                    <TextBlock   Height="40" Background="WhiteSmoke" VerticalAlignment="Center" TextAlignment="Center" TextBlock.FontSize="16" >12:45 - 13:35</TextBlock>
+                    <TextBlock   Height="40" Background="WhiteSmoke" VerticalAlignment="Center" TextAlignment="Center" TextBlock.FontSize="16" >13:40 - 14:30</TextBlock>
+                    <TextBlock   Height="40" Background="WhiteSmoke" VerticalAlignment="Center" TextAlignment="Center" TextBlock.FontSize="16" >14:40 - 15:30</TextBlock>
+                    <TextBlock   Height="40" Background="WhiteSmoke" VerticalAlignment="Center" TextAlignment="Center" TextBlock.FontSize="16" >15:30 - 16:20</TextBlock>
+                    <TextBlock   Height="40" Background="WhiteSmoke" VerticalAlignment="Center" TextAlignment="Center" TextBlock.FontSize="16" >16:25 - 17:15</TextBlock>
+                </StackPanel>
+                <Grid Name="Container" Grid.Column="1" Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition  Height="40"></RowDefinition>
+                        <RowDefinition  Height="40"></RowDefinition>
+                        <RowDefinition  Height="40"></RowDefinition>
+                        <RowDefinition  Height="40"></RowDefinition>
+                        <RowDefinition  Height="40"></RowDefinition>
+                        <RowDefinition  Height="40"></RowDefinition>
+                        <RowDefinition  Height="40"></RowDefinition>
+                        <RowDefinition  Height="40"></RowDefinition>
+                        <RowDefinition  Height="40"></RowDefinition>
+                        <RowDefinition  Height="40"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"></ColumnDefinition>
+                        <ColumnDefinition Width="100"></ColumnDefinition>
+                        <ColumnDefinition Width="100"></ColumnDefinition>
+                        <ColumnDefinition Width="100"></ColumnDefinition>
+                        <ColumnDefinition Width="100"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                </Grid>
+            </Grid>
+        </StackPanel>
+
+
+    </Grid>
+
+</Window>

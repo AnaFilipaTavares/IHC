@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="IHCProject.Secretaria.DisciplinaDisplayHorario"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:IHCProject.Secretaria"
+             mc:Ignorable="d" 
+             d:DesignHeight="40" d:DesignWidth="420">
+    <Grid>
+        <DockPanel>
+            <Label FontSize="14" Content="Minutos: "/>
+            <ComboBox Name="cbMin" FontSize="14" SelectedIndex="0">
+                <ComboBoxItem Content="100"></ComboBoxItem>
+                <ComboBoxItem Content="200"></ComboBoxItem>
+                <ComboBoxItem Content="300"></ComboBoxItem>
+            </ComboBox>
+            <Label Content="  " FontSize="14"/>
+            <TextBlock Name="nomeDisciplina" FontSize="14" Width="150" Text=""/>
+            <Label Content="  " FontSize="14"/>
+            <Label Content="Sala:" FontSize="14"/>
+            <ComboBox Name="cbSala" FontSize="14" />
+        </DockPanel>
+    </Grid>
+</UserControl>

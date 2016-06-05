@@ -61,7 +61,7 @@
                     <GroupBox  x:Name="gpseach" Header="Filtros de pesquisa" HorizontalAlignment="Stretch" Margin="20,0,20,0" VerticalAlignment="Top" FontSize="14" BorderThickness="2" BorderBrush="{DynamicResource {x:Static SystemColors.GradientActiveCaptionBrushKey}}">
                         <StackPanel HorizontalAlignment="Center" Grid.Column="1" Grid.Row="1" Orientation="Horizontal">
                             <Label  Style="{StaticResource labelStyle}" x:Name="disciplina" Content="Turma: " HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                            <ComboBox Name="cblistTurma" Width="100" />
+                            <ComboBox Name="cblistTurma" Width="100" SelectionChanged="cblistTurma_SelectionChanged" />
                         </StackPanel>
                     </GroupBox>
                     <GroupBox  x:Name="list" HorizontalAlignment="Stretch" Height="250" Margin="20,0,20,0" Header="Lista disciplinas a gerar horário "  FontSize="14" BorderThickness="2" BorderBrush="{DynamicResource {x:Static SystemColors.GradientActiveCaptionBrushKey}}">

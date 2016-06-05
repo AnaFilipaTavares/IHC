@@ -143,6 +143,12 @@
     <Compile Include="Secretaria\DisciplinaAno.xaml.cs">
       <DependentUpon>DisciplinaAno.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Secretaria\DisciplinaDisplayHorario.xaml.cs">
+      <DependentUpon>DisciplinaDisplayHorario.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Secretaria\HorarioPreview.xaml.cs">
+      <DependentUpon>HorarioPreview.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Secretaria\GerarTurmas.xaml.cs">
       <DependentUpon>GerarTurmas.xaml</DependentUpon>
     </Compile>
@@ -318,6 +324,14 @@
     <Page Include="Secretaria\DisciplinaAno.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Secretaria\DisciplinaDisplayHorario.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Secretaria\HorarioPreview.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Secretaria\GerarTurmas.xaml">
       <Generator>MSBuild:Compile</Generator>
