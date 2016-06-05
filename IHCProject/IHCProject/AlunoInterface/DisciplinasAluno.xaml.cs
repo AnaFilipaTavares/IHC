@@ -56,7 +56,7 @@ namespace IHCProject.AlunoInterface
                 while (RDR.Read())
                 {
 
-                    listBox.Items.Add(new Disciplina(0, int.Parse(RDR["ano"].ToString()), RDR["nome"].ToString()));
+                    listBox.Items.Add(new Disciplina(int.Parse(RDR["id"].ToString()), int.Parse(RDR["ano"].ToString()), RDR["nome"].ToString()));
                 }
                 RDR.Close();
             }
