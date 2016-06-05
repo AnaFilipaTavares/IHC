@@ -97,17 +97,17 @@ namespace IHCProject.AlunoInterface
 
                 CMD = new SqlCommand();
                 CMD.Connection = CN;
-                CMD.CommandText = "EXEC ESCOLA_SECUNDARIA.SP_HorarioAluno @aluno;";
+                CMD.CommandText = "EXEC PROJETO.p_horarioAluno @aluno;";
                 CMD.Parameters.AddWithValue("@aluno", aluno.IdAluno);
                 SqlDataReader RDR = CMD.ExecuteReader();
                 while (RDR.Read())
                 {
 
-                    Container.Children.Add(new DisplayDisciplinaHorario(new DisciplinaHorario(RDR["sala"].ToString(), RDR["diaSemana"].ToString(), RDR["designação"].ToString(), RDR["horaInicio"].ToString().Split()[0])));
+                    Container.Children.Add(new DisplayDisciplinaHorario(new DisciplinaHorario(RDR["sala"].ToString(), RDR["diaSemana"].ToString(), RDR["nome"].ToString(), RDR["horaInicio"].ToString().Split()[0])));
                     //listBox.Items.Add(new HorarioDisciplina(int.Parse(RDR["id"].ToString()), new Disciplina(int.Parse(RDR["disciplina"].ToString()), int.Parse(RDR["ano"].ToString()), RDR["designação"].ToString()), RDR["letra"].ToString(), prof));
                     if (RDR["duração"].ToString().Equals("90"))
                     {
-                        DisciplinaHorario di = new DisciplinaHorario(RDR["sala"].ToString(), RDR["diaSemana"].ToString(), RDR["designação"].ToString(), RDR["horaInicio"].ToString().Split()[0]);
+                        DisciplinaHorario di = new DisciplinaHorario(RDR["sala"].ToString(), RDR["diaSemana"].ToString(), RDR["nome"].ToString(), RDR["horaInicio"].ToString().Split()[0]);
                         di.RowIndex++;
                         Container.Children.Add(new DisplayDisciplinaHorario(di));
                     }

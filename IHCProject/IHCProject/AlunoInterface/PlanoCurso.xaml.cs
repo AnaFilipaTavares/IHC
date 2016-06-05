@@ -95,11 +95,11 @@ namespace IHCProject.AlunoInterface
 
                 CMD = new SqlCommand();
                 CMD.Connection = CN;
-                CMD.CommandText = "EXEC ESCOLA_SECUNDARIA.SP_PlanoCursoAluno " + aluno.IdAluno + ";";
+                CMD.CommandText = "EXEC PROJETO.p_planoCursoAluno" + aluno.IdAluno + ";";
                 SqlDataReader RDR = CMD.ExecuteReader();
                 while (RDR.Read())
                 {
-                    textBlock.Text += "➤ " + RDR["designação"].ToString() + " " + RDR["ano"].ToString() + "\n";
+                    textBlock.Text += "➤ " + RDR["disciplina"].ToString() + " " + RDR["ano"].ToString() + "\n";
                 
                 }
                 RDR.Close();
