@@ -153,23 +153,29 @@ namespace IHCProject.Secretaria
             this.NavigationService.Navigate(a);
         }
 
+        private void logout_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new Login());
+        }
+
         private void Gest_turmaClick(object sender, RoutedEventArgs e)
         {
             GerarTurmas a = new GerarTurmas(CN);
             this.NavigationService.Navigate(a);
         }
 
-        private void Perfil_Click(object sender, RoutedEventArgs e)
-        {
-            Inicio x = new Inicio(CN);
-            this.NavigationService.Navigate(x);
-        }
-        private void Insert_Click(object sender, RoutedEventArgs e)
+       
+        private void inserçao_Click(object sender, RoutedEventArgs e)
         {
             Inserções x = new Inserções(CN);
             this.NavigationService.Navigate(x);
         }
 
+        private void Gest_inicio(object sender, RoutedEventArgs e)
+        {
+            GestInico x = new GestInico(CN);
+            this.NavigationService.Navigate(x);
+        }
 
         private void button_Click(object sender, RoutedEventArgs e)
         {

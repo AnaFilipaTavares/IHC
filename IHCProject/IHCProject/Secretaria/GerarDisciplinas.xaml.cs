@@ -116,12 +116,7 @@ namespace IHCProject.Secretaria
             this.NavigationService.Navigate(a);
         }
 
-        private void Perfil_Click(object sender, RoutedEventArgs e)
-        {
-            Inicio x = new Inicio(CN);
-            this.NavigationService.Navigate(x);
-        }
-        private void Insert_Click(object sender, RoutedEventArgs e)
+        private void inserçao_Click(object sender, RoutedEventArgs e)
         {
             Inserções x = new Inserções(CN);
             this.NavigationService.Navigate(x);
@@ -130,6 +125,11 @@ namespace IHCProject.Secretaria
         {
             GestInico x = new GestInico(CN);
             this.NavigationService.Navigate(x);
+        }
+
+        private void logout_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new Login());
         }
 
         private void button_Click(object sender, RoutedEventArgs e)

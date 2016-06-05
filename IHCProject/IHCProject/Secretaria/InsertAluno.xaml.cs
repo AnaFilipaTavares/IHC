@@ -152,5 +152,10 @@ namespace IHCProject.Secretaria
             data.Clear();
             ee.Clear();
         }
+
+        private void inicio_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new Inserções(cN));
+        }
     }
 }

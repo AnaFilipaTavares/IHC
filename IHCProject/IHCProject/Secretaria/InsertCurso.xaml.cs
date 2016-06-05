@@ -169,5 +169,10 @@ namespace IHCProject.Secretaria
             GestInico x = new GestInico(CN);
             this.NavigationService.Navigate(x);
         }
+
+        private void inicio_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new Inserções(CN));
+        }
     }
 }

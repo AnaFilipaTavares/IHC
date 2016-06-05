@@ -107,6 +107,11 @@ namespace IHCProject.Secretaria
             this.NavigationService.Navigate(x);
         }
 
+        private void inicio_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new Inserções(cN));
+        }
+
         private void clearFields()
         {
             nome.Clear();

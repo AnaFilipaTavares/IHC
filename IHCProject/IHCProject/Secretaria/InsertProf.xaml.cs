@@ -113,5 +113,10 @@ namespace IHCProject.Secretaria
         {
             this.NavigationService.Navigate(new Login());
         }
+
+        private void inicio_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new Inserções(cN));
+        }
     }
 }

@@ -109,12 +109,13 @@ namespace IHCProject.Secretaria
 
         }
 
-        private void Perfil_Click(object sender, RoutedEventArgs e)
+        private void logout_Click(object sender, RoutedEventArgs e)
         {
-            Inicio x = new Inicio(CN);
-            this.NavigationService.Navigate(x);
+            this.NavigationService.Navigate(new Login());
         }
-        private void Insert_Click(object sender, RoutedEventArgs e)
+
+
+        private void inserçao_Click(object sender, RoutedEventArgs e)
         {
             Inserções x = new Inserções(CN);
             this.NavigationService.Navigate(x);

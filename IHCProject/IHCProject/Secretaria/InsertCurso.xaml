@@ -26,8 +26,8 @@
                         <StackPanel />
                     </ItemsPanelTemplate>
                 </Menu.ItemsPanel>
-                
-                <MenuItem Header="Inserções" Height="30" FontSize="16" Width="145" HorizontalAlignment="Center"/>
+
+                <MenuItem Header="Inserções" Height="30" FontSize="16" Width="145" HorizontalAlignment="Center" Click="inicio_Click"/>
                 <MenuItem Header="Gestão" Height="30" FontSize="16" Width="145" HorizontalAlignment="Center" Click="Gestao_Click"/>
                 <MenuItem Header="Encerrar sessão" Height="30" FontSize="16" Width="145" HorizontalAlignment="Center" Click="logout_Click"/>
             </Menu>
@@ -49,7 +49,7 @@
                             <StackPanel Orientation="Horizontal"/>
                         </ItemsPanelTemplate>
                     </Menu.ItemsPanel>
-                    <MenuItem Header="Início" Height="30" FontSize="16" Width="60" HorizontalAlignment="Center" />
+                    <MenuItem Header="Início" Height="30" FontSize="16" Width="60" HorizontalAlignment="Center" Click="inicio_Click" />
                     <MenuItem Background="LightSeaGreen" Header="Curso" Height="30" FontSize="16" Width="60" HorizontalAlignment="Center" Click="Curso_Click" />
                     <MenuItem Header="Aluno" Height="30" FontSize="16" Width="60" HorizontalAlignment="Center" Click="Aluno_Click" />
                     <MenuItem Header="Professor" Height="30" FontSize="16" Width="Auto" HorizontalAlignment="Center" Click="Prof_Click" />
@@ -63,14 +63,14 @@
                         <Label x:Name="Curso" Content="Curso: " HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="16"/>
                         <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="31" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="161"/>
                     </DockPanel>
-                    <ListView x:Name="listView" Height="250" HorizontalAlignment="Center" VerticalAlignment="Top">
+                    <ListView x:Name="listView" Height="250" Margin="10,10,10,10" HorizontalAlignment="Stretch" VerticalAlignment="Top">
                         <ListView.ItemContainerStyle>
                             <Style TargetType="ListViewItem">
                                 <Setter Property="Focusable" Value="false"/>
                             </Style>
                         </ListView.ItemContainerStyle>
                     </ListView>
-                    <Button x:Name="button" Width="60" Height="35" Content="Guardar"  HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="50,0" Click="button_Click"/>
+                    <Button x:Name="button" Width="60" Height="30" Content="Guardar"  HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="15,0" Click="button_Click"/>
                 </StackPanel>
             </GroupBox>
         </Grid>

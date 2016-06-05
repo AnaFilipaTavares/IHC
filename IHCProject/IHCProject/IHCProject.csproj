@@ -158,9 +158,6 @@
     <Compile Include="Secretaria\GerarHorario.xaml.cs">
       <DependentUpon>GerarHorario.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Secretaria\Inicio.xaml.cs">
-      <DependentUpon>Inicio.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Secretaria\InsertAluno.xaml.cs">
       <DependentUpon>InsertAluno.xaml</DependentUpon>
     </Compile>
@@ -342,10 +339,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Secretaria\GerarHorario.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Secretaria\Inicio.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

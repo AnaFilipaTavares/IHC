@@ -51,13 +51,13 @@ namespace IHCProject.Secretaria
             this.NavigationService.Navigate(a);
         }
 
-
-        private void Perfil_Click(object sender, RoutedEventArgs e)
+        private void logout_Click(object sender, RoutedEventArgs e)
         {
-            Inicio x = new Inicio(cN);
-            this.NavigationService.Navigate(x);
+            this.NavigationService.Navigate(new Login());
         }
-        private void Insert_Click(object sender, RoutedEventArgs e)
+
+
+        private void inserçao_Click(object sender, RoutedEventArgs e)
         {
             Inserções x = new Inserções(cN);
             this.NavigationService.Navigate(x);
