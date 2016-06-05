@@ -86,7 +86,7 @@ namespace IHCProject
                 SqlDataReader RDR = CMD.ExecuteReader();
                 while (RDR.Read())
                 {
-                    listBoxDisciplinas.Items.Add(new HorarioDisciplina(int.Parse(RDR["id"].ToString()),new Disciplina(int.Parse(RDR["codigo"].ToString()), int.Parse(RDR["ano"].ToString()), RDR["nomeDisciplina"].ToString()), RDR["designação"].ToString(),new Professor(int.Parse(RDR["idProf"].ToString()), RDR["nome"].ToString())));
+                    listBoxDisciplinas.Items.Add(new HorarioDisciplina(int.Parse(RDR["id"].ToString()),new Disciplina(int.Parse(RDR["codigo"].ToString()), int.Parse(RDR["ano"].ToString()), RDR["nome"].ToString()), RDR["designação"].ToString(),new Professor(int.Parse(RDR["idProf"].ToString()), RDR["nomeProf"].ToString())));
                     
                 }
                 RDR.Close();
@@ -150,15 +150,17 @@ namespace IHCProject
 
                 CMD = new SqlCommand();
                 CMD.Connection = CN;
-                CMD.CommandText = "EXEC PROJETO.p_listaSubstProf @idProf @disciplina @professor";
-                CMD.Parameters.AddWithValue("@disciplina", !disciplina_search.Text.Equals("")? disciplina_search.Text:null);
-                CMD.Parameters.AddWithValue("@professor", !professor_search.Text.Equals("") ? professor_search.Text:null);
+                CMD.CommandText = "EXEC PROJETO.p_listaSubstProf @idProf, @disciplina, @professor";
+                Console.WriteLine("dis "+disciplina_search.Text);
+
+                CMD.Parameters.AddWithValue("@disciplina", !disciplina_search.Text.Equals("")? disciplina_search.Text:"none");
+                CMD.Parameters.AddWithValue("@professor", !professor_search.Text.Equals("") ? professor_search.Text: "none");
                 
                 CMD.Parameters.AddWithValue("@idProf", prof.IdProf);
                 SqlDataReader RDR = CMD.ExecuteReader();
                 while (RDR.Read())
                 {
-                    listBoxDisciplinas.Items.Add(new HorarioDisciplina(int.Parse(RDR["id"].ToString()), new Disciplina(int.Parse(RDR["codigo"].ToString()), int.Parse(RDR["ano"].ToString()), RDR["nomeDisciplina"].ToString()), RDR["designação"].ToString(), new Professor(int.Parse(RDR["idProf"].ToString()), RDR["nome"].ToString())));
+                    listBoxDisciplinas.Items.Add(new HorarioDisciplina(int.Parse(RDR["id"].ToString()), new Disciplina(int.Parse(RDR["codigo"].ToString()), int.Parse(RDR["ano"].ToString()), RDR["nome"].ToString()), RDR["designação"].ToString(), new Professor(int.Parse(RDR["idProf"].ToString()), RDR["nomeProf"].ToString())));
                     //TurmaDoDT.Items.Add(new Aluno(int.Parse(RDR["idAluno"].ToString()), RDR["nome"].ToString()));
                 }
                 RDR.Close();

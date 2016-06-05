@@ -82,12 +82,12 @@ namespace IHCProject.ContextoDisciplina
 
                 CMD = new SqlCommand();
                 CMD.Connection = CN;
-                CMD.CommandText = "SELECT nome,idAluno FROM (SELECT * FROM ESCOLA_SECUNDARIA.FREQUENTA WHERE horario=@idHorario) AS T JOIN  ESCOLA_SECUNDARIA.ALUNO ON T.aluno=idAluno JOIN ESCOLA_SECUNDARIA.PESSOA ON PESSOA.ncc=ALUNO.ncc";
+                CMD.CommandText = "EXEC PROJETO.p_perfilDisciplina @idHorario";
                 CMD.Parameters.AddWithValue("@idHorario", hDisciplina.IdHorario);
                 SqlDataReader RDR = CMD.ExecuteReader();
                 while (RDR.Read())
                 {
-                    ListaAluno.Items.Add(new Aluno(int.Parse(RDR["idAluno"].ToString()), RDR["nome"].ToString()));
+                    ListaAluno.Items.Add(new Aluno(int.Parse(RDR["aluno"].ToString()), RDR["nome"].ToString()));
                 }
                 RDR.Close();
             }

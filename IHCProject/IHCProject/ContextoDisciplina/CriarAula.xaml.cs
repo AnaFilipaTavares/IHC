@@ -28,7 +28,7 @@ namespace IHCProject.ContextoDisciplina
         private HorarioDisciplina hDisciplina;
         private SqlConnection CN;
         private SqlCommand CMD;
-
+        private List<DiaSemana> diasDisciplina;
 
         public CriarAula()
         {
@@ -88,24 +88,51 @@ namespace IHCProject.ContextoDisciplina
 
                 CMD = new SqlCommand();
                 CMD.Connection = CN;
-                CMD.CommandText = "SELECT nome,idAluno FROM (SELECT * FROM ESCOLA_SECUNDARIA.FREQUENTA WHERE horario=@idHorario) AS T JOIN  ESCOLA_SECUNDARIA.ALUNO ON T.aluno=idAluno JOIN ESCOLA_SECUNDARIA.PESSOA ON PESSOA.ncc=ALUNO.ncc";
+                CMD.CommandText = "EXEC PROJETO.p_perfilDisciplina @idHorario";
                 CMD.Parameters.AddWithValue("@idHorario", hDisciplina.IdHorario);
                 SqlDataReader RDR = CMD.ExecuteReader();
                 while (RDR.Read())
                 {
-                    ListaAluno.Items.Add(new CelulaAlunoFalta(new Aluno(int.Parse(RDR["idAluno"].ToString()), RDR["nome"].ToString())));
+                    ListaAluno.Items.Add(new CelulaAlunoFalta(new Aluno(int.Parse(RDR["aluno"].ToString()), RDR["nome"].ToString())));
                 }
                 RDR.Close();
 
                 //obter a aula
                 CMD = new SqlCommand();
                 CMD.Connection = CN;
-                CMD.CommandText = "SELECT ESCOLA_SECUNDARIA.ultimaAula(@idHorario)";
+                CMD.CommandText = "SELECT PROJETO.ultimaAula(@idHorario)";
                 CMD.Parameters.AddWithValue("@idHorario", hDisciplina.IdHorario);
                 int ret = (int)CMD.ExecuteScalar();
                 nAula1.Text = (ret + 1)+"";
+
+               
+
                 
 
+            }
+
+            catch (Exception ex)
+            {
+
+                Console.WriteLine(ex.Message);
+                MessageBox.Show("Ocorreu um erro, repita a operação");
+            }
+            //obter dias da semana
+            diasDisciplina = new List<DiaSemana>();
+            try
+            {
+                if (CN.State == ConnectionState.Closed) CN.Open();
+
+                CMD = new SqlCommand();
+                CMD.Connection = CN;
+                CMD.CommandText = "Select * FROM PROJETO.getDayofWeeks(@idHorario)";
+                CMD.Parameters.AddWithValue("@idHorario", hDisciplina.IdHorario);
+                SqlDataReader RDR = CMD.ExecuteReader();
+                while (RDR.Read())
+                {
+                    diasDisciplina.Add(new DiaSemana(int.Parse(RDR["id"].ToString()),RDR["diaSemana"].ToString()));
+                }
+                RDR.Close();
             }
             catch (Exception ex)
             {
@@ -188,6 +215,22 @@ namespace IHCProject.ContextoDisciplina
                 return;
             }
 
+            //Verificar o matching do dia da semana
+
+            DiaSemana dataAdicionar=null;
+            foreach (DiaSemana d in diasDisciplina) {
+                if (d.Dia != DayOfWeek.Sunday && d.Dia == data.SelectedDate.Value.DayOfWeek)
+                {
+
+                    dataAdicionar = d;
+                }
+            }
+
+            if (dataAdicionar == null) {
+                MessageBox.Show("Dia de semana inválido: " + data.SelectedDate.Value.DayOfWeek+"\nCorriga a data para um dia de semana em que a disciplina pode ser lecionada");
+                return;
+            }
+
             //criar aula
             int criarAula = 0;
 
@@ -199,8 +242,9 @@ namespace IHCProject.ContextoDisciplina
 
                     CMD = new SqlCommand();
                     CMD.Connection = CN;
-                    CMD.CommandText = "INSERT INTO ESCOLA_SECUNDARIA.AULA VALUES (@idHorario,@numeroAula,@sumario,@data,null);";
+                    CMD.CommandText = "EXEC PROJETO.p_insertAula @idHorario,@id,@numeroAula,@sumario,@data";
                     CMD.Parameters.AddWithValue("@idHorario", hDisciplina.IdHorario);
+                    CMD.Parameters.AddWithValue("@id", dataAdicionar.Id);
                     CMD.Parameters.AddWithValue("@numeroAula", nAula1.Text);
                     CMD.Parameters.AddWithValue("@sumario", sumarioBox.Text);
                     CMD.Parameters.AddWithValue("@data", data.SelectedDate.Value.ToString("yyyy-MM-dd"));
@@ -220,8 +264,9 @@ namespace IHCProject.ContextoDisciplina
 
                         CMD = new SqlCommand();
                         CMD.Connection = CN;
-                        CMD.CommandText = "INSERT INTO ESCOLA_SECUNDARIA.AULA VALUES (@idHorario,@numeroAula,@sumario,@data,null);";
+                        CMD.CommandText = "EXEC PROJETO.p_insertAula @idHorario,@id,@numeroAula,@sumario,@data";
                         CMD.Parameters.AddWithValue("@idHorario", hDisciplina.IdHorario);
+                        CMD.Parameters.AddWithValue("@id", dataAdicionar.Id);
                         CMD.Parameters.AddWithValue("@numeroAula", nAula2.Text);
                         CMD.Parameters.AddWithValue("@sumario", sumarioBox.Text);
                         CMD.Parameters.AddWithValue("@data", data.SelectedDate.Value.ToString("yyyy-MM-dd"));
@@ -239,11 +284,11 @@ namespace IHCProject.ContextoDisciplina
                 MessageBox.Show("Parametros inválidos");
             }
 
-
+            Console.WriteLine("valor criarAula: " + criarAula);
             if (criarAula != 0)
             {
                 //MARCAR FALTAS se não existirem erros
-                Console.WriteLine("Aula Criada");
+               Console.WriteLine("Aula Criada");
                foreach (CelulaAlunoFalta elementos in ListaAluno.Items)
                 {
                     if (elementos.getMarcarfalta() == true)
@@ -255,9 +300,10 @@ namespace IHCProject.ContextoDisciplina
 
                              CMD = new SqlCommand();
                              CMD.Connection = CN;
-                             CMD.CommandText = "INSERT INTO ESCOLA_SECUNDARIA.FALTAS_ALUNO VALUES (@idAluno,@idHorario,@numeroAula,@tipo);";
+                             CMD.CommandText = "EXEC PROJETO.p_insertFaltas @idAluno,@idHorario,@id,@numeroAula,@tipo";
                              CMD.Parameters.AddWithValue("@idAluno", elementos.getNumero());
                              CMD.Parameters.AddWithValue("@idHorario", hDisciplina.IdHorario);
+                             CMD.Parameters.AddWithValue("@id", dataAdicionar.Id);
                              CMD.Parameters.AddWithValue("@numeroAula", nAula1.Text);
                              CMD.Parameters.AddWithValue("@tipo", elementos.getTipofalta()[0]);
                              erros = CMD.ExecuteNonQuery();
@@ -310,6 +356,64 @@ namespace IHCProject.ContextoDisciplina
                 return true;
             }
             return false;
+        }
+    }
+
+    public class DiaSemana{
+        private int id;
+        private DayOfWeek dia=0;
+
+        public int Id
+        {
+            get
+            {
+                return id;
+            }
+
+            set
+            {
+                id = value;
+            }
+        }
+
+        public DayOfWeek Dia
+        {
+            get
+            {
+                return dia;
+            }
+
+            set
+            {
+                dia = value;
+            }
+        }
+
+        public DiaSemana(int id, string data) {
+            this.Id = id;
+            parsingDia(data);
+        }
+
+        private void parsingDia(string data) {
+            switch (data)
+            {
+                case "Segunda":
+                    Dia = DayOfWeek.Monday;
+                    break;
+                case "Terça":
+                    Dia = DayOfWeek.Tuesday;
+                    break;
+                case "Quarta":
+                    Dia = DayOfWeek.Wednesday;
+                    break;
+                case "Quinta":
+                    Dia = DayOfWeek.Thursday;
+                    break;
+                case "Sexta":
+                    Dia = DayOfWeek.Friday;
+                    break;
+            }
+
         }
     }
     
