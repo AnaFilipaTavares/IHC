@@ -55,42 +55,43 @@
 
                 </Menu>
             </GroupBox>
+            <GroupBox Margin="20,0,20,0"  Grid.Row="1" Background="White" x:Name="menu" Header="Formulário" VerticalAlignment="Top" HorizontalAlignment="Stretch" FontSize="14"  BorderThickness="2" BorderBrush="{DynamicResource {x:Static SystemColors.GradientActiveCaptionBrushKey}}">
+                <Grid Grid.Column="1" Grid.Row="1" Margin="20,0,0,0">
 
-            <Grid Grid.Column="1" Grid.Row="1" Margin="20,0,0,0">
-
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="35"/>
-                    <RowDefinition Height="35"/>
-                    <RowDefinition Height="35"/>
-                    <RowDefinition Height="35"/>
-                    <RowDefinition Height="35"/>
-                    <RowDefinition Height="35"/>
-                    <RowDefinition Height="35"/>
-                    <RowDefinition Height="35"/>
-                    <RowDefinition Height="35"/>
-                    <RowDefinition Height="35"/>
-                    <RowDefinition Height="35"/>
-                </Grid.RowDefinitions>
-                <Label x:Name="label2" Grid.Row="0" Content="Cartão de Cidadão: " HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16"/>
-                <TextBox x:Name="ncc" Text="" Height="30"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="241" FontSize="16" Grid.Row="0"/>
-                <Label x:Name="label3" Grid.Row="2" Content="Idade: " HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16"/>
-                <TextBox x:Name="idade" Text="" Height="30"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="241" FontSize="16" Grid.Row="2"/>
-                <Label x:Name="label4" Grid.Row="3" Content="Data de Nascimento: " HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16"/>
-                <TextBox x:Name="data" Text="" Height="30"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="241" FontSize="16" Grid.Row="3"/>
-                <Label x:Name="label5" Grid.Row="4" Content="Morada: " HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16"/>
-                <TextBox x:Name="morada" Text="" Height="30"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="241" FontSize="16" Grid.Row="4"/>
-                <Label x:Name="label6" Grid.Row="5" Content="Sexo: " HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16"/>
-                <TextBox x:Name="sexo" Text="" Height="30"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="241" FontSize="16" Grid.Row="5"/>
-                <Label x:Name="label7" Grid.Row="7" Content="Ano Escolaridade : " HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16"/>
-                <TextBox x:Name="ano" Text="" Height="30"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="241" FontSize="16" Grid.Row="7"/>
-                <Label x:Name="label8" Grid.Row="6" Content="Encarregado Educação: " HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16"/>
-                <TextBox x:Name="ee" Text="" Height="30"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="241" FontSize="16" Grid.Row="6"/>
-                <Label x:Name="label9" Grid.Row="8" Content="Curso: " HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16"/>
-                <ComboBox x:Name="curso" Text="{Binding Nome}" Height="30"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="241" FontSize="16" Grid.Row="8"/>
-                <Label x:Name="label11" Grid.Row="1" Content="Nome: " HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16"/>
-                <TextBox x:Name="nome" Text="" Height="30"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="241" FontSize="16" Grid.Row="1"/>
-                <Button x:Name="button" Grid.Row="9" Width="60" Height="30" Content="Guardar"  HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="50,0" Click="button_Click"/>
-            </Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="35"/>
+                    </Grid.RowDefinitions>
+                    <Label x:Name="label2" Grid.Row="0" Width="200" Content="Cartão de Cidadão: " HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16"/>
+                    <TextBox x:Name="ncc" Text="" Height="30"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="317" FontSize="16" Grid.Row="0" Margin="156,2,79,3"/>
+                    <Label x:Name="label3" Grid.Row="2" Content="Idade: " HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16"/>
+                    <TextBox x:Name="idade" Text="" Height="30"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="317" FontSize="16" Grid.Row="2" Margin="156,2,79,3"/>
+                    <Label x:Name="label4" Grid.Row="3" Content="Data de Nascimento: " HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16"/>
+                    <TextBox x:Name="data" Text="" Height="30"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="317" FontSize="16" Grid.Row="3" Margin="156,3,79,2"/>
+                    <Label x:Name="label5" Grid.Row="4" Content="Morada: " HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16"/>
+                    <TextBox x:Name="morada" Text="" Height="30"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="317" FontSize="16" Grid.Row="4" Margin="156,2,79,3"/>
+                    <Label x:Name="label6" Grid.Row="5" Content="Sexo: " HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16"/>
+                    <TextBox x:Name="sexo" Text="" Height="30"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="317" FontSize="16" Grid.Row="5" Margin="156,3,79,2"/>
+                    <Label x:Name="label7" Grid.Row="7" Content="Ano Escolaridade : " HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16"/>
+                    <TextBox x:Name="ano" Text="" Height="30"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="317" FontSize="16" Grid.Row="7" Margin="156,3,79,2"/>
+                    <Label x:Name="label8" Grid.Row="6" Content="E.Educação: " HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16"/>
+                    <TextBox x:Name="ee" Text="" Height="30"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="317" FontSize="16" Grid.Row="6" Margin="156,2,79,3"/>
+                    <Label x:Name="label9" Grid.Row="8" Content="Curso: " HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16"/>
+                    <ComboBox x:Name="curso" Text="{Binding Nome}" Height="30"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="317" FontSize="16" Grid.Row="8" Margin="156,2,79,3"/>
+                    <Label x:Name="label11" Grid.Row="1" Content="Nome: " HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16"/>
+                    <TextBox x:Name="nome" Text="" Height="30"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="317" FontSize="16" Grid.Row="1" Margin="156,3,79,2"/>
+                    <Button x:Name="button" Grid.Row="9" Width="60" Height="30" Content="Guardar"  HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="50,0" Click="button_Click"/>
+                </Grid>
+            </GroupBox>
         </Grid>
     </Grid>
 </Page>

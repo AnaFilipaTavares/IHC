@@ -33,7 +33,7 @@
         </GroupBox>
 
         <Label x:Name="label" Grid.Column="1" Grid.Row="0" Content="Disciplina - Inicio" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20"/>
-
+   
         <Grid x:Name="container" Grid.Column="1" Grid.Row="1">
 
             <Grid.RowDefinitions>
@@ -56,20 +56,22 @@
 
                 </Menu>
             </GroupBox>
-            <StackPanel x:Name="panel" Margin="10,10,0,0" Grid.Row="1">
-                <DockPanel  Height="50" HorizontalAlignment="Left" VerticalAlignment="Top">
-                    <Label x:Name="Curso" Content="Curso: " HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="16"/>
-                    <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="31" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="161"/>
-                </DockPanel>
-                <ListView x:Name="listView" Height="300" HorizontalAlignment="Center" VerticalAlignment="Top">
-                    <ListView.ItemContainerStyle>
-                        <Style TargetType="ListViewItem">
-                            <Setter Property="Focusable" Value="false"/>
-                        </Style>
-                    </ListView.ItemContainerStyle>
-                </ListView>
-                <Button x:Name="button" Width="60" Height="35" Content="Guardar"  HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="50,0" Click="button_Click"/>
-            </StackPanel>
+            <GroupBox Margin="20,0,20,0"  Grid.Row="1" Background="White" x:Name="menu" Header="Formulário" VerticalAlignment="Top" HorizontalAlignment="Stretch" FontSize="14"  BorderThickness="2" BorderBrush="{DynamicResource {x:Static SystemColors.GradientActiveCaptionBrushKey}}">
+                <StackPanel x:Name="panel" Margin="10,10,0,0" Grid.Row="1">
+                    <DockPanel  Height="50" HorizontalAlignment="Left" VerticalAlignment="Top">
+                        <Label x:Name="Curso" Content="Curso: " HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="16"/>
+                        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="31" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="161"/>
+                    </DockPanel>
+                    <ListView x:Name="listView" Height="250" HorizontalAlignment="Center" VerticalAlignment="Top">
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="Focusable" Value="false"/>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                    </ListView>
+                    <Button x:Name="button" Width="60" Height="35" Content="Guardar"  HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="50,0" Click="button_Click"/>
+                </StackPanel>
+            </GroupBox>
         </Grid>
     </Grid>
 </Page>

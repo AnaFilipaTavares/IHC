@@ -69,7 +69,7 @@ namespace IHCProject.Secretaria
 
                 CMD = new SqlCommand();
                 CMD.Connection = cN;
-                CMD.CommandText = "SELECT * from PROJETO.PLANO_CURSO;";
+                CMD.CommandText = "EXEC PROJETO.p_planosdecurso";
                 SqlDataReader RDR = CMD.ExecuteReader();
                 while (RDR.Read())
                 {
@@ -96,8 +96,6 @@ namespace IHCProject.Secretaria
                 return;
             }
 
-
-
             try
             {
                 if (cN.State == System.Data.ConnectionState.Closed) cN.Open();
@@ -118,8 +116,6 @@ namespace IHCProject.Secretaria
                 CMD.Parameters.AddWithValue("@pass", pass);
                 CMD.Parameters.AddWithValue("@key", key);
                 CMD.ExecuteNonQuery();
-
-
             }
             catch (Exception ex)
             {
@@ -129,6 +125,8 @@ namespace IHCProject.Secretaria
             }
 
             MessageBox.Show("Aluno Inserido com sucesso");
+            clearFields();
+          
 
         }
 
@@ -136,6 +134,18 @@ namespace IHCProject.Secretaria
         {
             GestInico x = new GestInico(cN);
             this.NavigationService.Navigate(x);
+        }
+
+        private void clearFields() {
+            nome.Clear();
+            ncc.Clear();
+            idade.Clear();
+            morada.Clear();
+            curso.SelectedIndex = -1;
+            sexo.Clear();
+            ano.Clear();
+            data.Clear();
+            ee.Clear();
         }
     }
 }
