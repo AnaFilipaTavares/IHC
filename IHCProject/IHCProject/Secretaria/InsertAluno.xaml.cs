@@ -61,6 +61,11 @@ namespace IHCProject.Secretaria
             loadData();
         }
 
+        private void logout_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new Login());
+        }
+
         private void loadData()
         {
             try

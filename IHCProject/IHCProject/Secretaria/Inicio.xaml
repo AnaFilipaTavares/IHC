@@ -25,33 +25,18 @@
                         <StackPanel />
                     </ItemsPanelTemplate>
                 </Menu.ItemsPanel>
-                <MenuItem Header="Perfil" Height="30" FontSize="16" Width="145" HorizontalAlignment="Center"/>
+                <MenuItem Header="Perfil" Background="LightSeaGreen" Height="30" FontSize="16" Width="145" HorizontalAlignment="Center"/>
                 <MenuItem Header="Inserções" Height="30" FontSize="16" Width="145" HorizontalAlignment="Center" Click="MenuItem_Click"/>
                 <MenuItem Header="Gestão" Height="30" FontSize="16" Width="145" HorizontalAlignment="Center" Click="Gestao_Click"/>
+                <MenuItem Header="Encerrar sessão" Height="30" FontSize="16" Width="145" HorizontalAlignment="Center" Click="logout_Click"/>
             </Menu>
         </GroupBox>
 
         <Label x:Name="label" Grid.Column="1" Grid.Row="0" Content="Secretaria - Inicio" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20"/>
 
-        <Grid Grid.Column="1" Grid.Row="1">
+   
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="0.8*"/>
-            </Grid.RowDefinitions>
 
-            <GroupBox Margin="20,0,20,0" Grid.Row="0" Background="White" x:Name="menu2" Header="Menu disciplina" VerticalAlignment="Top" HorizontalAlignment="Stretch" FontSize="14"  BorderThickness="2" BorderBrush="{DynamicResource {x:Static SystemColors.GradientActiveCaptionBrushKey}}">
-                <Menu Background="White" HorizontalAlignment="center"   >
-                    <Menu.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <StackPanel Orientation="Horizontal"/>
-                        </ItemsPanelTemplate>
-                    </Menu.ItemsPanel>
-                    <MenuItem Background="LightSeaGreen" Header="Início" Height="30" FontSize="16" Width="60" HorizontalAlignment="Center" />
-
-                </Menu>
-            </GroupBox>
-        </Grid>
     </Grid>
 
 </Page>

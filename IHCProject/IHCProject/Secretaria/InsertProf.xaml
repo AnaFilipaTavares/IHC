@@ -26,9 +26,10 @@
                         <StackPanel />
                     </ItemsPanelTemplate>
                 </Menu.ItemsPanel>
-                <MenuItem Header="Perfil" Height="30" FontSize="16" Width="145" HorizontalAlignment="Center"/>
+              
                 <MenuItem Header="Inserções" Height="30" FontSize="16" Width="145" HorizontalAlignment="Center"/>
                 <MenuItem Header="Gestão" Height="30" FontSize="16" Width="145" HorizontalAlignment="Center" Click="Gestao_Click"/>
+                <MenuItem Header="Encerrar sessão" Height="30" FontSize="16" Width="145" HorizontalAlignment="Center" Click="logout_Click"/>
             </Menu>
         </GroupBox>
 

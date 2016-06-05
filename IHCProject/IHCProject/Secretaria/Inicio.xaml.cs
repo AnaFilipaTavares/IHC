@@ -52,6 +52,11 @@ namespace IHCProject.Secretaria
             GestInico i = new GestInico(CN);
             this.NavigationService.Navigate(i);
         }
+
+        private void logout_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new Login());
+        }
     }
 
 }

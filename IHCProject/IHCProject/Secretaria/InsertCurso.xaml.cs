@@ -147,6 +147,11 @@ namespace IHCProject.Secretaria
             this.NavigationService.Navigate(p);
         }
 
+        private void logout_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new Login());
+        }
+
         private void Aluno_Click(object sender, RoutedEventArgs e)
         {
             InsertAluno a = new InsertAluno(CN);

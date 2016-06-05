@@ -156,7 +156,7 @@ namespace IHCProject
                         Console.WriteLine("secretaria");
                         //entrar na conta da secretaria
    
-                        Secretaria.Inicio home = new Secretaria.Inicio(CN);
+                        Secretaria.Inserções home = new Secretaria.Inserções(CN);
                         this.NavigationService.Navigate(home);
                     }
                     else {
