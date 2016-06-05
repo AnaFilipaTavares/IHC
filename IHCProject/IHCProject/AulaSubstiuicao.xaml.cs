@@ -81,7 +81,7 @@ namespace IHCProject
 
                 CMD = new SqlCommand();
                 CMD.Connection = CN;
-                CMD.CommandText = "EXEC PROJETO.p_listaSubstProf @idProf @disciplina @professor";
+                CMD.CommandText = "EXEC PROJETO.p_listaSubstProf @idProf";
                 CMD.Parameters.AddWithValue("@idProf", prof.IdProf);
                 SqlDataReader RDR = CMD.ExecuteReader();
                 while (RDR.Read())
@@ -151,17 +151,9 @@ namespace IHCProject
                 CMD = new SqlCommand();
                 CMD.Connection = CN;
                 CMD.CommandText = "EXEC PROJETO.p_listaSubstProf @idProf @disciplina @professor";
-
-                if (!disciplina_search.Text.Equals("")) { 
-                    CMD.CommandText = "EXEC PROJETO.p_listaSubstProf @idProf @disciplina";
-                    CMD.Parameters.AddWithValue("@disciplina", disciplina_search.Text);
-                }
-                if (!professor_search.Text.Equals(""))
-                {
-                    CMD.CommandText = "EXEC PROJETO.p_listaSubstProf @idProf @disciplina";
-                    CMD.Parameters.AddWithValue("@professor", professor_search.Text);
-                }
-
+                CMD.Parameters.AddWithValue("@disciplina", !disciplina_search.Text.Equals("")? disciplina_search.Text:null);
+                CMD.Parameters.AddWithValue("@professor", !professor_search.Text.Equals("") ? professor_search.Text:null);
+                
                 CMD.Parameters.AddWithValue("@idProf", prof.IdProf);
                 SqlDataReader RDR = CMD.ExecuteReader();
                 while (RDR.Read())
