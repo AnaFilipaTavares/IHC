@@ -160,8 +160,8 @@ namespace IHCProject.AlunoInterface
             Data data = comboBox.SelectedItem as Data;
 
             FaltasAluno fa = new FaltasAluno(aluno.IdAluno, f.Disciplina,data);
-            fa.Show();
-        }
+            fa.ShowDialog();
+       }
     }
 }
 

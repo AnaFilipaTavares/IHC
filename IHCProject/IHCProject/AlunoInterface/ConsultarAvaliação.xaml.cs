@@ -57,7 +57,7 @@ namespace IHCProject.AlunoInterface
         private void drawCells(int ano, int mes)
         {
 
-            ISet<Marcacao> todasMarcacoes = queryMarcacoes(mes);
+            ISet<Marcacao> todasMarcacoes = queryMarcacoes(mes,ano);
 
             int startDayofWeek = int.Parse(new DateTime(ano, mes, 1).DayOfWeek.ToString("D"));
             int diasDomes = DateTime.DaysInMonth(ano, mes);
@@ -100,7 +100,7 @@ namespace IHCProject.AlunoInterface
             }
 
         }
-        private ISet<Marcacao> queryMarcacoes(int mes)
+        private ISet<Marcacao> queryMarcacoes(int mes,int ano)
         {
             ISet<Marcacao> setReturn = new HashSet<Marcacao>();
 
@@ -110,7 +110,7 @@ namespace IHCProject.AlunoInterface
 
                 CMD = new SqlCommand();
                 CMD.Connection = CN;
-                String format = "____-" + String.Format("{0:00}", mes) + "-__";
+                String format = ano.ToString()+"-" + String.Format("{0:00}", mes) + "-__";
                 CMD.CommandText = "EXEC ESCOLA_SECUNDARIA.SP_AvaliaçõesAluno @aluno,@format;";
                 CMD.Parameters.AddWithValue("@aluno", aluno.IdAluno);
                 CMD.Parameters.AddWithValue("@format", format);

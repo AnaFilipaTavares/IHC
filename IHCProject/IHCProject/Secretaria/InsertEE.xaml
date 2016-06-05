@@ -45,11 +45,11 @@
                             <StackPanel Orientation="Horizontal"/>
                         </ItemsPanelTemplate>
                     </Menu.ItemsPanel>
-                    <MenuItem Background="LightSeaGreen" Header="Início" Height="30" FontSize="16" Width="60" HorizontalAlignment="Center" />
+                    <MenuItem Header="Início" Height="30" FontSize="16" Width="60" HorizontalAlignment="Center" />
                     <MenuItem Header="Curso" Height="30" FontSize="16" Width="60" HorizontalAlignment="Center" Click="Curso_Click" />
                     <MenuItem Header="Aluno" Height="30" FontSize="16" Width="60" HorizontalAlignment="Center" Click="Aluno_Click" />
                     <MenuItem Header="Professor" Height="30" FontSize="16" Width="Auto" HorizontalAlignment="Center" Click="Prof_Click" />
-                    <MenuItem Header="Encarregado de Educação" Height="30" FontSize="16" Width="Auto" HorizontalAlignment="Center" Click="EE_Click" />
+                    <MenuItem Background="LightSeaGreen"  Header="Encarregado de Educação" Height="30" FontSize="16" Width="Auto" HorizontalAlignment="Center" Click="EE_Click" />
                 </Menu>
             </GroupBox>
 

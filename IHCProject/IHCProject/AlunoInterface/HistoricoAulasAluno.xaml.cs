@@ -51,10 +51,10 @@ namespace IHCProject.AlunoInterface
 
                 CMD = new SqlCommand();
                 CMD.Connection = CN;
-                CMD.CommandText = "EXEC PROJETO.p_AulasAluno @aluno,@disciplina,@ano;";
+                CMD.CommandText = "EXEC PROJETO.p_AulasAluno @aluno,@disciplina;";
                 CMD.Parameters.AddWithValue("@aluno", aluno.IdAluno);
-                CMD.Parameters.AddWithValue("@disciplina", d.Nome);
-                CMD.Parameters.AddWithValue("@ano", d.AnoDisciplina);
+                CMD.Parameters.AddWithValue("@disciplina", d.CodigoDisciplina);
+               // CMD.Parameters.AddWithValue("@ano", d.AnoDisciplina);
 
                 SqlDataReader RDR = CMD.ExecuteReader();
                 while (RDR.Read())

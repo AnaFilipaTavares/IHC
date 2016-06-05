@@ -34,7 +34,7 @@ namespace IHCProject.AlunoInterface
         {
             label.Content = a.NAulaBinding;
             label2.Content = a.Disciplina;
-            label4.Content = a.dataBinding;
+            label4.Content = a.Data;
             textBlock.Text = a.Sumário;
         }
 

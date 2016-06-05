@@ -62,9 +62,10 @@ namespace IHCProject
 
                     CMD = new SqlCommand();
                     CMD.Connection = CN;
-                    CMD.CommandText = "INSERT INTO ESCOLA_SECUNDARIA.FALTAS_JUSTIFICADAS_ALUNO VALUES (@idAluno,@idhorario,@nAula,@descricao);";
+                    CMD.CommandText = "EXEC PROJETO.p_insertFaltaJustificada @idAluno,@id,@disciplinaInfo,@nAula,@descricao;";
                     CMD.Parameters.AddWithValue("@idAluno", aluno.IdAluno);
-                    CMD.Parameters.AddWithValue("@idhorario", aulaFalta.Horario);
+                    CMD.Parameters.AddWithValue("@disciplinaInfo", aulaFalta.Horario);
+                    CMD.Parameters.AddWithValue("@id", aulaFalta.Id);
                     CMD.Parameters.AddWithValue("@nAula", aulaFalta.NumeroAula);
                     CMD.Parameters.AddWithValue("@descricao", Justificacao.Text);
                     int temp = CMD.ExecuteNonQuery();
