@@ -97,7 +97,7 @@ namespace IHCProject.ContextoDisciplina
         
        public void drawCells(int ano,int mes) {
 
-            ISet<Marcacao> todasMarcacoes = queryMarcacoes(mes);
+            ISet<Marcacao> todasMarcacoes = queryMarcacoes(mes,ano);
 
             int startDayofWeek = int.Parse(new DateTime(ano, mes, 1).DayOfWeek.ToString("D"));
             int diasDomes= DateTime.DaysInMonth(ano,mes);
@@ -139,7 +139,7 @@ namespace IHCProject.ContextoDisciplina
 
         }
 
-        private ISet<Marcacao> queryMarcacoes(int mes)
+        private ISet<Marcacao> queryMarcacoes(int mes,int ano)
         {
             Container.Children.Clear();
             ISet<Marcacao> setReturn = new HashSet<Marcacao>();
@@ -150,12 +150,16 @@ namespace IHCProject.ContextoDisciplina
 
                 CMD = new SqlCommand();
                 CMD.Connection = CN;
-                CMD.CommandText = "SELECT designação,tipoAvaliacao,data FROM ESCOLA_SECUNDARIA.DISCIPLINA JOIN (ESCOLA_SECUNDARIA.HORARIO_DISCIPLINA JOIN (ESCOLA_SECUNDARIA.MARCA_AVALIAÇÕES JOIN (select horario from ESCOLA_SECUNDARIA.FREQUENTA where aluno IN( SELECT aluno FROM ESCOLA_SECUNDARIA.UDF_ListaAlunosDisciplina (@idHorario)) group by horario) AS T ON T.horario=MARCA_AVALIAÇÕES.horario) ON MARCA_AVALIAÇÕES.horario=id) ON disciplina = codigo  WHERE data LIKE '____-" + String.Format("{0:00}", mes) + "-__'";
+                CMD.CommandText = "EXEC PROJETO.p_marcaAvaliacaoQuery @idHorario,@mes,@ano";
                 CMD.Parameters.AddWithValue("@idHorario", hDisciplina.IdHorario);
+                CMD.Parameters.AddWithValue("@mes", String.Format("{0:00}", mes));
+                CMD.Parameters.AddWithValue("@ano", String.Format("{0:0000}", ano));
                 SqlDataReader RDR = CMD.ExecuteReader();
+                
                 while (RDR.Read())
                 {
-                    setReturn.Add(new Marcacao(RDR["designação"].ToString()+" - "+ RDR["tipoAvaliacao"].ToString()[0], Convert.ToDateTime(RDR["data"].ToString())));
+                    Console.WriteLine("conteudo read: "+ RDR.ToString());
+                    setReturn.Add(new Marcacao(RDR["nome"].ToString()+" - "+ RDR["tipoAvaliação"].ToString()[0], Convert.ToDateTime(RDR["data"].ToString())));
                 }
                 RDR.Close();
             }

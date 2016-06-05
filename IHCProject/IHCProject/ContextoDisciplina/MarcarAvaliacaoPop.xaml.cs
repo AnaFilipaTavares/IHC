@@ -76,7 +76,7 @@ namespace IHCProject.ContextoDisciplina
                 int inseriu = 0;
                 CMD = new SqlCommand();
                 CMD.Connection = CN;
-                CMD.CommandText = "INSERT INTO ESCOLA_SECUNDARIA.MARCA_AVALIAÇÕES VALUES (@idHorario,@date,@tipo);";
+                CMD.CommandText = "EXEC PROJETO.p_marcarAvaliacao @idHorario,@date,@tipo";
                 CMD.Parameters.AddWithValue("@idHorario", hDisciplina.IdHorario);
                 CMD.Parameters.AddWithValue("@date", date.ToString("yyyy-MM-dd"));
                 CMD.Parameters.AddWithValue("@tipo", ((ComboBoxItem)comboBox.SelectedValue).Content.ToString().Split()[0]);

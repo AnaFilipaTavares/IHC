@@ -9,6 +9,7 @@ namespace IHCProject.infoClass
     public class Aula
     {
         private int horario;
+        private int id;
         private int nAula;
         private string disciplina;
         private int anoDisciplina;
@@ -32,6 +33,17 @@ namespace IHCProject.infoClass
         public Aula(int horario, int nAula, string disciplina, int anoDisciplina, string data, string sumário)
         {
             this.horario = horario;
+            this.nAula = nAula;
+            this.disciplina = disciplina;
+            this.anoDisciplina = anoDisciplina;
+            this.data = data;
+            this.sumário = sumário;
+        }
+
+        public Aula(int horario, int nAula, int id,string disciplina, int anoDisciplina, string data, string sumário)
+        {
+            this.horario = horario;
+            this.id = id;
             this.nAula = nAula;
             this.disciplina = disciplina;
             this.anoDisciplina = anoDisciplina;
@@ -137,5 +149,17 @@ namespace IHCProject.infoClass
             }
         }
 
+        public int Id
+        {
+            get
+            {
+                return id;
+            }
+
+            set
+            {
+                id = value;
+            }
+        }
     }
 }

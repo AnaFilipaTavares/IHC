@@ -48,15 +48,15 @@
                             <StackPanel Orientation="Horizontal"/>
                         </ItemsPanelTemplate>
                     </Menu.ItemsPanel>
-                    <MenuItem Background="LightSeaGreen" Header="Início" Height="30" FontSize="16" Width="60" HorizontalAlignment="Center" />
+                    <MenuItem Header="Início" Height="30" FontSize="16" Width="60" HorizontalAlignment="Center" />
                     <MenuItem Header="Disciplinas" Height="30" FontSize="16" Width="Auto" HorizontalAlignment="Center" Click="Gest_DisciplinaClick" />
                     <MenuItem Header="Turmas" Height="30" FontSize="16" Width="Auto" HorizontalAlignment="Center" Click="Gest_turmaClick" />
-                    <MenuItem Header="Horário" Height="30" FontSize="16" Width="Auto" HorizontalAlignment="Center" Click="Gest_horarioClick" />
+                    <MenuItem Background="LightSeaGreen" Header="Horário" Height="30" FontSize="16" Width="Auto" HorizontalAlignment="Center" Click="Gest_horarioClick" />
 
                 </Menu>
             </GroupBox>
 
-            <Grid Grid.Column="1" Grid.Row="1" Margin="20,0,0,0">
+            <Grid Grid.Column="1" Grid.Row="1" Margin="0,0,0,0">
                 <StackPanel>
                     <GroupBox  x:Name="gpseach" Header="Filtros de pesquisa" HorizontalAlignment="Stretch" Margin="20,0,20,0" VerticalAlignment="Top" FontSize="14" BorderThickness="2" BorderBrush="{DynamicResource {x:Static SystemColors.GradientActiveCaptionBrushKey}}">
                         <StackPanel HorizontalAlignment="Center" Grid.Column="1" Grid.Row="1" Orientation="Horizontal">

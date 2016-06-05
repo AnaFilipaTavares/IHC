@@ -68,12 +68,12 @@ namespace IHCProject.ContextoDisciplina
 
                 CMD = new SqlCommand();
                 CMD.Connection = CN;
-                CMD.CommandText = "SELECT nome,idAluno FROM (SELECT * FROM ESCOLA_SECUNDARIA.FREQUENTA WHERE horario=@idHorario) AS T JOIN  ESCOLA_SECUNDARIA.ALUNO ON T.aluno=idAluno JOIN ESCOLA_SECUNDARIA.PESSOA ON PESSOA.ncc=ALUNO.ncc";
+                CMD.CommandText = "EXEC PROJETO.p_perfilDisciplina @idHorario";
                 CMD.Parameters.AddWithValue("@idHorario", aulaEdit.Horario);
                 SqlDataReader RDR = CMD.ExecuteReader();
                 while (RDR.Read())
                 {
-                    listaAluno.Add( new Aluno(int.Parse(RDR["idAluno"].ToString()), RDR["nome"].ToString()));
+                    listaAluno.Add( new Aluno(int.Parse(RDR["aluno"].ToString()), RDR["nome"].ToString()));
                 }
                 RDR.Close();
             }
@@ -90,8 +90,8 @@ namespace IHCProject.ContextoDisciplina
                 if (CN.State == ConnectionState.Closed) CN.Open();
 
                 CMD = new SqlCommand();
-                CMD.Connection = CN;
-                CMD.CommandText = "SELECT * FROM ESCOLA_SECUNDARIA.FALTAS_ALUNO WHERE horario=@idHorario AND aula=@numeroAula";
+                CMD.Connection = CN; 
+                CMD.CommandText = "EXEC PROJETO.p_faltasAula @idHorario,@numeroAula";
                 CMD.Parameters.AddWithValue("@idHorario", aulaEdit.Horario);
                 CMD.Parameters.AddWithValue("@numeroAula", aulaEdit.NumeroAula);
                 SqlDataReader RDR = CMD.ExecuteReader();
@@ -141,8 +141,8 @@ namespace IHCProject.ContextoDisciplina
                     if (CN.State == ConnectionState.Closed) CN.Open();
 
                     CMD = new SqlCommand();
-                    CMD.Connection = CN;
-                    CMD.CommandText = "UPDATE ESCOLA_SECUNDARIA.AULA SET sumario=@sumario WHERE horario=@idHorario AND numero=@numeroAula;";
+                    CMD.Connection = CN; 
+                    CMD.CommandText = "EXEC PROJETO.p_editSumario @idHorario,@numeroAula,@sumario";
                     CMD.Parameters.AddWithValue("@idHorario", aulaEdit.Horario);
                     CMD.Parameters.AddWithValue("@numeroAula", nAula1.Text);
                     CMD.Parameters.AddWithValue("@sumario", sumarioBox.Text);
@@ -177,9 +177,10 @@ namespace IHCProject.ContextoDisciplina
 
                             CMD = new SqlCommand();
                             CMD.Connection = CN;
-                            CMD.CommandText = "INSERT INTO ESCOLA_SECUNDARIA.FALTAS_ALUNO VALUES (@idAluno,@idHorario,@numeroAula,@tipo);";
+                            CMD.CommandText = "EXEC PROJETO.p_insertFaltas @idAluno,@idHorario,@id,@numeroAula,@tipo";
                             CMD.Parameters.AddWithValue("@idAluno", elementos.getNumero());
                             CMD.Parameters.AddWithValue("@idHorario", aulaEdit.Horario);
+                            CMD.Parameters.AddWithValue("@id", aulaEdit.Id);
                             CMD.Parameters.AddWithValue("@numeroAula", nAula1.Text);
                             CMD.Parameters.AddWithValue("@tipo", elementos.getTipofalta()[0]);
                             erros = CMD.ExecuteNonQuery();

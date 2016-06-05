@@ -218,16 +218,17 @@ namespace IHCProject.ContextoDisciplina
             //Verificar o matching do dia da semana
 
             DiaSemana dataAdicionar=null;
+            string temp = "";
             foreach (DiaSemana d in diasDisciplina) {
+                temp += d.Dia + " ";
                 if (d.Dia != DayOfWeek.Sunday && d.Dia == data.SelectedDate.Value.DayOfWeek)
                 {
-
                     dataAdicionar = d;
                 }
             }
-
+            
             if (dataAdicionar == null) {
-                MessageBox.Show("Dia de semana inválido: " + data.SelectedDate.Value.DayOfWeek+"\nCorriga a data para um dia de semana em que a disciplina pode ser lecionada");
+                MessageBox.Show("Dia de semana inválido: " + data.SelectedDate.Value.DayOfWeek+ "\nCorriga a data para um dia de semana em que a disciplina pode ser lecionada\nDias possiveis:"+ (temp.Equals("")?"A disciplina não tem um horário associoado":temp));
                 return;
             }
 

@@ -39,8 +39,37 @@ namespace IHCProject.Secretaria
 
         private void loadData()
         {
-           
+            
+            try
+            {
+                if (CN.State == ConnectionState.Closed) CN.Open();
+
+                CMD = new SqlCommand();
+                CMD.Connection = CN;
+                CMD.CommandText = "EXEC PROJETO.turmaSemHorario";
+                SqlDataReader RDR = CMD.ExecuteReader();
+                while (RDR.Read())
+                {
+                    cblistTurma.Items.Add(new Turma(int.Parse(RDR["codigo"].ToString()), RDR["ano"].ToString(), RDR["designação"].ToString()));
+
+                }
+                RDR.Close();
+
+              /*  //obter a aula
+                CMD = new SqlCommand();
+                CMD.Connection = CN;
+                CMD.CommandText = "SELECT PROJETO.ultimaAula(@idHorario)";
+                CMD.Parameters.AddWithValue("@idHorario", hDisciplina.IdHorario);
+                int ret = (int)CMD.ExecuteScalar();
+                nAula1.Text = (ret + 1) + "";*/
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
         }
+
         private void Gest_DisciplinaClick(object sender, RoutedEventArgs e)
         {
 
