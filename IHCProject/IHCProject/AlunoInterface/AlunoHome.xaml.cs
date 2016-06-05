@@ -89,18 +89,18 @@ namespace IHCProject.AlunoInterface
 
                 CMD = new SqlCommand();
                 CMD.Connection = CN;
-                CMD.CommandText = "EXEC PROJETO.SP_DadosAluno @aluno;";
+                CMD.CommandText = "EXEC PROJETO.p_DadosAluno @aluno;";
                 CMD.Parameters.AddWithValue("@aluno", aluno.IdAluno);
 
                 SqlDataReader RDR = CMD.ExecuteReader();
                 if (RDR.Read())
                 {
-                    nomeAluno.Content = RDR["nomeAluno"].ToString();
-                    dataAluno.Content = RDR["dAluno"].ToString().Split()[0];
-                    encarregadoAluno.Content = RDR["nomeEncarregado"].ToString();
-                    cursoAluno.Content = RDR["nomeCurso"].ToString();
+                    nomeAluno.Content = RDR["Aluno"].ToString();
+                    dataAluno.Content = RDR["dataAluno"].ToString().Split()[0];
+                    encarregadoAluno.Content = RDR["e_educação"].ToString();
+                    cursoAluno.Content = RDR["cursoAluno"].ToString();
                     turmaAluno.Content = RDR["ano"].ToString() + "º" + RDR["designação"].ToString();
-                    diretorAluno.Content = RDR["nome"].ToString();
+                    diretorAluno.Content = RDR["DT"].ToString();
                 }
                 RDR.Close();
             }

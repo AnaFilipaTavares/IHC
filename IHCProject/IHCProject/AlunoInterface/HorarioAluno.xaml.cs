@@ -105,7 +105,7 @@ namespace IHCProject.AlunoInterface
 
                     Container.Children.Add(new DisplayDisciplinaHorario(new DisciplinaHorario(RDR["sala"].ToString(), RDR["diaSemana"].ToString(), RDR["nome"].ToString(), RDR["horaInicio"].ToString().Split()[0])));
                     //listBox.Items.Add(new HorarioDisciplina(int.Parse(RDR["id"].ToString()), new Disciplina(int.Parse(RDR["disciplina"].ToString()), int.Parse(RDR["ano"].ToString()), RDR["designação"].ToString()), RDR["letra"].ToString(), prof));
-                    if (RDR["duração"].ToString().Equals("90"))
+                    if (RDR["duração"].ToString().Equals("100"))
                     {
                         DisciplinaHorario di = new DisciplinaHorario(RDR["sala"].ToString(), RDR["diaSemana"].ToString(), RDR["nome"].ToString(), RDR["horaInicio"].ToString().Split()[0]);
                         di.RowIndex++;

@@ -51,7 +51,7 @@ namespace IHCProject.AlunoInterface
 
                 CMD = new SqlCommand();
                 CMD.Connection = CN;
-                CMD.CommandText = "EXEC ESCOLA_SECUNDARIA.SP_AulasAluno @aluno,@disciplina,@ano;";
+                CMD.CommandText = "EXEC PROJETO.p_AulasAluno @aluno,@disciplina,@ano;";
                 CMD.Parameters.AddWithValue("@aluno", aluno.IdAluno);
                 CMD.Parameters.AddWithValue("@disciplina", d.Nome);
                 CMD.Parameters.AddWithValue("@ano", d.AnoDisciplina);
@@ -59,7 +59,7 @@ namespace IHCProject.AlunoInterface
                 SqlDataReader RDR = CMD.ExecuteReader();
                 while (RDR.Read())
                 {
-                    listaAula.Items.Add(new Aula(int.Parse(RDR["horario"].ToString()), int.Parse(RDR["numero"].ToString()), RDR["designação"].ToString(), int.Parse(RDR["ano"].ToString()), RDR["data"].ToString().Split()[0], RDR["sumario"].ToString()));
+                    listaAula.Items.Add(new Aula(int.Parse(RDR["disciplinaInfo"].ToString()), int.Parse(RDR["numero"].ToString()), RDR["nome"].ToString(), int.Parse(RDR["ano"].ToString()), RDR["data"].ToString().Split()[0], RDR["sumario"].ToString()));
                 }
                 RDR.Close();
             }

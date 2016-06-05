@@ -95,7 +95,7 @@ namespace IHCProject.AlunoInterface
 
                 CMD = new SqlCommand();
                 CMD.Connection = CN;
-                CMD.CommandText = "EXEC PROJETO.p_planoCursoAluno" + aluno.IdAluno + ";";
+                CMD.CommandText = "EXEC PROJETO.p_planoCursoAluno " + aluno.IdAluno + ";";
                 SqlDataReader RDR = CMD.ExecuteReader();
                 while (RDR.Read())
                 {

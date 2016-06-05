@@ -50,13 +50,13 @@ namespace IHCProject.AlunoInterface
                    
                 CMD = new SqlCommand();
                 CMD.Connection = CN;
-                CMD.CommandText = "SELECT * FROM ESCOLA_SECUNDARIA.UDF_ListaDisciplinasAluno(@aluno) ORDER BY 3,2;";
+                CMD.CommandText = "SELECT * FROM PROJETO.UDF_ListaDisciplinasAluno (@aluno) ORDER BY 3,2";
                 CMD.Parameters.AddWithValue("@aluno", aluno.IdAluno);
                 SqlDataReader RDR = CMD.ExecuteReader();
                 while (RDR.Read())
                 {
 
-                    listBox.Items.Add(new Disciplina(0, int.Parse(RDR["ano"].ToString()), RDR["designação"].ToString()));
+                    listBox.Items.Add(new Disciplina(0, int.Parse(RDR["ano"].ToString()), RDR["nome"].ToString()));
                 }
                 RDR.Close();
             }

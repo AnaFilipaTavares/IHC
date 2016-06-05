@@ -24,6 +24,8 @@ namespace IHCProject.Secretaria
     {
         private SqlConnection cN;
         private SqlCommand CMD;
+        private static string key = "WASERDTFVGYHJCKC";
+        private static string pass = "123456";
 
         public InsertAluno()
         {
@@ -71,7 +73,7 @@ namespace IHCProject.Secretaria
                 SqlDataReader RDR = CMD.ExecuteReader();
                 while (RDR.Read())
                 {
-                    t9.Items.Add(new Curso(int.Parse(RDR["codigo"].ToString()), RDR["nome"].ToString()));
+                    curso.Items.Add(new Curso(int.Parse(RDR["codigo"].ToString()), RDR["nome"].ToString()));
 
                 }
                 RDR.Close();
@@ -85,6 +87,49 @@ namespace IHCProject.Secretaria
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
+            bool status = false;
+            if (nome.Text.Length == 0 || ncc.Text.Length == 0 || idade.Text.Length == 0 || data.Text.Length == 0 || morada.Text.Length == 0 || sexo.Text.Length == 0 || ee.Text.Length == 0 || ano.Text.Length == 0 || curso.SelectedItem==null)
+                status = true;
+
+            if (status == true) {
+                MessageBox.Show("Todos os campos são de preenchimento obrigatório");
+                return;
+            }
+
+
+
+            try
+            {
+                if (cN.State == System.Data.ConnectionState.Closed) cN.Open();
+
+                CMD = new SqlCommand();
+                CMD.Connection = cN;
+                CMD.CommandText = "EXEC PROJETO.p_createAluno @ncc,@nome,@idade,@data,@morada,@sexo,@ee,@curso,@ano,@pass,@key;";
+                CMD.Parameters.AddWithValue("@ncc", ncc.Text);
+                CMD.Parameters.AddWithValue("@nome", nome.Text);
+                CMD.Parameters.AddWithValue("@idade", int.Parse(idade.Text));
+                CMD.Parameters.AddWithValue("@data", data.Text);
+                CMD.Parameters.AddWithValue("@morada", morada.Text);
+                CMD.Parameters.AddWithValue("@sexo", sexo.Text);
+                CMD.Parameters.AddWithValue("@ee", ee.Text);
+                Curso c = (Curso)curso.SelectedItem;
+                CMD.Parameters.AddWithValue("@curso", c.Id );
+                CMD.Parameters.AddWithValue("@ano", int.Parse(ano.Text));
+                CMD.Parameters.AddWithValue("@pass", pass);
+                CMD.Parameters.AddWithValue("@key", key);
+                CMD.ExecuteNonQuery();
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro na criação do aluno. Verifique se introduziu os dados corretos");
+                Console.WriteLine(ex.Message);
+                return;
+            }
+
+            MessageBox.Show("Aluno Inserido com sucesso");
+
         }
 
         private void Gestao_Click(object sender, RoutedEventArgs e)
