@@ -93,7 +93,7 @@ namespace IHCProject.Secretaria
         private void button_Click(object sender, RoutedEventArgs e)
         {
             bool status = false;
-            if (nome.Text.Length == 0 || ncc.Text.Length == 0 || idade.Text.Length == 0 || data.Text.Length == 0 || morada.Text.Length == 0 || sexo.Text.Length == 0 || ee.Text.Length == 0 || ano.Text.Length == 0 || curso.SelectedItem==null)
+            if (nome.Text.Length == 0 || ncc.Text.Length == 0 || idade.Text.Length == 0 || data.Text.Length == 0 || morada.Text.Length == 0 ||  ee.Text.Length == 0 || ano.Text.Length == 0 || curso.SelectedItem==null)
                 status = true;
 
             if (status == true) {
@@ -113,7 +113,7 @@ namespace IHCProject.Secretaria
                 CMD.Parameters.AddWithValue("@idade", int.Parse(idade.Text));
                 CMD.Parameters.AddWithValue("@data", data.Text);
                 CMD.Parameters.AddWithValue("@morada", morada.Text);
-                CMD.Parameters.AddWithValue("@sexo", sexo.Text);
+                CMD.Parameters.AddWithValue("@sexo", ((ComboBoxItem)sexo.SelectedItem).Content.ToString());
                 CMD.Parameters.AddWithValue("@ee", ee.Text);
                 Curso c = (Curso)curso.SelectedItem;
                 CMD.Parameters.AddWithValue("@curso", c.Id );
@@ -147,7 +147,7 @@ namespace IHCProject.Secretaria
             idade.Clear();
             morada.Clear();
             curso.SelectedIndex = -1;
-            sexo.Clear();
+            
             ano.Clear();
             data.Clear();
             ee.Clear();

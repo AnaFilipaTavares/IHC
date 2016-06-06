@@ -40,7 +40,7 @@ namespace IHCProject.Secretaria
           private void button_Click(object sender, RoutedEventArgs e)
         {
             bool status = false;
-            if (nome.Text.Length == 0 || ncc.Text.Length == 0 || idade.Text.Length == 0 || data.Text.Length == 0 || morada.Text.Length == 0 || sexo.Text.Length == 0 || mail.Text.Length == 0)
+            if (nome.Text.Length == 0 || ncc.Text.Length == 0 || idade.Text.Length == 0 || data.Text.Length == 0 || morada.Text.Length == 0 || mail.Text.Length == 0)
                 status = true;
 
             if (status == true)
@@ -61,7 +61,7 @@ namespace IHCProject.Secretaria
                 CMD.Parameters.AddWithValue("@idade", int.Parse(idade.Text));
                 CMD.Parameters.AddWithValue("@data", data.Text);
                 CMD.Parameters.AddWithValue("@morada", morada.Text);
-                CMD.Parameters.AddWithValue("@sexo", sexo.Text);
+                CMD.Parameters.AddWithValue("@sexo", ((ComboBoxItem)sexo.SelectedItem).Content.ToString());
                 CMD.Parameters.AddWithValue("@mail", mail.Text);
                 CMD.Parameters.AddWithValue("@pass", pass);
                 CMD.Parameters.AddWithValue("@key", key);

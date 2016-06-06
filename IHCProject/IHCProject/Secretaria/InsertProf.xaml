@@ -82,7 +82,10 @@
                     <Label x:Name="label5" Grid.Row="4" Content="Morada: " HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16"/>
                     <TextBox x:Name="morada" Text="" Height="30"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="317" FontSize="16" Grid.Row="4" Margin="156,2,79,3"/>
                     <Label x:Name="label6" Grid.Row="5" Content="Sexo: " HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16"/>
-                    <TextBox x:Name="sexo" Text="" Height="30"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="317" FontSize="16" Grid.Row="5" Margin="156,3,79,2"/>
+                    <ComboBox SelectedIndex="0" x:Name="sexo"  Height="30"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="317" FontSize="16" Grid.Row="5" Margin="156,3,79,2">
+                        <ComboBoxItem Content="M"/>
+                        <ComboBoxItem Content="F"/>
+                    </ComboBox>
                     <Label x:Name="label7" Grid.Row="6" Content="E-Mail: " HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16"/>
                     <TextBox x:Name="mail" Text="" Height="30"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="317" FontSize="16" Grid.Row="6" Margin="156,2,79,3"/>
                     <Button x:Name="button" Grid.Row="7" Width="60" Height="30" Content="Guardar"  HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="50,0" Click="button_Click"/>

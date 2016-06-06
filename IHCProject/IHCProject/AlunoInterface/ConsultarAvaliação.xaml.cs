@@ -111,13 +111,13 @@ namespace IHCProject.AlunoInterface
                 CMD = new SqlCommand();
                 CMD.Connection = CN;
                 String format = ano.ToString()+"-" + String.Format("{0:00}", mes) + "-__";
-                CMD.CommandText = "EXEC ESCOLA_SECUNDARIA.SP_AvaliaçõesAluno @aluno,@format;";
+                CMD.CommandText = "EXEC PROJETO.p_avaliaçõesAluno @aluno,@format;";
                 CMD.Parameters.AddWithValue("@aluno", aluno.IdAluno);
                 CMD.Parameters.AddWithValue("@format", format);
                 SqlDataReader RDR = CMD.ExecuteReader();
                 while (RDR.Read())
                 {
-                    setReturn.Add(new Marcacao(RDR["designação"].ToString() + " " + RDR["tipoAvaliacao"].ToString()[0], Convert.ToDateTime(RDR["data"].ToString())));
+                    setReturn.Add(new Marcacao(RDR["nome"].ToString() + " " + RDR["tipoAvaliação"].ToString()[0], Convert.ToDateTime(RDR["data"].ToString())));
                 }
                 RDR.Close();
             }
